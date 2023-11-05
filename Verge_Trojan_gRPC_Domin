@@ -1,0 +1,100 @@
+# DNS 配置可自行修改
+port: 1080
+allow-lan: true
+mode: rule
+log-level: info
+unified-delay: true
+global-client-fingerprint: chrome
+dns:
+  enable: true
+  listen: :53
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver: 
+    - 223.5.5.5
+    - 114.114.114.114
+    - 8.8.8.8
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - https://1.0.0.1/dns-query
+    - tls://dns.google
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+# 当前 13 个主流协议节点配置模版，按需求修改，如不需要使用某协议节点，则无需删除，确保代理分流中没有该节点即可
+proxies:
+
+  - {"name":"VP0_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp0.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP1_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp1.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP2_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp2.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP3_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp3.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP4_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp4.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP5_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp5.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP6_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp6.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP7_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp7.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP8_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp8.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+  - {"name":"VP9_Trojan","type":"trojan","server":"cf31.eu.org","port":443,"udp":true,"password":"2c796045-02c6-4257-9e4b-ce9b325da829","sni":"vp9.edu.tw","skip-cert-verify":true,"network":"grpc","grpc-opts":{"grpc-service-name":"schtwtrojangrpc"},"alpn":["h2"]}
+
+# 分流组可自行创建或添加，proxies 参数下的节点名称，按需求自行增减，确保出现的节点名称在代理协议中可查找
+proxy-groups:
+- name: Load Balance
+  type: load-balance
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  proxies:
+    - "VP0_Trojan"
+    - "VP1_Trojan"
+    - "VP2_Trojan"
+    - "VP3_Trojan"
+    - "VP4_Trojan"
+    - "VP5_Trojan"
+    - "VP6_Trojan"
+    - "VP7_Trojan"
+    - "VP8_Trojan"
+    - "VP9_Trojan"
+
+
+- name: Auto Select
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+    - "VP0_Trojan"
+    - "VP1_Trojan"
+    - "VP2_Trojan"
+    - "VP3_Trojan"
+    - "VP4_Trojan"
+    - "VP5_Trojan"
+    - "VP6_Trojan"
+    - "VP7_Trojan"
+    - "VP8_Trojan"
+    - "VP9_Trojan"
+    
+- name: Select
+  type: select
+  proxies:
+    - Load Balance                                            # 自定义添加的节点名称
+    - Auto Select
+    - DIRECT
+    - "VP0_Trojan"
+    - "VP1_Trojan"
+    - "VP2_Trojan"
+    - "VP3_Trojan"
+    - "VP4_Trojan"
+    - "VP5_Trojan"
+    - "VP6_Trojan"
+    - "VP7_Trojan"
+    - "VP8_Trojan"
+    - "VP9_Trojan"
+
+# 代理规则可自行添加 
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,Select
