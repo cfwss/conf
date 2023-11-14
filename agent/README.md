@@ -26,6 +26,7 @@ mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
 如果HK鸡，请使用forHK，通过落地鸡解锁chatGPT等。
 
 =================================【第一部分，安装warp sock 】===============================
+
 wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/menu.sh  && bash menu.sh [option] [lisence/url/token]
 //二选一，这是warp 
 //【自用，备份，防丢链接，建议用官方的https://gitlab.com/fscarmen/warp】
@@ -40,6 +41,7 @@ curl ifconfig.me --proxy socks5://127.0.0.1:40000
 //检查端口成功与否
 
 ==============================【第二部分，安装V2RAY，各取所需吧】=============================
+
 wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/cfwss/conf/main/install/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 //选2,1,4（带TJ 或者选12345。如果需要开cloudflare的小云朵，建议使用带cdn的选项，可多选）
 //如果要开小云朵，又要开TLS，建议使用两套域名，如eu.org用来开云朵，自备域名用Tls，同时要在nginx中配置好回落。具体见最后。
@@ -66,6 +68,7 @@ vasma
 
 
 =====================【【第四部分，多域名Nginx多重回落】=====================
+
 首选我选择的是12345套餐。
 
 NG目录：/etc/nginx/conf.d/
