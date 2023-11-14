@@ -20,13 +20,15 @@
 
 如果启用了warp分流，可使用此配置。
 
-把文件名替换成对应的即可
+如果不会用？看下面又长又臭的小作文。
 
-如果需要落地解锁，使用forward里面的config。
+	VLESS+TCP[TLS_Vision] VLESS+WS[TLS] Trojan+gRPC[TLS] VMess+WS[TLS] Trojan+TCP[TLS] VLESS+gRPC[TLS]
 
-落地机解锁的10_ipv4_outbounds.json文件，内容需要修改成你的解锁机vmess+ws节点信息。包括域名、UUID、PATH等。
+如果需要落地解锁，可以参考forward里面的config。
 
-如果HK鸡，请使用forHK，通过落地鸡解锁chatGPT等。
+采用落地机解锁， forward里面的 10_ipv4_outbounds.json 文件内容需要修改成你的解锁机 vmess+ws 节点信息。包括域名、UUID、PATH等。
+
+如果是HK鸡，请使用forHK，通过落地鸡解锁chatGPT等。
 
 =================================【第一部分，安装warp sock 】===============================
 
@@ -34,13 +36,13 @@
 
 //二选一，这是warp 
 
-//【自用，备份，防丢链接，建议用官方的https://gitlab.com/fscarmen/warp】
+//【自用，备份，防丢链接，建议用官方的 https://gitlab.com/fscarmen/warp 】
 
 	  wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/warp-go.sh && bash warp-go.sh [option] [lisence]
 
 //二选一，这是warp go
 
-//【自用，备份，防丢链接，建议用官方的https://gitlab.com/fscarmen/warp】
+//【自用，备份，防丢链接，建议用官方的 https://gitlab.com/fscarmen/warp 】
 
 //上面二选一，我用第一个。回车（中文选2再回车），13，回车，回车。
 
