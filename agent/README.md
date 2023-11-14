@@ -84,7 +84,7 @@
 #输入，16-->6 重启xray即可。
 
 
-=========================【【第四部分，多域名Nginx多重回落】=========================
+=========================【第四部分，多域名Nginx多重回落】=========================
 
 首选我选择的是12345套餐。
 
@@ -99,8 +99,60 @@ NG目录：/etc/nginx/conf.d/
 	server_name yourdomain.eu.org;  //这里有两处要修改，一处在开头，一处在尾部。
  
 
-处理完后，重启ng。
+处理完后，重启ng。	
 
 	service nginx restart
 
+=========================【第五部分，多域名Nginx ECC证书配置】=========================
+
+	mkdir /etc/tls
+
+	vi /etc/tls/yourdomain.eu.org.crt
+ 
+-----BEGIN CERTIFICATE-----
+证书公钥内容
+-----END CERTIFICATE-----
+
+	vi /etc/tls/yourdomain.eu.org.key
+
+-----BEGIN PRIVATE KEY-----
+证书私钥内容
+-----END PRIVATE KEY-----
+
+//要开云朵的话，可以用CF里的源证书。15年，期间自动，具体可以GOOGLE。
+
+//如果有多个域，重复以上步骤即可。
+
+接着修改 inbounds.json
+
+	nano /etc/v2ray-agent/xray/conf/02_VLESS_TCP_inbounds.json
+
+
+根据情况
+
+
+	,
+            {
+              "certificateFile": "/etc/tls/yourdomain.eu.org.crt",
+              "keyFile": "/etc/tls/yourdomain.eu.org.key",
+              "ocspStapling": 3600,
+              "usage": "encipherment"
+            },
+            {
+              "certificateFile": "/etc/tls/yourdomain2.eu.org.crt",
+              "keyFile": "/etc/tls/yourdomain2.eu.org.key",
+              "ocspStapling": 3600,
+              "usage": "encipherment"
+            },
+            {
+              "certificateFile": "/etc/tls/yourdomain3.eu.org.crt",
+              "keyFile": "/etc/tls/yourdomain3.eu.org.key",
+              "ocspStapling": 3600,
+              "usage": "encipherment"
+            }
+
+修改后重启一下NG
+
+	service nginx restart
+ 
 如果没有错误，那就可以浪了。
