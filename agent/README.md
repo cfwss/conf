@@ -2,18 +2,18 @@
 
 //不解锁流媒体(适用于落地鸡)
 
-rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
+	rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
-wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
+	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
 
-mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
+	mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
 
-rm /etc/v2ray-agent/xray/conf/09_routing.json --force
+	rm /etc/v2ray-agent/xray/conf/09_routing.json --force
 
-wget https://raw.githubusercontent.com/cfwss/conf/main/agent/09_routing.json
+	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/09_routing.json
 
-mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
+	mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
 
 
 如果小鸡可以解锁，不需要WARP分流，请使用默认配置。
@@ -30,13 +30,13 @@ mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
 
 =================================【第一部分，安装warp sock 】===============================
 
-wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/menu.sh  && bash menu.sh [option] [lisence/url/token]
+	  wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/menu.sh  && bash menu.sh [option] [lisence/url/token]
 
 //二选一，这是warp 
 
 //【自用，备份，防丢链接，建议用官方的https://gitlab.com/fscarmen/warp】
 
-wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/warp-go.sh && bash warp-go.sh [option] [lisence]
+	  wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/warp-go.sh && bash warp-go.sh [option] [lisence]
 
 //二选一，这是warp go
 
@@ -44,13 +44,13 @@ wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/warp-go.sh && 
 
 //上面二选一，我用第一个。回车（中文选2再回车），13，回车，回车。
 
-curl ifconfig.me --proxy socks5://127.0.0.1:40000
+	curl ifconfig.me --proxy socks5://127.0.0.1:40000
 
 //检查端口成功与否
 
 ==============================【第二部分，安装V2RAY，各取所需吧】=============================
 
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/cfwss/conf/main/install/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+	wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/cfwss/conf/main/install/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 
 //选2,1,4（带TJ 或者选12345。如果需要开cloudflare的小云朵，建议使用带cdn的选项，可多选）
 
@@ -65,19 +65,19 @@ wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/cfwss
 
 =====================【【第三部分，设置xray的warp参数，如果第二部分不和我选的一样，请忽略这部分】=====================
 
-rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
+	rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
-wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
+	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
 
-mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
+	mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
-rm /etc/v2ray-agent/xray/conf/09_routing.json --force
+	rm /etc/v2ray-agent/xray/conf/09_routing.json --force
 
-wget https://raw.githubusercontent.com/cfwss/conf/main/agent/09_routing.json
+	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/09_routing.json
 
-mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
+	mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
 
-vasma
+	vasma
 
 #输入，16-->6 重启xray即可。
 
@@ -99,6 +99,6 @@ NG目录：/etc/nginx/conf.d/
 
 处理完后，重启ng。
 
-service nginx restart
+	service nginx restart
 
 如果没有错误，那就可以浪了。
