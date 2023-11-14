@@ -15,9 +15,10 @@
       {
         "type": "field",
         "domain": [
-          "p3terx.com"
+          "domain:gstatic.com",
+          "domain:googleapis.com"
         ],
-        "outboundTag": "WARP-socks5-v6"
+        "outboundTag": "direct"
       },
       {
         "type": "field",
