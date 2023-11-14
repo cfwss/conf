@@ -1,0 +1,45 @@
+{
+  "routing": {
+    "rules": [
+      {
+         "type":"field",
+         "domain":[
+          "domain:ai.com",
+          "geosite:netflix",
+          "geosite:bahamut",
+          "geosite:openai",
+          "domain:ip.gs",
+          "domain:paramountplus.com",
+          "domain:irdeto.com",
+          "domain:syncbak.com",
+          "domain:theplatform.com",
+          "domain:cbsaavideo.com",
+          "domain:cbsi.com",
+          "domain:cbsivideo.com",
+          "domain:pplusstatic.com",
+          "domain:uplynk.com",
+          "domain:disco-api.com",
+          "domain:discoveryplus.com",
+          "domain:getblueshift.com",
+          "domain:discoveryplus.co.uk",
+          "domain:getblueshift.com",
+          "domain:litix.io",
+          "domain:newrelic.com",
+          "geosite:disney"
+         ],
+         "outboundTag":"WARP-socks5-v4"
+      },
+      {
+         "type":"field",
+         "outboundTag":"WARP-socks5-v6"
+      },
+      {
+        "type": "field",
+        "outboundTag": "blackhole-out",
+        "protocol": [
+         "bittorrent"
+        ]
+      }
+    ]
+  }
+}
