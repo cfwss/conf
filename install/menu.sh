@@ -9,7 +9,7 @@ ISP=("isp" "isp" "asn_org")
 IP=("query" "ip" "ip")
 
 # 自建 github / gitlab  cdn 反代网，用于不能直连 github / gitlab 的机器
-CDN_URL=("https://cdn1.cloudflare.now.cc/" "https://cdn2.cloudflare.now.cc/" "https://cdn3.cloudflare.now.cc/" "https://cdn4.cloudflare.now.cc/")
+CDN_URL=("cdn1.cloudflare.now.cc/proxy/" "cdn2.cloudflare.now.cc/https://" "cdn3.cloudflare.now.cc?url=https://" "cdn4.cloudflare.now.cc/proxy/https://")
 
 # 环境变量用于在Debian或Ubuntu操作系统中设置非交互式（noninteractive）安装模式
 export DEBIAN_FRONTEND=noninteractive
