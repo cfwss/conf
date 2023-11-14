@@ -101,13 +101,17 @@ NG目录：/etc/nginx/conf.d/
 	vi /etc/tls/yourdomain.eu.org.crt
  
 -----BEGIN CERTIFICATE-----
+
 证书公钥内容
+
 -----END CERTIFICATE-----
 
 	vi /etc/tls/yourdomain.eu.org.key
 
 -----BEGIN PRIVATE KEY-----
+
 证书私钥内容
+
 -----END PRIVATE KEY-----
 
 //要开云朵的话，可以用CF里的源证书。15年，期间自动，具体可以GOOGLE。
