@@ -30,6 +30,12 @@
         "protocol":"freedom",
         "settings":{
         "domainStrategy":"UseIPv6"
+        "servers":[
+            {
+            "address":"127.0.0.1",
+            "port":40000
+            }
+        ]
         },
         "proxySettings":{
         "tag":"warp"
