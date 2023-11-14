@@ -1,6 +1,7 @@
 使用说明：
 
 rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
+
 wget  https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.jso.json
 mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
