@@ -3,16 +3,12 @@
 //不解锁流媒体(适用于落地鸡)
 
 	rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
-
 	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
-
 	mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
 
 	rm /etc/v2ray-agent/xray/conf/09_routing.json --force
-
 	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/09_routing.json
-
 	mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
 
 
@@ -68,15 +64,11 @@
 ===============【第三部分，设置xray的warp参数，如果第二部分不和我选的一样，请忽略这部分】===============
 
 	rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
-
 	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
-
 	mv 10_ipv4_outbounds.json  /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 
 	rm /etc/v2ray-agent/xray/conf/09_routing.json --force
-
 	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/09_routing.json
-
 	mv 09_routing.json   /etc/v2ray-agent/xray/conf/09_routing.json --force
 
 	vasma
@@ -106,7 +98,6 @@ NG目录：/etc/nginx/conf.d/
 =========================【第五部分，多域名Nginx ECC证书配置】=========================
 
 	mkdir /etc/tls
-
 	vi /etc/tls/yourdomain.eu.org.crt
  
 -----BEGIN CERTIFICATE-----
