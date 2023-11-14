@@ -31,7 +31,9 @@
       },
       {
          "type":"field",
-         "domain": [""],
+         "domain": [
+           "p3terx.com"
+         ],
          "outboundTag":"WARP-socks5-v6"
       },
       {
