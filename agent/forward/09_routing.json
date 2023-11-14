@@ -14,9 +14,6 @@
       },
       {
         "type": "field",
-        "domain": [
-          "ipv6"
-        ],
         "outboundTag": "WARP-socks5-v6"
       },
       {
