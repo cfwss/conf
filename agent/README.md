@@ -128,7 +128,8 @@ NG目录：/etc/nginx/conf.d/
 	nano /etc/v2ray-agent/xray/conf/02_VLESS_TCP_inbounds.json
 
 
-根据情况
+根据情况配置证书。
+//以下从逗号开始，至右括号结束。
 
 
 	,
