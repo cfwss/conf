@@ -29,7 +29,7 @@
         "tag":"WARP-socks5-v6",
         "protocol":"freedom",
         "settings":{
-        "domainStrategy": "UseIPv6"
+        "domainStrategy": "UseIPv6",
         "servers":[
             {
             "address":"127.0.0.1",
