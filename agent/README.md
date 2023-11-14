@@ -59,7 +59,7 @@
 //【自用，备份，防丢链接，建议用官方的https://github.com/mack-a/v2ray-agent】
 
 
-  vasma
+	  vasma
 
 //脚本命令，后面会用到，如：添加用户，开启BBR，重启xray等。
 
