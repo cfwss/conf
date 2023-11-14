@@ -58,7 +58,7 @@
 
 //如果要开小云朵，又要开TLS，建议使用两套域名，如eu.org用来开云朵，自备域名用Tls，同时要在nginx中配置好回落。具体见最后。
 
-//【自用，备份，防丢链接，建议用官方的https://github.com/mack-a/v2ray-agent】
+//【自用，备份，防丢链接，建议用官方的https://github.com/mack-a/v2ray-agent 】
 
 
 	  vasma
