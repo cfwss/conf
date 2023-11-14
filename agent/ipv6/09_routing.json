@@ -31,7 +31,7 @@
       },
       {
          "type":"field",
-         "domain": [],
+         "domain": [""],
          "outboundTag":"WARP-socks5-v6"
       },
       {
