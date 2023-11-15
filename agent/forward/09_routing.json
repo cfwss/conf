@@ -29,7 +29,6 @@
       {
         "type": "field",
         "domain": [
-          "domain:ai.com",
           "domain:cbsaavideo.com",
           "domain:cbsi.com",
           "domain:cbsivideo.com",
@@ -37,7 +36,6 @@
           "domain:discoveryplus.co.uk",
           "domain:discoveryplus.com",
           "domain:getblueshift.com",
-          "domain:ip.gs",
           "domain:irdeto.com",
           "domain:litix.io",
           "domain:newrelic.com",
@@ -48,17 +46,13 @@
           "domain:uplynk.com",
           "geosite:4chan",
           "geosite:abema",
-          "geosite:bahamut",
           "geosite:bbc",
-          "geosite:bilibili",
           "geosite:disney",
           "geosite:dmm",
           "geosite:fox",
           "geosite:hbo",
           "geosite:hulu",
-          "geosite:netflix",
           "geosite:niconico",
-          "geosite:openai",
           "geosite:pixiv",
           "geosite:viu"
          ],
