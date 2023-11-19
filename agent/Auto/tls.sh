@@ -1,3 +1,5 @@
+mkdir /etc/tls
+
 cat << EOF > /etc/tls/test.crt
 -----BEGIN CERTIFICATE-----
 证书内容
