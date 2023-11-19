@@ -1,0 +1,42 @@
+{
+  "inbounds": [
+    {
+      "port": 443,
+      "protocol": "vless",
+      "tag": "VLESSReality",
+      "settings": {
+        "clients": [
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "dest": "31305",
+            "xver": 1
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "privateKey": "kCY1Pt11Nkbwe5FIRErXsl6qymtwDELLt1ouy6x3U1Y",
+          "publicKey": "GVJ1htWkedpcNzFUCfiVwqRLWGZWCNJw7JEUBZGKkgA",
+          "maxTimeDiff": 70000,
+          "shortIds": [
+            "",
+            "6ba85179e30d4fc2"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    }
+  ]
+}
