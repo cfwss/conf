@@ -88,9 +88,15 @@ NG目录：/etc/nginx/conf.d/
 
 	listen 127.0.0.1:31312 so_keepalive=on;http2 on;  //端口号修改成与alone.conf不同的即可，如32211等。
  
-	server_name yourdomain.eu.org;  //这里有三处要修改，一处在开头，一处在尾部。
- 
+	server_name yourdomain.eu.org;  //这里有两处要修改，一处在开头，一处在尾部。
+删除顶部这几行
 
+    server {
+    		listen 127.0.0.1:31300;
+    		server_name aws.aeakawa.eu.org;
+    		return 403;
+    }
+    
 处理完后，重启ng。	
 
 	service nginx restart
