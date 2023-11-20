@@ -5,3 +5,9 @@
 自动配置：
   
     wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/ngx.sh  && bash ngx.sh
+
+
+证书创建：
+
+    wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/tls.sh && bash tls.sh
+    #需要修改证书信息，建议上传到私人git
