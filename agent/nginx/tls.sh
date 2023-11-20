@@ -14,7 +14,7 @@ for cert in "$CERT_DIR"/*.crt; do
  
 
         jq --argjson newEntry "$new_entry" '.inbounds[0].streamSettings.tlsSettings.certificates += [$newEntry]' "$JSON_FILE" > temp.json && mv temp.json "$JSON_FILE"
-    fi
+
 done
 
 
