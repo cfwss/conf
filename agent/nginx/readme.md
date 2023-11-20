@@ -6,7 +6,7 @@ ps.不用CDN可以不开小云朵，但要TLS证书。
 
 自动配置：
   
-    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/ngx.sh  && bash ngx.sh
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/agent/nginx/ngx.sh  && bash ngx.sh
 
 
 证书创建：
