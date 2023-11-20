@@ -46,4 +46,5 @@ echo "详细信息已保存到 $OUTPUT_FILE"
 
 
 
-cat /etc/v2ray-agent/xray/conf/07_VLESS_vision_reality_inbounds.json
+cat /etc/v2ray-agent/xray/conf/02_VLESS_TCP_inbounds.json
+
