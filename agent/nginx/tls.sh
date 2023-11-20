@@ -46,4 +46,4 @@ echo "详细信息已保存到 $OUTPUT_FILE"
 
 
 
-sudo systemctl restart nginx
+cat /etc/v2ray-agent/xray/conf/07_VLESS_vision_reality_inbounds.json
