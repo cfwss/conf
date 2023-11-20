@@ -4,4 +4,4 @@
 
 自动配置：
   
-  wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/ngx.sh  && bash ngx.sh
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/ngx.sh  && bash ngx.sh
