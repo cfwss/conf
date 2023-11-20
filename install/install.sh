@@ -567,8 +567,8 @@ readSingBoxConfig() {
 
         if grep -q 'hysteria2' </etc/v2ray-agent/sing-box/conf/config.json; then
             hysteriaPort=$(jq -r '.inbounds[]|select(.type=="hysteria2")|(.listen_port)' <"${singBoxConfigPath}config.json")
-            hysteria2ClientUploadSpeed=$(jq -r '.inbounds[]|select(.type=="hysteria2")|(.up_mbps)' <"${singBoxConfigPath}config.json")
-            hysteria2ClientDownloadSpeed=$(jq -r '.inbounds[]|select(.type=="hysteria2")|(.down_mbps)' <"${singBoxConfigPath}config.json")
+            hysteria2ClientUploadSpeed=$(jq -r '.inbounds[]|select(.type=="hysteria2")|(.down_mbps)' <"${singBoxConfigPath}config.json")
+            hysteria2ClientDownloadSpeed=$(jq -r '.inbounds[]|select(.type=="hysteria2")|(.up_mbps)' <"${singBoxConfigPath}config.json")
         fi
     fi
 }
@@ -2149,12 +2149,11 @@ xrayVersionManageMenu() {
     echoContent red "=============================================================="
     read -r -p "请选择:" selectXrayType
     if [[ "${selectXrayType}" == "1" ]]; then
+        prereleaseStatus=false
         updateXray
     elif [[ "${selectXrayType}" == "2" ]]; then
-
         prereleaseStatus=true
         updateXray
-
     elif [[ "${selectXrayType}" == "3" ]]; then
         echoContent yellow "\n1.只可以回退最近的五个版本"
         echoContent yellow "2.不保证回退后一定可以正常使用"
@@ -2281,7 +2280,7 @@ updateXray() {
         if [[ -n "$1" ]]; then
             version=$1
         else
-            version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=1" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name")
+            version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
         fi
 
         echoContent green " ---> Xray-core版本:${version}"
@@ -2299,7 +2298,7 @@ updateXray() {
         if [[ -n "$1" ]]; then
             version=$1
         else
-            version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=1" | jq -r ".[].tag_name")
+            version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
         fi
 
         if [[ -n "$1" ]]; then
@@ -2848,10 +2847,10 @@ initHysteriaProtocol() {
 # 初始化hysteria网络信息
 initHysteria2Network() {
 
-    echoContent yellow "请输入本地带宽峰值的下行速度（默认：50，单位：Mbps）"
+    echoContent yellow "请输入本地带宽峰值的下行速度（默认：100，单位：Mbps）"
     read -r -p "下行速度:" hysteria2ClientDownloadSpeed
     if [[ -z "${hysteria2ClientDownloadSpeed}" ]]; then
-        hysteria2ClientDownloadSpeed=50
+        hysteria2ClientDownloadSpeed=100
         echoContent yellow "\n ---> 下行速度: ${hysteria2ClientDownloadSpeed}\n"
     fi
 
@@ -3373,8 +3372,8 @@ initSingBoxHysteria2Config() {
             "listen": "::",
             "listen_port": ${hysteriaPort},
             "users": $(initXrayClients 6),
-            "up_mbps":${hysteria2ClientUploadSpeed},
-            "down_mbps":${hysteria2ClientDownloadSpeed},
+            "up_mbps":${hysteria2ClientDownloadSpeed},
+            "down_mbps":${hysteria2ClientUploadSpeed},
             "tls": {
                 "enabled": true,
                 "server_name":"${currentHost}",
@@ -4173,17 +4172,13 @@ EOF
             "network": "tcp",
             "security": "tls",
             "tlsSettings": {
+              "rejectUnknownSni": true,
               "minVersion": "1.2",
-              "alpn": [
-                "http/1.1",
-                "h2"
-              ],
               "certificates": [
                 {
                   "certificateFile": "/etc/v2ray-agent/tls/${domain}.crt",
                   "keyFile": "/etc/v2ray-agent/tls/${domain}.key",
-                  "ocspStapling": 3600,
-                  "usage":"encipherment"
+                  "ocspStapling": 3600
                 }
               ]
             }
@@ -4526,8 +4521,8 @@ EOF
     alpn:
         - h3
     sni: ${currentHost}
-    up: "${hysteria2ClientDownloadSpeed} Mbps"
-    down: "${hysteria2ClientUploadSpeed} Mbps"
+    up: "${hysteria2ClientUploadSpeed} Mbps"
+    down: "${hysteria2ClientDownloadSpeed} Mbps"
 EOF
         echoContent yellow " ---> 二维码 Hysteria2(TLS)"
         echoContent green "    https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=hysteria2%3A%2F%2F${id}%40${currentHost}%3A${hysteriaPort}%3Fpeer%3D${currentHost}%26insecure%3D0%26sni%3D${currentHost}%26alpn%3Dh3%23${email}\n"
@@ -6116,7 +6111,7 @@ installSniffing() {
     readInstallType
     find ${configPath} -name "*inbounds.json*" | awk -F "[c][o][n][f][/]" '{print $2}' | while read -r inbound; do
         if ! grep -q "destOverride" <"${configPath}${inbound}"; then
-            sniffing=$(jq -r '.inbounds[0].sniffing = {"enabled":true,"destOverride":["http","tls"]}' "${configPath}${inbound}")
+            sniffing=$(jq -r '.inbounds[0].sniffing = {"enabled":true,"destOverride":["http","tls","quic"]}' "${configPath}${inbound}")
             echo "${sniffing}" | jq . >"${configPath}${inbound}"
         fi
     done
@@ -6259,10 +6254,17 @@ installWarpReg() {
 
 # 展示warp分流域名
 showWireGuardDomain() {
-    # todo
     # xray
-    jq -r -c '.routing.rules[]|select (.outboundTag=="wireguard_out_'"${type}"'")|.domain' ${configPath}09_routing.json | jq -r
+    if [[ -f "${configPath}09_routing.json" ]]; then
+        echoContent yellow "Xray-core"
+        jq -r -c '.routing.rules[]|select (.outboundTag=="wireguard_out_'"${type}"'")|.domain' ${configPath}09_routing.json | jq -r
+    fi
+
     # sing-box
+    if [[ -f "${singBoxConfigPath}config/wireguard_out_${type}_route.json" ]]; then
+        echoContent yellow "sing-box"
+        jq -r -c '.route.rules[]|select (.outbound=="wireguard_out_'"${type}"'")|.geosite' "${singBoxConfigPath}config/wireguard_out_${type}_route.json" | jq -r
+    fi
 }
 
 # 添加WireGuard分流
@@ -6355,6 +6357,7 @@ EOF
 
         echoContent green " ---> WARP分流卸载成功"
     fi
+
     # sing-box
     if [[ -n "${singBoxConfigPath}" ]]; then
         removeSingBoxRouteRule "wireguard_out_${type}"
@@ -8484,12 +8487,13 @@ menu() {
     cd "$HOME" || exit
     echoContent red "\n=============================================================="
     echoContent green "作者：mack-a"
-    echoContent green "当前版本：v2.11.16"
+    echoContent green "当前版本：v2.11.19"
     echoContent green "Github：https://github.com/mack-a/v2ray-agent"
     echoContent green "描述：八合一共存脚本\c"
     showInstallStatus
     checkWgetShowProgress
-    echoContent red "\n============================================================="
+    echoContent red "\n=============================================================="
+
     if [[ -n "${coreInstallType}" ]]; then
         echoContent yellow "1.重新安装"
     else
