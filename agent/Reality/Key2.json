@@ -1,7 +1,7 @@
 {
   "inbounds": [
     {
-      "port": 443,
+      "port": 4567,
       "protocol": "vless",
       "tag": "VLESSReality",
       "settings": {
