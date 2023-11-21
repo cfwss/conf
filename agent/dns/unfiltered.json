@@ -1,0 +1,7 @@
+{
+    "dns": {
+        "servers": [
+          "https://unfiltered.adguard-dns.com/dns-query"
+        ]
+  }
+}
