@@ -1,7 +1,8 @@
 {
     "dns": {
         "servers": [
-          "https://unfiltered.adguard-dns.com/dns-query"
+          "https://unfiltered.adguard-dns.com/dns-query",
+          "localhost"
         ]
   }
 }
