@@ -1,17 +1,17 @@
 #!/bin/bash
 
-CERT_DIR="/etc/tls"
-NGINX_CONF_TEMPLATE="/etc/nginx/conf.d/alone.conf"
+#CERT_DIR="/etc/tls"
+#NGINX_CONF_TEMPLATE="/etc/nginx/conf.d/alone.conf"
 
-if [ ! -d "$CERT_DIR" ]; then
-    echo "目录不存在: $CERT_DIR"
-    exit 1
-fi
+#if [ ! -d "$CERT_DIR" ]; then
+#    echo "目录不存在: $CERT_DIR"
+#    exit 1
+#fi
 
-if [ ! -f "$NGINX_CONF_TEMPLATE" ]; then
-    echo "Nginx配置模板不存在: $NGINX_CONF_TEMPLATE"
-    exit 1
-fi
+#if [ ! -f "$NGINX_CONF_TEMPLATE" ]; then
+#    echo "Nginx配置模板不存在: $NGINX_CONF_TEMPLATE"
+#    exit 1
+#fi
 
 count=0
 
