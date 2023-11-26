@@ -1,8 +1,3 @@
-#!/bin/bash
-
-#CERT_DIR="/etc/tls"
-#NGINX_CONF_TEMPLATE="/etc/nginx/conf.d/alone.conf"
-
 #if [ ! -d "$CERT_DIR" ]; then
 #    echo "目录不存在: $CERT_DIR"
 #    exit 1
@@ -47,4 +42,3 @@ done
 
 
 cat /etc/v2ray-agent/xray/conf/02_VLESS_TCP_inbounds.json
-
