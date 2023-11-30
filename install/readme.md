@@ -89,61 +89,10 @@ NG目录：/etc/nginx/conf.d/
 
 主域能直接访问，非和谐的域名，只开TLS，二号域名可以是任何域，通过CDN功能，配合优选IP/域名来使用。三号域可以备用，或开或不开云朵均可，但要用TLS最好是配证书。
 
-当然，闲麻烦的话，可以配合云朵，直接使用IP地址。
+配合云朵，完全TLS模式。
 
-	mkdir /etc/tls
-	vi /etc/tls/yourdomain.eu.org.crt
- 
------BEGIN CERTIFICATE-----
+	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/add.sh && bash add.sh
 
-证书公钥内容
-
------END CERTIFICATE-----
-
-	vi /etc/tls/yourdomain.eu.org.key
-
------BEGIN PRIVATE KEY-----
-
-证书私钥内容
-
------END PRIVATE KEY-----
-
-//要开云朵的话，可以用CF里的源证书。15年，期间自动，具体可以GOOGLE。
-
-//如果有多个域，重复以上步骤即可。
-
-接着修改 inbounds.json
-
-	nano /etc/v2ray-agent/xray/conf/02_VLESS_TCP_inbounds.json
-
-
-根据情况配置证书。
-//以下从逗号开始，至右括号结束。
-
-
-	,
-            {
-              "certificateFile": "/etc/tls/yourdomain.eu.org.crt",
-              "keyFile": "/etc/tls/yourdomain.eu.org.key",
-              "ocspStapling": 3600,
-              "usage": "encipherment"
-            },
-            {
-              "certificateFile": "/etc/tls/yourdomain2.eu.org.crt",
-              "keyFile": "/etc/tls/yourdomain2.eu.org.key",
-              "ocspStapling": 3600,
-              "usage": "encipherment"
-            },
-            {
-              "certificateFile": "/etc/tls/yourdomain3.eu.org.crt",
-              "keyFile": "/etc/tls/yourdomain3.eu.org.key",
-              "ocspStapling": 3600,
-              "usage": "encipherment"
-            }
-
-修改后重启一下NG
-
-	service nginx restart
  
 如果没有错误，那就可以浪了。
 
