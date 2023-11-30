@@ -17,6 +17,7 @@ NG默认页
 跳转到Google
 
     rm /usr/share/nginx/html/index.html --force
-    wget https://raw.githubusercontent.com/cfwss/conf/main/agent/html/Google.html
+    wget https://raw.githubusercontent.com/cfwss/conf/main/agent/html/google.html
     mv Google.html  /usr/share/nginx/html/index.html --force
     service nginx restart
+
