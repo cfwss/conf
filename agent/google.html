@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<br>
+<br>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.<em></p>
+<br>
+<br>
+<br>
+             <div class="tipInfo">
+                <div class="in">
+                    <div class="textThis">
+                        <p><span>The page automatically <a id="href" href="http://www.google.com/">jumps</a></span><span> and waits for <b id="wait">5</b> seconds.</span></p>
+                        <script type="text/javascript">                            (function() {
+                                var wait = document.getElementById('wait'), href = document.getElementById('href').href;
+                                var interval = setInterval(function() {
+                                    var time = --wait.innerHTML;
+                                    if (time <= 0) {
+                                        location.href = href;
+                                        clearInterval(interval);
+                                    }
+                                    ;
+                                }, 2000);
+                            })();
+                        </script>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
+
