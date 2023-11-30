@@ -6,7 +6,7 @@
 
 
 
-# =================================【第一部分，安装warp sock 】===============================
+# =========【第一部分，安装warp sock 】=========
 
 	  wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/menu.sh  && bash menu.sh [option] [lisence/url/token]
 
@@ -26,7 +26,7 @@
 
 //检查端口成功与否
 
-# ==============================【第二部分，安装V2RAY，各取所需吧】=============================
+# =========【第二部分，安装V2RAY，各取所需吧】=========
 
 	wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/cfwss/conf/main/install/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 
@@ -41,7 +41,7 @@
 
 //脚本命令，后面会用到，如：添加用户，开启BBR，重启xray等。
 
-# ===============【第三部分，设置xray的warp参数，如果第二部分不和我选的一样，请忽略这部分】===============
+# =========【第三部分，设置xray的warp参数，如果第二部分不和我选的一样，请忽略这部分】=========
 
 	rm /etc/v2ray-agent/xray/conf/10_ipv4_outbounds.json --force
 	wget https://raw.githubusercontent.com/cfwss/conf/main/agent/10_ipv4_outbounds.json
@@ -56,7 +56,7 @@
 #输入，16-->6 重启xray即可。
 
 
-# =========================【第四部分，多域名Nginx多重回落】=========================
+# =========【第四部分，多域名Nginx多重回落】=========
 
 首选我选择的是12345套餐。
 
@@ -83,7 +83,7 @@ NG目录：/etc/nginx/conf.d/
 
 	service nginx restart
 
-# =========================【第五部分，多域名Nginx ECC证书配置】=========================
+# =========【第五部分，多域名Nginx ECC证书配置】=========
 
 正常的思路是：默认域不开云朵，方便LET'S证书自动续期。要开云朵也行，配置好CF里的功能，开云朵也是可以自动续期的。。
 
