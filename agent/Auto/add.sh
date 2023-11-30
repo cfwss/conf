@@ -139,16 +139,16 @@ for file in $files_to_delete; do
     rm "$file"
 done
 port=31400;j=0
-result=($(grep -oP "(?<=server_name).+" /etc/nginx/conf.d/alone.conf))
+result=($(tail -n +5 /etc/nginx/conf.d/alone.conf | grep -oP "(?<=server_name).+"))
 result=${result//;/}
 dot_index=$(expr index "$result" ".")
 result2=${result:0:dot_index-1}
-for i in "${matched_domains[@]}";do  
+for i in "${domain[@]}";do  
 port=$((port + 1))
-	rm /etc/nginx/$path/${matched_domains[$j]%%.*}.conf -f
-	cp /etc/nginx/conf.d/alone.conf  /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
-	sed  -i "s/listen 127.0.0.1:31302/listen 127.0.0.1:$port/g" /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
-	sed  -i "s/$domain/$result1.$i/g" /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
+	rm /etc/nginx/$path/${domain[$j]%%.*}.conf -f
+	cp /etc/nginx/conf.d/alone.conf  /etc/nginx/$path/${domain[$j]%%.*}.conf
+	sed  -i "s/listen 127.0.0.1:31302/listen 127.0.0.1:$port/g" /etc/nginx/$path/${domain[$j]%%.*}.conf
+	sed  -i "s/$result/$result2.$i/g" /etc/nginx/$path/${domain[$j]%%.*}.conf
 j=$((j + 1))
 done
 echo -e "${ORANGE}-----------------------------------------------${NC}"
