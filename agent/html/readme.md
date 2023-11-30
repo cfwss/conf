@@ -18,6 +18,7 @@ NG默认页
 
     rm /usr/share/nginx/html/index.html --force
     wget https://raw.githubusercontent.com/cfwss/conf/main/agent/html/google.html
-    mv Google.html  /usr/share/nginx/html/index.html --force
+    mv google.html  /usr/share/nginx/html/index.html --force
     service nginx restart
+
 
