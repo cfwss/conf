@@ -1,4 +1,4 @@
-自动添加TLS证书
+# 自动添加TLS证书
 
     wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/tls.sh && bash tls.sh
 
@@ -11,3 +11,7 @@
 # 定义域名数组，不需要的可以删除整行或者用 # 在行首注释
 
     wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/domain.sh && bash domain.sh
+
+# 纯手输入版本：
+
+    wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/add.sh && bash add.sh
