@@ -37,8 +37,6 @@ json_file="/etc/v2ray-agent/xray/conf/02_VLESS_TCP_inbounds.json"
 
 
 # 以下内容勿改动！
-# 证书目录
-cert_dir="/etc/tls"
 # 循环检查数组中的域名
 for d in "${domain[@]}"; do
     cert_file="${cert_dir}/${d}.crt"
