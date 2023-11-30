@@ -148,7 +148,7 @@ port=$((port + 1))
 	rm /etc/nginx/$path/${matched_domains[$j]%%.*}.conf -f
 	cp /etc/nginx/conf.d/alone.conf  /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
 	sed  -i "s/listen 127.0.0.1:31302/listen 127.0.0.1:$port/g" /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
-	sed  -i "s/$result/$result2.$i/g" /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
+	sed  -i "s/$domain/$result1.$i/g" /etc/nginx/$path/${matched_domains[$j]%%.*}.conf
 j=$((j + 1))
 done
 echo -e "${ORANGE}-----------------------------------------------${NC}"
