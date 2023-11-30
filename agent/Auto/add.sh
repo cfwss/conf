@@ -159,7 +159,7 @@ for d in "${unmatched_domains[@]}"; do
     echo "	$d"
 done
 echo -e "${ORANGE}-----------------------------------------------${NC}"
-echo -e "${GREEN}Nginx 置文件：${NC}"
+echo -e "${GREEN}Nginx 配置文件清单：${NC}"
 ls /etc/nginx/$path/
 cd "$original_directory" || exit
 rm "$0" -f
