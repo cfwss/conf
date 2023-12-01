@@ -15,3 +15,8 @@
 # 纯手输入版本：
 
     wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/add.sh && bash add.sh
+
+    
+# NG通配符*：
+
+    wget https://raw.githubusercontent.com/cfwss/conf/main/agent/Auto/all.sh && bash all.sh
