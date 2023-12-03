@@ -1,18 +1,21 @@
 # Direct.list
 # > General
-DOMAIN-SUFFIX,hexin.cn,direct
-HOST-SUFFIX,95599.cn,direct
-HOST-SUFFIX,abchina.com,direct
-HOST-SUFFIX,bscabank.com,direct
-HOST-SUFFIX,openaboc.cn,direct
-HOST-SUFFIX,openaboc.com,direct
 HOST-SUFFIX,openaboc.com.cn,direct
-host-suffix, adv.ccb.com, direct
+HOST-SUFFIX,openaboc.com,direct
+HOST-SUFFIX,openaboc.cn,direct
+HOST-SUFFIX,bscabank.com,direct
+HOST-SUFFIX,abchina.com,direct
+HOST-SUFFIX,95599.cn,direct
 host-suffix, vaserviece.10jqka.com.cn, direct
-host-suffix, 10099.com.cn, direct
-host, ad.12306.cn, direct
-host, gg.caixin.com, direct
-host, sdkapp.uve.weibo.com, direct
 host-suffix, ucweb.com, direct
-host, ntb.lanjie100.com, reject
 host-suffix, kuwo.cn, direct
+host-suffix, adv.ccb.com, direct
+host-suffix, 10099.com.cn, direct
+host, sdkapp.uve.weibo.com, direct
+host, ntb.lanjie100.com, reject
+host, gg.caixin.com, direct
+host, ad.12306.cn, direct
+DOMAIN-SUFFIX,hexin.cn,direct
+DOMAIN-SUFFIX,cmbc.com.cn,direct
+DOMAIN-SUFFIX,bankcomm.cn,direct
+DOMAIN-SUFFIX,cmbchina.com,direct
