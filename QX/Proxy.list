@@ -18,3 +18,4 @@ DOMAIN-SUFFIX,tiktokv.com,PROXY,no-resolve
 host-keyword, -tiktokcdn-com, proxy,no-resolve
 USER-AGENT,TikTok*,PROXY,no-resolve
 DOMAIN-SUFFIX,whoer.net,PROXY
+DOMAIN-SUFFIX,github.com,PROXY
