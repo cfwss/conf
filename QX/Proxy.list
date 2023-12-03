@@ -1,21 +1,37 @@
 # Proxy
 # > General
-HOST-SUFFIX,facebook.com,proxy
+DOMAIN,ai.cn,OpenAI
 DOMAIN,p16-tiktokcdn-com.akamaized.net,PROXY,no-resolve
+DOMAIN-keyword, -tiktokcdn-com, proxy,no-resolve
+DOMAIN-KEYWORD,openai,OpenAI
+DOMAIN-SUFFIX,ai.com,OpenAI
 DOMAIN-SUFFIX,amemv.com,PROXY,no-resolve
+DOMAIN-SUFFIX,auth0.com,OpenAI
 DOMAIN-SUFFIX,byteoversea.com,PROXY,no-resolve
+DOMAIN-SUFFIX,challenges.cloudflare.com,OpenAI
+DOMAIN-SUFFIX,client-api.arkoselabs.com,OpenAI
+DOMAIN-SUFFIX,events.statsigapi.net,OpenAI
+DOMAIN-SUFFIX,facebook.com,proxy
+DOMAIN-SUFFIX,featuregates.org,OpenAI
+DOMAIN-SUFFIX,github.com,PROXY
 DOMAIN-SUFFIX,ibytedtos.com,PROXY,no-resolve
 DOMAIN-SUFFIX,ibyteimg.com,PROXY,no-resolve
+DOMAIN-SUFFIX,identrust.com,OpenAI
+DOMAIN-SUFFIX,intercom.io,OpenAI
+DOMAIN-SUFFIX,intercomcdn.com,OpenAI
 DOMAIN-SUFFIX,ipstatp.com,PROXY,no-resolve
 DOMAIN-SUFFIX,muscdn.com,PROXY,no-resolve
 DOMAIN-SUFFIX,musical.ly,PROXY,no-resolve
+DOMAIN-SUFFIX,oaistatic.com,OpenAI
+DOMAIN-SUFFIX,oaiusercontent.com,OpenAI
+DOMAIN-SUFFIX,poe.com,OpenAI
+DOMAIN-SUFFIX,sentry.io,OpenAI
 DOMAIN-SUFFIX,sgpstatp.com,PROXY,no-resolve
 DOMAIN-SUFFIX,snssdk.com,PROXY,no-resolve
-DOMAIN-SUFFIX,tik-tokapi.com,PROXY,no-resolve
+DOMAIN-SUFFIX,stripe.com,OpenAI
 DOMAIN-SUFFIX,tiktok.com,PROXY,no-resolve
+DOMAIN-SUFFIX,tik-tokapi.com,PROXY,no-resolve
 DOMAIN-SUFFIX,tiktokcdn.com,PROXY,no-resolve
 DOMAIN-SUFFIX,tiktokv.com,PROXY,no-resolve
-host-keyword, -tiktokcdn-com, proxy,no-resolve
-USER-AGENT,TikTok*,PROXY,no-resolve
 DOMAIN-SUFFIX,whoer.net,PROXY
-DOMAIN-SUFFIX,github.com,PROXY
+USER-AGENT,TikTok*,PROXY,no-resolve
