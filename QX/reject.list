@@ -1,0 +1,21 @@
+# reject
+# > General
+host-suffix, ecombdimg.com, reject
+host-suffix, ecombdapi.com, reject
+host-suffix, byteimg.com, reject
+ip-cidr, 183.47.124.77/24, reject
+host-keyword, sign.fqnovelpic.com, reject
+host-suffix, douyinpic.com, reject
+host-suffix, content-open.douyin.com, reject
+host-suffix, pull-flv-f6.douyincdn.com, reject
+host-suffix, push.hexin.cn, reject
+host-suffix, fengkongcloud.com, reject
+host-suffix, shuzilm.cn, reject
+host-suffix, qm989.com, reject
+IP-CIDR,118.89.204.198/32,reject
+IP6-CIDR,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,reject
+HOST,118.89.204.198,reject
+HOST,appcloud2.in.zhihu.com,reject
+HOST,mqtt.zhihu.com,reject
+HOST,sugar.zhihu.com,reject
+USER-AGENT,AVOS*,reject
