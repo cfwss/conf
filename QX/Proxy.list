@@ -1,0 +1,20 @@
+# Proxy
+# > General
+HOST-SUFFIX,facebook.com,proxy
+DOMAIN,p16-tiktokcdn-com.akamaized.net,PROXY,no-resolve
+DOMAIN-SUFFIX,amemv.com,PROXY,no-resolve
+DOMAIN-SUFFIX,byteoversea.com,PROXY,no-resolve
+DOMAIN-SUFFIX,ibytedtos.com,PROXY,no-resolve
+DOMAIN-SUFFIX,ibyteimg.com,PROXY,no-resolve
+DOMAIN-SUFFIX,ipstatp.com,PROXY,no-resolve
+DOMAIN-SUFFIX,muscdn.com,PROXY,no-resolve
+DOMAIN-SUFFIX,musical.ly,PROXY,no-resolve
+DOMAIN-SUFFIX,sgpstatp.com,PROXY,no-resolve
+DOMAIN-SUFFIX,snssdk.com,PROXY,no-resolve
+DOMAIN-SUFFIX,tik-tokapi.com,PROXY,no-resolve
+DOMAIN-SUFFIX,tiktok.com,PROXY,no-resolve
+DOMAIN-SUFFIX,tiktokcdn.com,PROXY,no-resolve
+DOMAIN-SUFFIX,tiktokv.com,PROXY,no-resolve
+host-keyword, -tiktokcdn-com, proxy,no-resolve
+USER-AGENT,TikTok*,PROXY,no-resolve
+DOMAIN-SUFFIX,whoer.net,PROXY
