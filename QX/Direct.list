@@ -10,3 +10,9 @@ HOST-SUFFIX,openaboc.com.cn,direct
 host-suffix, adv.ccb.com, direct
 host-suffix, vaserviece.10jqka.com.cn, direct
 host-suffix, 10099.com.cn, direct
+host, ad.12306.cn, direct
+host, gg.caixin.com, direct
+host, sdkapp.uve.weibo.com, direct
+host-suffix, ucweb.com, direct
+host, ntb.lanjie100.com, reject
+host-suffix, kuwo.cn, direct
