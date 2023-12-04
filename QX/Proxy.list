@@ -1,6 +1,5 @@
 # Proxy
 # > General
-HOST-SUFFIX,ooklaserver.net,PROXY
 HOST,ai.cn,PROXY
 HOST,p16-tiktokcdn-com.akamaized.net,PROXY,no-resolve
 HOST-KEYWORD, -tiktokcdn-com, proxy,no-resolve
