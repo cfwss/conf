@@ -16,8 +16,9 @@ HOST-SUFFIX,webtest.net,Speedtest
 HOST-KEYWORD,speedtest,Speedtest
 HOST-KEYWORD,testspeed,Speedtest
 USER-AGENT,SpeedTest*,Speedtest
-HOST-SUFFIX,id5-sync.com,Speedtest
-HOST-SUFFIX,imrworldwide.com,Speedtest
-HOST-SUFFIX,zdbb.net,Speedtest
-HOST-SUFFIX,bluekai.com,Speedtest
-HOST-SUFFIX,cookielaw.org,Speedtest
+HOST-KEYWORD,id5-sync.com,Speedtest
+HOST-KEYWORD,imrworldwide.com,Speedtest
+HOST-KEYWORD,zdbb.net,Speedtest
+HOST-KEYWORD,bluekai.com,Speedtest
+HOST-KEYWORD,cookielaw.org,Speedtest
+HOST-KEYWORD,digicert.com,Speedtest
