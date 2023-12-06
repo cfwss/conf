@@ -19,7 +19,7 @@ function ISP_ValidCheck(para) {
   return para ? para : isp0;
 }
 
-function Area_check(para) {
+function flags.get(para) {
   if (para.includes("中華民國") || para.includes("中华民国")) {
     return "中国台湾";
   } else {
