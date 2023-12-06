@@ -32,7 +32,7 @@ function ISP_ValidCheck(para) {
 }
 
 
-function Area_check(para) {
+function  title(para) {
   if(para=="中華民國" || para == "中华民国"){
   return "中国台湾"
   } else
