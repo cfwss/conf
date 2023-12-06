@@ -12,11 +12,12 @@ function getRandomInt(max) {
 
 
 function City_ValidCheck(para) {
-  if(para=="中華民國"){
-  return "台湾"
+  if(para) {
+  return para
   } else
   {
-  return para
+  return city0
+//emojis[getRandomInt(emojis.length)]
   }
 }
 
@@ -32,8 +33,8 @@ function ISP_ValidCheck(para) {
 
 
 function Area_check(para) {
-  if(para=="中華民國"){
-  return "台湾"
+  if(para=="中華民國" || para == "中华民国"){
+  return "中国台湾"
   } else
   {
   return para
