@@ -9,13 +9,14 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+
+
 function City_ValidCheck(para) {
-  if(para) {
-  return para
+  if(para=="中華民國"){
+  return "台湾"
   } else
   {
-  return city0
-//emojis[getRandomInt(emojis.length)]
+  return para
   }
 }
 
