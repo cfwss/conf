@@ -596,8 +596,8 @@ function testChatGPT() {
           return
         } else {
           result["ChatGPT"] = "<b>ChatGPT: </b>Not supported 🚫"
-          console.log("不Supported ChatGPT")
-          resolve("不Supported ChatGPT")
+          console.log("Not supported ChatGPT")
+          resolve("Not supported ChatGPT")
           return
         }
       }, reason => {
@@ -606,8 +606,8 @@ function testChatGPT() {
       })
     } else {
       result["ChatGPT"] = "<b>ChatGPT: </b>Not supported 🚫"
-      console.log("不Supported ChatGPT")
-      resolve("不Supported ChatGPT")
+      console.log("Not supported ChatGPT")
+      resolve("Not supported ChatGPT")
     }
     }, reason => {
       console.log("ChatGPT-Error"+reason)
