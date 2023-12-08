@@ -540,13 +540,13 @@ function testDiscovery() {
         let locationd = data["data"]["attributes"]["currentLocationTerritory"]
         if (locationd == "us") {
           result["Discovery"] = "<b>Discoveryᐩ: </b>Supported 🎉 "
-          console.log("SupportedDiscoveryᐩ")
-          resolve("SupportedDiscoveryᐩ")
+          console.log("Supported Discoveryᐩ")
+          resolve("Supported Discoveryᐩ")
           return
         } else {
           result["Discovery"] = "<b>Discoveryᐩ: </b>Not supported 🚫"
-          console.log("不SupportedDiscoveryᐩ")
-          resolve("不SupportedDiscoveryᐩ")
+          console.log("Not supported Discoveryᐩ")
+          resolve("Not supported Discoveryᐩ")
           return
         }
       }, reason => {
