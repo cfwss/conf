@@ -38,7 +38,7 @@ const arrow = " ➟ "
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'
 
-// 即将登陆
+// Coming soon
 const STATUS_COMING = 2
 // Supported Unlock
 const STATUS_AVAILABLE = 1
@@ -87,7 +87,7 @@ const message = {
   console.log(`testDisneyPlus: region=${region}, status=${status}`)
   if (status==STATUS_COMING) {
     //console.log(1)
-    result["Disney"] = "<b>Disneyᐩ:</b> 即将登陆 ➟ "+'⟦'+flags.get(region.toUpperCase())+"⟧ ⚠️"
+    result["Disney"] = "<b>Disneyᐩ:</b> Coming soon ➟ "+'⟦'+flags.get(region.toUpperCase())+"⟧ ⚠️"
   } else if (status==STATUS_AVAILABLE){
     //console.log(2)
     result["Disney"] = "<b>Disneyᐩ:</b> Supported ➟ "+'⟦'+flags.get(region.toUpperCase())+"⟧ 🎉"
@@ -157,7 +157,7 @@ async function testDisneyPlus() {
   try {
     let { region, cnbl } = await Promise.race([testHomePage(), timeout(7000)])
     console.log(`homepage: region=${region}, cnbl=${cnbl}`)
-    // 即将登陆
+    // Coming soon
 //  if (cnbl == 2) {
 //    return { region, status: STATUS_COMING }
 //  }
@@ -166,11 +166,11 @@ async function testDisneyPlus() {
     
     region = countryCode ?? region
     console.log( "region:"+region)
-    // 即将登陆
+    // Coming soon
     if (inSupportedLocation === false || inSupportedLocation === 'false') {
       return { region, status: STATUS_COMING }
     } else {
-      // Supported解锁
+      // Supported Unlock
       return { region, status: STATUS_AVAILABLE }
     }
 
@@ -178,15 +178,15 @@ async function testDisneyPlus() {
       if (!support) {
       return { status: STATUS_NOT_AVAILABLE }
     }
-    // Supported解锁
+    // Supported Unlock
     return { region, status: STATUS_AVAILABLE }
     
   } catch (error) {
     console.log("error:"+error)
     
-    // 不Supported解锁
+    // Not Supported Unlock
     if (error === 'Not Available') {
-      console.log("不Supported")
+      console.log("Not supported")
       return { status: STATUS_NOT_AVAILABLE }
     }
     
