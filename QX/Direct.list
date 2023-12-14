@@ -1,9 +1,6 @@
 # Direct.list
 # > General
-HOST, ad.12306.cn, direct
-HOST, gg.caixin.com, direct
-HOST, ntb.lanjie100.com, reject
-HOST, sdkapp.uve.weibo.com, direct
+HOST,sdkapp.uve.weibo.com, direct
 HOST-SUFFIX,10099.com.cn, direct
 HOST-SUFFIX,adv.ccb.com, direct
 HOST-SUFFIX,kuwo.cn, direct
