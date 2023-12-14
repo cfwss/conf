@@ -4,11 +4,11 @@ HOST, ad.12306.cn, direct
 HOST, gg.caixin.com, direct
 HOST, ntb.lanjie100.com, reject
 HOST, sdkapp.uve.weibo.com, direct
-HOST-SUFFIX, 10099.com.cn, direct
-HOST-SUFFIX, adv.ccb.com, direct
-HOST-SUFFIX, kuwo.cn, direct
-HOST-SUFFIX, ucweb.com, direct
-HOST-SUFFIX, vaserviece.10jqka.com.cn, direct
+HOST-SUFFIX,10099.com.cn, direct
+HOST-SUFFIX,adv.ccb.com, direct
+HOST-SUFFIX,kuwo.cn, direct
+HOST-SUFFIX,amap.com, direct
+HOST-SUFFIX,vaserviece.10jqka.com.cn, direct
 HOST-SUFFIX,95599.cn,direct
 HOST-SUFFIX,abchina.com,direct
 HOST-SUFFIX,bankcomm.cn,direct
