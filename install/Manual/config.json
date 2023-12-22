@@ -1,0 +1,295 @@
+{ //inbounds
+  "inbounds": [
+    {  //VLESS+TCP[TLS_Vision]
+      "port": 443,
+      "protocol": "vless",
+      "tag": "VLESSTCP",
+      "settings": {
+        "clients": [
+          {"id":"00000000-0000-0000-0000-000000000000","flow":"xtls-rprx-vision","email":"00000000-VLESS_TCP/TLS_Vision"}
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {"dest":31296,"xver":1},
+          {"alpn":"h2","dest":31302,"xver":0},
+          {"path":"/edutwws","dest":31297,"xver":1},
+          {"path":"/edutwvws","dest":31299,"xver":1}
+        ]
+      },
+      "add": "your domain", //填你的域名
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls",
+        "tlsSettings": {
+          "rejectUnknownSni": true,
+          "minVersion": "1.2",
+          "certificates": [
+            {"certificateFile": "/etc/tls/edu.tw.crt", "keyFile": "/etc/tls/edu.tw.key", "ocspStapling": 3600, "usage": "encipherment"},
+            //这里可以多本证书，需要WS的可以用CF的15年证书 {"certificateFile": "/etc/tls/eu.org.crt", "keyFile": "/etc/tls/eu.org.key", "ocspStapling": 3600, "usage": "encipherment"}
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {  //VLESS+WS[TLS]
+      "port": 31297,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "tag": "VLESSWS",
+      "settings": {
+        "clients": [
+          {"id":"00000000-0000-0000-0000-000000000000","email":"00000000-VLESS_WS"}
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/edutwws"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {  //Trojan+gRPC[TLS]
+      "port": 31304,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "tag": "trojangRPCTCP",
+      "settings": {
+        "clients": [
+          {"password":"00000000-0000-0000-0000-000000000000","email":"00000000-Trojan_gRPC"}
+        ],
+        "fallbacks": [
+          {
+            "dest": "31300"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "schtwtrojangrpc"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {  //Trojan+TCP[TLS]
+      "port": 31296,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "tag": "trojanTCP",
+      "settings": {
+        "clients": [
+          {"password":"00000000-0000-0000-0000-000000000000","email":"00000000-trojan_tcp"}
+        ],
+        "fallbacks": [
+          {
+            "dest": "31300"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none",
+        "tcpSettings": {
+          "acceptProxyProtocol": true
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {  //VMess+WS[TLS]
+      "listen": "127.0.0.1",
+      "port": 31299,
+      "protocol": "vmess",
+      "tag": "VMessWS",
+      "settings": {
+        "clients": [
+          {"id":"00000000-0000-0000-0000-000000000000","email":"00000000-VMess_WS","alterId":0}
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/edutwvws"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {  //VLESS+gRPC[TLS]
+      "port": 31301,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "tag": "VLESSGRPC",
+      "settings": {
+        "clients": [
+          {"id":"00000000-0000-0000-0000-000000000000","email":"ebd1cc89-vless_grpc"}
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "grpcSettings": {
+          "serviceName": "edutwgrpc"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    }    
+  ],
+  "outbounds": [
+    {
+        "protocol":"freedom"
+    },
+    {
+        "tag":"warp",
+        "protocol":"socks",
+        "settings":{
+        "servers":[
+            {
+            "address":"127.0.0.1",
+            "port":40000
+            }
+        ]
+        }
+    },
+    {
+        "tag":"WARP-socks5-v4",
+        "protocol":"freedom",
+        "settings":{
+        "domainStrategy":"UseIPv4"
+        },
+        "proxySettings":{
+        "tag":"warp"
+        }
+    },
+    {
+        "tag":"WARP-socks5-v6",
+        "protocol":"freedom",
+        "settings":{
+        "domainStrategy":"UseIPv6"
+        },
+        "proxySettings":{
+        "tag":"warp"
+        }
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "blackhole-out"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+         "type":"field",
+         "domain":[
+          "domain:ai.com",
+          "domain:cbsaavideo.com",
+          "domain:cbsi.com",
+          "domain:cbsivideo.com",
+          "domain:disco-api.com",
+          "domain:discoveryplus.co.uk",
+          "domain:discoveryplus.com",
+          "domain:getblueshift.com",
+          "domain:ip.gs",
+          "domain:irdeto.com",
+          "domain:litix.io",
+          "domain:newrelic.com",
+          "domain:paramountplus.com",
+          "domain:pplusstatic.com",
+          "domain:syncbak.com",
+          "domain:theplatform.com",
+          "domain:uplynk.com",
+          "geosite:4chan",
+          "geosite:abema",
+          "geosite:bahamut",
+          "geosite:bbc",
+          "geosite:bilibili",
+          "geosite:disney",
+          "geosite:dmm",
+          "geosite:fox",
+          "geosite:hbo",
+          "geosite:hulu",
+          "geosite:netflix",
+          "geosite:niconico",
+          "geosite:openai",
+          "geosite:pixiv",
+          "geosite:viu"
+         ],
+         "outboundTag":"WARP-socks5-v4"
+      },
+      {
+         "type":"field",
+         "domain": [
+           "p3terx.com"
+         ],
+         "outboundTag":"WARP-socks5-v6"
+      },
+      {
+        "type": "field",
+        "outboundTag": "blackhole-out",
+        "protocol": [
+         "bittorrent"
+        ]
+      }
+    ]
+  },
+  "dns": {
+      "servers": [
+          "https://family.adguard-dns.com/dns-query",
+          "localhost"
+      ]
+  },
+  "policy": {
+      "levels": {
+          "0": {
+              "handshake": 3,
+              "connIdle": 253
+          }
+      }
+  }
+}
