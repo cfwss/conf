@@ -1,3 +1,7 @@
+# 纯手动搭建
+
+    先自行安装NGINX 1.23及以上版本，和 XRAY 1.8.6版本。
+
 创建证书
 
 curl  https://get.acme.sh | sh 
