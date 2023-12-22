@@ -12,19 +12,19 @@ sudo ~/.acme.sh/acme.sh --installcert -d yourdomain.edu.tw --key-file /etc/tls/e
 
 # 建议使用CF的15年证书，需要TLS处开启  完全（FULL)。
 
-删除，重建xray配置
+删除，重建xray配置 （需要手动修改域名，和证书名称）
 
     rm -rf /usr/local/etc/xray/config.json
 
     vi /usr/local/etc/xray/config.json
 
-删除，重建nginx配置
+删除，重建nginx配置 （不需要修改，直接用文档）
 
     rm -rf /etc/nginx/nginx.conf
 
     vi /etc/nginx/nginx.conf
 
-删除，重建SNI配置
+删除，重建SNI配置 （需要修改server_name，可以带 星号）
 
     rm -rf /etc/nginx/conf.d/default.conf
 
