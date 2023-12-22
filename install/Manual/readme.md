@@ -40,3 +40,10 @@ sudo ~/.acme.sh/acme.sh --installcert -d yourdomain.edu.tw --key-file /etc/tls/e
 
     sudo systemctl status nginx xray
 
+# 客户端配置参考：
+
+    vless://00000000-0000-0000-0000-000000000000@yourdomain.edu.tw:443?encryption=none&flow=xtls-rprx-vision&security=tls&sni=yourdomain.edu.tw&fp=chrome&type=tcp&headerType=none&host=yourdomain.edu.tw#VLESS_TLS
+
+    vless://00000000-0000-0000-0000-000000000000@yourdomain.edu.tw:443?encryption=none&security=tls&sni=yourdomain.edu.tw&fp=chrome&type=ws&host=yourdomain.edu.tw&path=%2Fedutwws#VLESS_WS
+
+    trojan://00000000-0000-0000-0000-000000000000@yourdomain.edu.tw:443?security=tls&sni=yourdomain.edu.tw&alpn=h2&fp=chrome&type=grpc&serviceName=edutwtrojangrpc&mode=gun#Trojan_gRPC
