@@ -210,11 +210,11 @@ base64_uuids() {
     done
 
     # Print the contents of base64_uuid_array
-        echo "BASE64 UUIDs:"
+        echo -e "BASE64 CODEs:\n"
         for ((i=0; i<"${#base64_uuid_array[@]}"; i++)); do
             echo "${base64_uuid_array[i]}"
         done
-        echo -e "============操作结束============\n"
+        echo -e "\n============操作结束============\n"
         exit 0
     else
         echo -e "输入的内空为空或错误，退出，请重新选择"
