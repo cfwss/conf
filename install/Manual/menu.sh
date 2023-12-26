@@ -615,6 +615,7 @@ fi
 }
 while true; do
     echo -e "\n===========格式化xRay用户信息===========\n"
+    echo -e "         仅适用于Debian 12的全新机\n
     echo -e "   1. 自动生成新UUID和旧UUID\n"
     echo -e "   2. 自动生成新UUID，手动输入旧UUID\n"
     echo -e "   3. 手动输入新UUID和旧UUID\n"
