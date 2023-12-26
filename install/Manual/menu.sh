@@ -623,8 +623,9 @@ while true; do
     echo -e "   6. 域名检查，重新生成Let's证书\n"
     echo -e "   7. 修改Nginx/Sing-box/xRay配置\n"
     echo -e "   0. 退出\n"
+    echo -e "              www.nruan.com
     echo -e "========================================\n"
-    read -p "选择操作（0-4）: " choice
+    read -p "选择操作（0-7）: " choice
 
     case $choice in
         1)
