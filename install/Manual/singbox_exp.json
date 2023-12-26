@@ -46,7 +46,7 @@
       "sniff_override_destination": true,
       "transport": {
         "type": "ws",
-        "path": "/schtwtrojan",
+        "path": "/nruantrojan",
         "max_early_data": 2048,
         "early_data_header_name": "Sec-WebSocket-Protocol"
       },
@@ -116,7 +116,7 @@
       "sniff_override_destination": true,
       "transport": {
         "type": "ws",
-        "path": "/schtwvmess",
+        "path": "/nruanvmess",
         "max_early_data": 2048,
         "early_data_header_name": "Sec-WebSocket-Protocol"
       },
@@ -186,7 +186,7 @@
       "sniff_override_destination": true,
       "transport": {
         "type": "ws",
-        "path": "/schtwvws",
+        "path": "/nruanvws",
         "max_early_data": 2048,
         "early_data_header_name": "Sec-WebSocket-Protocol"
       },
