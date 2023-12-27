@@ -641,7 +641,7 @@ sing_info() {
         echo "$base64_uuid"
     }
     names=($(sed -n '/"vless"\|shadowsocks/,/"outbounds"/ { /"name"/p }' "$config_file"))
-    names=($(echo "${names[@]}" | tr -d ' ' | tr -d '"' | sed 's/,flow://g' | sed 's/name:schtw,//g' | tr ',' '\n'))
+    names=($(echo "${names[@]}" | tr -d ' ' | tr -d '"' | sed 's/,flow://g' | sed 's/name:nruan,//g' | tr ',' '\n'))
     names=($(echo "${names[@]}" | sed 's/uuid://g' | sed 's/password://g'))
     names=($(echo "${names[@]}" | tr -d '{}'))
     # Reformat UUIDs to standard format
