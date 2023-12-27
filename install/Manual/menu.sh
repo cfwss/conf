@@ -510,6 +510,7 @@ show_info() {
     done
 
     config_file="/usr/local/etc/xray/config.json"
+
     tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' ))
     type=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"protocol": "\K[^"]+'))
     listen_ports=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"port": \K[^,]+'))
@@ -520,42 +521,46 @@ show_info() {
 
     printf "%22s""xRay配置清单"
     echo -e "\n------------------------------------------------------------------"
-    printf "\e[1;32m%-4s %-18s %-17s %-10s %-20s \e[0m\n" "No." "Name" "Type" "Port" "path"
+    printf "\e[1;32m%-4s %-18s %-17s %-5s %-20s \e[0m\n" "No." "Name" "Type" "Port" "path"
     echo -e "------------------------------------------------------------------"
 
     for i in "${!tags[@]}"; do
         current_tag=${tags[$i]}
         next_tag=${tags[$((i+1))]}
+
         if [ -z "$next_tag" ]; then
             next_tag="outbounds"
         fi
 
         content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$config_file")
+
         path_t=$(echo "$content" | grep -oP '"path": "\K[^\"]+' | head -n1)
         type_t=$(echo "$content" | grep -oP '"type": "\K[^\"]+' | sed -n '2p')
 
+        if [[ "$current_tag" == *gRPC ]]; then
+            path_g=($(echo "$content" | grep -oP '"serviceName": "\K[^"]+' | sed 's/,//g'))
+            path_t=$path_g
+        fi
+
         if echo "$content" | grep -q '"transport"'; then
             type2+="1"
-            if [ -z "$type_t" ]; then
-                type_t=" "
-            fi
+            [ -z "$type_t" ] && type_t=" "
         else
             type2+=" "
             type_t=" "
         fi
 
-        if [ "${type[i]}" != "dokodemo-door" ]; then
-            listen_ports[i]="443"
-        fi
+        [ "${type[i]}" != "dokodemo-door" ] && listen_ports[i]="443"
 
         printf "%-4s " "$((i+1))."
         printf "%-18s " "${tags[i]}"
         printf "%-17s " "${type[i]}"
-        printf "%-10s " "${listen_ports[i]}"
+        printf "%-5s " "${listen_ports[i]}"
         printf "%-20s\n" "$path_t"
     done
 
-    echo -e "=================================================================="
+    echo -e "================================================================"
+    
     display_pause_info
 }
 
