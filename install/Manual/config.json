@@ -124,9 +124,7 @@
           "header": {
             "type": "http",
             "request": {
-              "path": [
-                "/nruanltc"
-              ]
+              "path": "/nruanltc"
             }
           }
         }
@@ -165,9 +163,7 @@
           "header": {
             "type": "http",
             "request": {
-              "path": [
-                "/nruanmtc"
-              ]
+              "path": "/nruanmtc"
             }
           }
         }
@@ -246,9 +242,7 @@
           "header": {
             "type": "http",
             "request": {
-              "path": [
-                "/nruanstc"
-              ]
+              "path": "/nruanstc"
             }
           }
         }
