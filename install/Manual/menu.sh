@@ -452,13 +452,13 @@ show_info() {
             echo -e "================================="
             echo -e "  \e[91m不正域的域名配置:\e[0m"
             printf "%s\n" "   ${sbsn_new[@]}"
-            sed -i "s/$sn/$matched_domain/g" "$config_file"
             echo -e "================================="
+            sed -i "s/$sn/$full_domain/g" "$config_file"
             echo -e " \e[92m已完成Sing-Box的Server_Name更新\e[0m"
             sed -i '/"certificate_path"/d' "$config_file"
             sed -i "/\"key_path\"/i \\\t\"certificate_path\": \"/etc/tls/$matched_domain.crt\"," "$config_file"
             sed -i '/"key_path"/d' "$config_file"
-            sed -i "/\"certificate_path\"/a \\\t\"key_path\": \"/etc/tls/$matched_domain.key\"," "$config_file"
+            sed -i "/\"certificate_path\"/a \\\t\"key_path\": \"/etc/tls/$matched_domain.key\"" "$config_file"
             echo -e " \e[92m已完成Sing-Box证书路径更新\e[0m"
             curl -s https://get.acme.sh | sh > /dev/null 2>&1
             mkdir -p /etc/tls/
@@ -660,7 +660,7 @@ bing_self() {
   awk 'BEGIN {found=0}
      /"ignore_client_bandwidth": false,/ { found=1; print $0; next }
      found && /"key_path": ".*\.key"/ {
-        print "      \"masquerade\": \"www.bing.com\",";
+        print "      \"masquerade\": \"https://www.bing.com\",";
         print "      \"tls\": {";
         print "        \"enabled\": true,";
         print "        \"server_name\": \"www.bing.com\",";
