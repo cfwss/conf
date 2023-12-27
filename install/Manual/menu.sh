@@ -762,7 +762,7 @@ while true; do
     echo -e "   9. 显示Sing-box用户信息\n"
     echo -e "   0. 退出\n"
     echo -e "\e[37m            www.nruan.com\e[0m"
-    echo -e "\e[93m====================================\e[0m\n"
+    echo -e "\e[93m======================================\e[0m\n"
     read -p "选择操作（0-9）: " choice
 
     case $choice in
