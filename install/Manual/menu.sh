@@ -1,8 +1,5 @@
 #!/bin/bash
 
-declare -a new_uuid_array
-declare -a old_uuid_array
-apt install wget  > /dev/null 2>&1
 generate_new_uuids() {
     new_uuid_array=()
     old_uuid_array=()
@@ -18,11 +15,13 @@ generate_new_uuids() {
         echo "生成数量为0，退出菜单。"
         exit 0
     elif [ "$count" -ne 0 ]; then
-            process_info
+        process_xray_new
+        process_xray_old
+        xray_user_info
+        status_xray
+        display_pause_info
     fi
-
 }
-
 generate_new_uuid_with_manual_old() {
     new_uuid_array=()
     old_uuid_array=()
@@ -50,9 +49,12 @@ generate_new_uuid_with_manual_old() {
     echo -e "\n输入的旧UUID："
     printf "%s\n" "${old_uuid_array[@]}"
 
-    process_info
+    process_xray_new
+    process_xray_old
+    xray_user_info
+    status_xray
+    display_pause_info
 }
-
 manual_input_uuids() {
     new_uuid_array=()
     old_uuid_array=()
@@ -68,116 +70,15 @@ manual_input_uuids() {
     done
     echo -e "\n输入的旧UUID："
     printf "%s\n" "${old_uuid_array[@]}"
-    process_info
+    process_xray_new
+    process_xray_old
+    xray_user_info
+    status_xray
+    display_pause_info
 }
-
-process_info() {
-    full_uuid_array=()
-    short_uuid_array=()
-    base64_uuid_array=()
-    old_full_uuid_array=()
-    old_short_uuid_array=()
-    old_base64_uuid_array=()
-    method_character="chacha20-ietf-poly1305"
-    old_method_character="chacha20-ietf-poly1305"
-    
-    for ((i=0; i<${#new_uuid_array[@]}; i++)); do
-        full_uuid=${new_uuid_array[i]}
-        short_uuid="${full_uuid:0:8}"
-        full_uuid_array+=("$full_uuid")
-        short_uuid_array+=("$short_uuid")
-        base64_uuid=$(echo -n "$full_uuid" | base64 | tr -d '/+' | cut -c 1-22)
-        base64_uuid+="=="
-        base64_uuid_array+=("$base64_uuid")
-    done
-    
-    for ((i=0; i<${#old_uuid_array[@]}; i++)); do
-        old_full_uuid=${old_uuid_array[i]}
-        old_short_uuid="${old_full_uuid:0:8}"
-        old_full_uuid_array+=("$old_full_uuid")
-        old_short_uuid_array+=("$old_short_uuid")
-        old_base64_uuid=$(echo -n "$old_full_uuid" | base64 | tr -d '/+' | cut -c 1-22)
-        old_base64_uuid+="=="
-        old_base64_uuid_array+=("$old_base64_uuid")
-    done
-    
-    vless_tcp_xtls=()  vless_tcp=() vmess_tcp=() trojan_tcp=() shadowsocks_tcp=() vless_ws=() vmess_ws=() trojan_ws=() shadowsocks_ws=() vless_gRPC=() vmess_gRPC=() trojan_gRPC=() shadowsocks_gRPC=() vless_OLD=() vmess_OLD=() trojan_OLD=() shadowsocks_OLD=()
-    json_template_vless_tcp_xtls='{"id":"full_uuid","flow":"xtls-rprx-vision","email":"short_uuid-VLESS_TCP/TLS_Vision","level":0}'
-    json_template_vless_tcp='{"id":"full_uuid","email":"short_uuid-VLess_TCP","level":0}'
-    json_template_vmess_tcp='{"id":"full_uuid","email":"short_uuid-VMess_TCP","level":0}'
-    json_template_trojan_tcp='{"password":"full_uuid","email":"short_uuid-Trojan_TCP","level":0}'
-    json_template_shadowsocks_tcp='{"method":"method_character","password":"base64_uuid","level":0}'
-    
-    for ((i=0; i<${#full_uuid_array[@]}; i++)); do
-        vless_tcp_xtls+=("$(echo "$json_template_vless_tcp_xtls" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        vless_tcp+=("$(echo "$json_template_vless_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        vmess_tcp+=("$(echo "$json_template_vmess_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        trojan_tcp+=("$(echo "$json_template_trojan_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        shadowsocks_tcp+=("$(echo "$json_template_shadowsocks_tcp" | sed -e "s/method_character/$method_character/" -e "s/base64_uuid/${base64_uuid_array[i]}/"),")
-        vless_ws+=("$(echo "$json_template_vless_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/VLess_TCP/VLess_WS/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        vmess_ws+=("$(echo "$json_template_vmess_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/VMess_TCP/VMess_WS/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        trojan_ws+=("$(echo "$json_template_trojan_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/Trojan_TCP/VMess_WS/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        shadowsocks_ws+=("$(echo "$json_template_shadowsocks_tcp" | sed -e "s/method_character/$method_character/" -e "s/base64_uuid/${base64_uuid_array[i]}/"),")
-        vless_gRPC+=("$(echo "$json_template_vless_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/VLess_TCP/VLess_gRPC/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        vmess_gRPC+=("$(echo "$json_template_vmess_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/VMess_TCP/VMess_gRPC/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        trojan_gRPC+=("$(echo "$json_template_trojan_tcp" | sed -e "s/full_uuid/${full_uuid_array[i]}/" -e "s/Trojan_TCP/Trojan_gRPC/" -e "s/short_uuid/${short_uuid_array[i]}/"),")
-        shadowsocks_gRPC+=("$(echo "$json_template_shadowsocks_tcp" | sed -e "s/method_character/$method_character/" -e "s/base64_uuid/${base64_uuid_array[i]}/"),")
-    done
-    
-    for ((i=0; i<${#old_full_uuid_array[@]}; i++)); do
-        vless_OLD+=("$(echo "$json_template_vless_tcp" | sed -e "s/full_uuid/${old_full_uuid_array[i]}/" -e "s/VLess_TCP/VLess_OLD/" -e "s/short_uuid/${old_short_uuid_array[i]}/"),")
-        vmess_OLD+=("$(echo "$json_template_vmess_tcp" | sed -e "s/full_uuid/${old_full_uuid_array[i]}/" -e "s/VMess_TCP/VMess_OLD/" -e "s/short_uuid/${old_short_uuid_array[i]}/"),")
-        trojan_OLD+=("$(echo "$json_template_trojan_tcp" | sed -e "s/full_uuid/${old_full_uuid_array[i]}/" -e "s/Trojan_TCP/VMess_OLD/" -e "s/short_uuid/${old_short_uuid_array[i]}/"),")
-        shadowsocks_OLD+=("$(echo "$json_template_shadowsocks_tcp" | sed -e "s/method_character/$old_method_character/" -e "s/base64_uuid/${old_base64_uuid_array[i]}/"),")
-    done
-    
-    vless_tcp_xtls[${#vless_tcp_xtls[@]}-1]="${vless_tcp_xtls[${#vless_tcp_xtls[@]}-1]%,}"
-    vless_tcp[${#vless_tcp[@]}-1]="${vless_tcp[${#vless_tcp[@]}-1]%,}"
-    vmess_tcp[${#vmess_tcp[@]}-1]="${vmess_tcp[${#vmess_tcp[@]}-1]%,}"
-    trojan_tcp[${#trojan_tcp[@]}-1]="${trojan_tcp[${#trojan_tcp[@]}-1]%,}"
-    shadowsocks_tcp[${#shadowsocks_tcp[@]}-1]="${shadowsocks_tcp[${#shadowsocks_tcp[@]}-1]%,}"
-    vless_ws[${#vless_ws[@]}-1]="${vless_ws[${#vless_ws[@]}-1]%,}"
-    vmess_ws[${#vmess_ws[@]}-1]="${vmess_ws[${#vmess_ws[@]}-1]%,}"
-    trojan_ws[${#trojan_ws[@]}-1]="${trojan_ws[${#trojan_ws[@]}-1]%,}"
-    shadowsocks_ws[${#shadowsocks_ws[@]}-1]="${shadowsocks_ws[${#shadowsocks_ws[@]}-1]%,}"
-    vless_gRPC[${#vless_gRPC[@]}-1]="${vless_gRPC[${#vless_gRPC[@]}-1]%,}"
-    vmess_gRPC[${#vmess_gRPC[@]}-1]="${vmess_gRPC[${#vmess_gRPC[@]}-1]%,}"
-    trojan_gRPC[${#trojan_gRPC[@]}-1]="${trojan_gRPC[${#trojan_gRPC[@]}-1]%,}"
-    shadowsocks_gRPC[${#shadowsocks_gRPC[@]}-1]="${shadowsocks_gRPC[${#shadowsocks_gRPC[@]}-1]%,}"
-    vless_OLD[${#vless_OLD[@]}-1]="${vless_OLD[${#vless_OLD[@]}-1]%,}"
-    vmess_OLD[${#vmess_OLD[@]}-1]="${vmess_OLD[${#vmess_OLD[@]}-1]%,}"
-    trojan_OLD[${#trojan_OLD[@]}-1]="${trojan_OLD[${#trojan_OLD[@]}-1]%,}"
-    shadowsocks_OLD[${#shadowsocks_OLD[@]}-1]="${shadowsocks_OLD[${#shadowsocks_OLD[@]}-1]%,}"
-    
-    {
-        echo -e "\n====数据收集完毕，以下为格式化输出内容====\n"
-        echo -e "\nVLess_TCP:\n        \"clients\": ["; printf '          %s\n' "${vless_tcp[@]}"; echo "         ],"
-        echo -e "\nVMess_TCP:\n        \"clients\": ["; printf '          %s\n' "${vmess_tcp[@]}"; echo "         ],"
-        echo -e "\nTrojan_TCP:\n        \"clients\": ["; printf '          %s\n' "${trojan_tcp[@]}"; echo "         ],"
-        echo -e "\nSShadowSSocks_TCP:\n        \"clients\": ["; printf '          %s\n' "${shadowsocks_tcp[@]}"; echo "         ],"
-        
-        echo -e "\nVLess_WS:\n        \"clients\": ["; printf '          %s\n' "${vless_ws[@]}"; echo "         ],"
-        echo -e "\nVMess_WS:\n        \"clients\": ["; printf '          %s\n' "${vmess_ws[@]}"; echo "         ],"
-        echo -e "\nTrojan_WS:\n        \"clients\": ["; printf '          %s\n' "${trojan_ws[@]}"; echo "         ],"
-        echo -e "\nSShadowSSocks_WS:\n        \"clients\": ["; printf '          %s\n' "${shadowsocks_ws[@]}"; echo "         ],"
-        
-        echo -e "\nVLess_gRPC:\n        \"clients\": ["; printf '          %s\n' "${vless_gRPC[@]}"; echo "         ],"
-        echo -e "\nVMess_gRPC:\n        \"clients\": ["; printf '          %s\n' "${vmess_gRPC[@]}"; echo "         ],"
-        echo -e "\nTrojan_gRPC:\n        \"clients\": ["; printf '          %s\n' "${trojan_gRPC[@]}"; echo "         ],"
-        echo -e "\nSShadowSSocks_gRPC:\n        \"clients\": ["; printf '          %s\n' "${shadowsocks_gRPC[@]}"; echo "         ],"
-        
-        echo -e "\nVLess_OLD:\n        \"clients\": ["; printf '          %s\n' "${vless_OLD[@]}"; echo "         ],"
-        echo -e "\nVMess_OLD:\n        \"clients\": ["; printf '          %s\n' "${vmess_OLD[@]}"; echo "         ],"
-        echo -e "\nTrojan_OLD:\n        \"clients\": ["; printf '          %s\n' "${trojan_OLD[@]}"; echo "         ],"
-        echo -e "\nSShadowSSocks_OLD:\n        \"clients\": ["; printf '          %s\n' "${shadowsocks_OLD[@]}"; echo "         ],"
-    } > xRay_Conf.json
-    
-    echo -e "\n格式化处理结束，请使用 cat xRay_Conf.json 查看"
-    echo -e "\n===========格式化输出内容结束===========\n"
-    echo -e "\n=======请勿退出，继续处理相关设置=======\n"
-    modify_conf
+display_pause_info() {
+    read -n 1 -s -r -p "按任意键返回主菜单..."
 }
-
 base64_uuids() {
     echo "请输入要转换的UUID，以空行结束"
     while read -r uuid && [ -n "$uuid" ]; do
@@ -201,89 +102,437 @@ base64_uuids() {
     fi
     display_pause_info
 }
+reset_xray() {
+    rm -rf /usr/local/etc/xray/config.json config.conf
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/config.json > /dev/null 2>&1
+    mv config.json /usr/local/etc/xray/config.json -f
+}
+get_xray_tags() {
+    config_file="/usr/local/etc/xray/config.json"
+    new_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' | grep -iv "OLD" | grep -iv "api"))
+    old_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' | grep -i "OLD"))
+}
+process_xray_new() {
+    reset_xray
+    method_character="chacha20-ietf-poly1305"
+    flow=xtls-rprx-vision
+    get_xray_tags
+    new_ids=()
+    if [ ${#new_tags[@]} -eq 0 ]; then
+        echo "No new tags found. Exiting."
+        exit 0
+    fi
+    for i in "${!new_tags[@]}"; do
+        current_tag=${new_tags[$i]}
+        [[ "$current_tag" == "api" ]] && continue
+        next_tag=${new_tags[$((i+1))]}
 
-domain_set() {
-    echo "请输入你的域名，以空行结束（可以很多行，Excel可直接复制粘贴）"
-    domains=()
-    while read -r domain && [ -n "$domain" ]; do
-        domains+=("$domain")
+        if [ -z "$next_tag" ]; then
+            continue
+        fi
+        ids=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ { /\"id\"/p }" "$config_file" | awk -F'"' '{print $4}' | awk '!a[$0]++'))
+        for id in "${ids[@]}"; do
+            if [[ ! " ${new_ids[@]} " =~ " $id " ]]; then
+                new_ids+=("$id")
+            fi
+        done
     done
+    unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
+    json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
+    json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
+    json_template_shadowsocks='{"method":"method_character","password":"base64_uuid","level":0}'
 
-    local_ip=$(curl -s ifconfig.me)
-    matched_prefix=""
-    matched_domain=""
-    full_domain=""
+    for current_tag in "${new_tags[@]}"; do
+        tag_lowercase=$(echo "$current_tag" | tr '[:upper:]' '[:lower:]')
+        tag_name=()
+        for ((j=0; j<${#new_uuid_array[@]}; j++)); do
+            base64_uuid=$(echo -n "${new_uuid_array[j]}" | base64 | tr -d '/+' | cut -c 1-22)
+            base64_uuid+="=="
+            short_uuid="${new_uuid_array[j]:0:8}"
+            case $tag_lowercase in
+                *"vless"*|*"vmess"*)
+                    if [[ "$tag_lowercase" != *"xtls"* ]]; then
+                        current_template=("$(echo "$json_template_vmess" | sed -e "s/full_uuid/${new_uuid_array[j]}/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                        tag_name+=("$current_template")
+                    else
+                        current_template=("$(echo "$json_template_xtls" | sed -e "s/full_uuid/${new_uuid_array[j]}/" -e "s/flow2/$flow/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                        tag_name+=("$current_template")
+                    fi
+                    ;;
+                *"trojan"*)
+                    current_template=("$(echo "$json_template_trojan" | sed -e "s/full_uuid/${new_uuid_array[j]}/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                    tag_name+=("$current_template")
+                    ;;
+                *"shadowsocks"*)
+                    current_template=("$(echo "$json_template_shadowsocks" | sed -e "s/method_character/$method_character/" -e "s/base64_uuid/${base64_uuid}/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                    tag_name+=("$current_template")
+                    ;;
+            esac
+        done
 
-    sudo rm -r /etc/tls/* -f
-    sudo mkdir -p /etc/tls
-    processed_domains=()
-
-    for domain in "${domains[@]}"; do
-        processed_domains+=("$(echo "$domain" | sed 's/^[^.]*\.//')")
-    done
-
-    unique_domains=($(echo "${processed_domains[@]}" | tr ' ' '\n' | sort -u))
-
-    for domain in "${domains[@]}"; do
-        result=$(dig +short "$domain" | tr -d '[:space:]')
-        if [ "$result" == "$local_ip" ]; then
-            matched_prefix=$(echo "$domain" | awk -F'.' '{print $1}')
-            matched_domain=$(echo "$domain" | sed "s/$matched_prefix\.//")
-            full_domain=$domain
-            break
+        if [[ ${#tag_name[@]} -gt 0 ]]; then
+            tag_name_str=$(printf '          %s\n' "${tag_name[@]}")
+            tag_name_str="${tag_name_str%,}"
+            tag_name_str_escaped=$(printf '%s\n' "$tag_name_str" | sed -e 's/[\/&]/\\&/g')
+            tag_array["$current_tag"]=$tag_name_str
+            found=$(sed -n "/\"tag\": \"$tag_lowercase\"/I,/]/p" "$config_file")
+            if [ -n "$found" ]; then
+                sed -i "/\"tag\": \"$tag_lowercase\"/I,/]/ {
+                    /\"clients\": \[/ {
+                        N
+                        a \        \"clients\": \[
+                        r /dev/stdin
+                        d
+                    }
+                }" "$config_file" <<< "$tag_name_str_escaped"
+            fi
         fi
     done
-
-    unique_domains_new=()
-    unique_domains_nginx=()
-
-    for prefix in "${unique_domains[@]}"; do
-        if [ "$prefix" != "$matched_domain" ]; then
-            unique_domains_new+=("$matched_prefix.$prefix")
-            unique_domains_nginx+=("*.$prefix")
-        fi
+    for ((i = 0; i < ${#unique_new_ids[@]}; i++)); do
+        base64_encoded_id=$(echo -n "${unique_new_ids[$i]}" | base64)
+        modified_base64_id=$(echo -n "$base64_encoded_id" | tr -d '/+' | cut -c 1-22)
+        sed -i "/${unique_new_ids[$i]}/d; /$modified_base64_id/d" "$config_file"
     done
 
-    curl https://get.acme.sh | sh > /dev/null 2>&1
 
-    if [ -n "$matched_domain" ]; then
-        sudo ~/.acme.sh/acme.sh --register-account -m admin@$matched_domain > /dev/null 2>&1
-        sudo ~/.acme.sh/acme.sh --issue -d $full_domain --keylength ec-256 -w /var/www/letsencrypt > /dev/null 2>&1
-        sudo ~/.acme.sh/acme.sh --installcert -d $full_domain  --fullchainpath /etc/tls/$matched_domain.crt  --keypath /etc/tls/$matched_domain.key > /dev/null 2>&1
 
-    else
-        echo "未找到匹配的域名"
+}
+process_xray_old() {
+    method_character="chacha20-ietf-poly1305"
+    flow=xtls-rprx-vision
+    get_xray_tags
+    old_ids=()
+    if [ ${#old_tags[@]} -eq 0 ]; then
+        echo "No new tags found. Exiting."
+        exit 0
+    fi
+    for i in "${!old_tags[@]}"; do
+        current_tag=${old_tags[$i]}
+        [[ "$current_tag" == "api" ]] && continue
+        next_tag=${old_tags[$((i+1))]}
+
+        if [ -z "$next_tag" ]; then
+            continue
+        fi
+        ids=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ { /\"id\"/p }" "$config_file" | awk -F'"' '{print $4}' | awk '!a[$0]++'))
+        for id in "${ids[@]}"; do
+            if [[ ! " ${old_ids[@]} " =~ " $id " ]]; then
+                old_ids+=("$id")
+            fi
+        done
+    done
+    unique_old_ids=($(echo "${old_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
+    json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
+    json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
+    json_template_shadowsocks='{"method":"method_character","password":"base64_uuid","level":0}'
+
+    for current_tag in "${old_tags[@]}"; do
+        tag_lowercase=$(echo "$current_tag" | tr '[:upper:]' '[:lower:]')
+        tag_name=()
+        for ((j=0; j<${#old_uuid_array[@]}; j++)); do
+            base64_uuid=$(echo -n "${old_uuid_array[j]}" | base64 | tr -d '/+' | cut -c 1-22)
+            base64_uuid+="=="
+            short_uuid="${old_uuid_array[j]:0:8}"
+            case $tag_lowercase in
+                *"vless"*|*"vmess"*)
+                    if [[ "$tag_lowercase" != *"xtls"* ]]; then
+                        current_template=("$(echo "$json_template_vmess" | sed -e "s/full_uuid/${old_uuid_array[j]}/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                        tag_name+=("$current_template")
+                    else
+                        current_template=("$(echo "$json_template_xtls" | sed -e "s/full_uuid/${old_uuid_array[j]}/" -e "s/flow2/$flow/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                        tag_name+=("$current_template")
+                    fi
+                    ;;
+                *"trojan"*)
+                    current_template=("$(echo "$json_template_trojan" | sed -e "s/full_uuid/${old_uuid_array[j]}/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                    tag_name+=("$current_template")
+                    ;;
+                *"shadowsocks"*)
+                    current_template=("$(echo "$json_template_shadowsocks" | sed -e "s/method_character/$method_character/" -e "s/base64_uuid/${base64_uuid}/" -e "s/short_uuid/$short_uuid/" -e "s/tag_name/$tag_lowercase/"),")
+                    tag_name+=("$current_template")
+                    ;;
+            esac
+        done
+
+        if [[ ${#tag_name[@]} -gt 0 ]]; then
+            tag_name_str=$(printf '          %s\n' "${tag_name[@]}")
+            tag_name_str="${tag_name_str%,}"
+            tag_name_str_escaped=$(printf '%s\n' "$tag_name_str" | sed -e 's/[\/&]/\\&/g')
+            tag_array["$current_tag"]=$tag_name_str
+            found=$(sed -n "/\"tag\": \"$tag_lowercase\"/I,/]/p" "$config_file")
+            if [ -n "$found" ]; then
+                sed -i "/\"tag\": \"$tag_lowercase\"/I,/]/ {
+                    /\"clients\": \[/ {
+                        N
+                        a \        \"clients\": \[
+                        r /dev/stdin
+                        d
+                    }
+                }" "$config_file" <<< "$tag_name_str_escaped"
+
+            fi
+        fi
+    done
+    for ((i = 0; i < ${#unique_old_ids[@]}; i++)); do
+        base64_encoded_id=$(echo -n "${unique_old_ids[$i]}" | base64)
+        modified_base64_id=$(echo -n "$base64_encoded_id" | tr -d '/+' | cut -c 1-22)
+        sed -i "/${unique_old_ids[$i]}/d; /$modified_base64_id/d" "$config_file"
+    done
+
+}
+xray_user_info(){
+
+    get_xray_tags
+
+    repeat_count=150
+    reset_color='\e[0m'
+    dark_gray='\e[90m'
+    light_gray='\e[37m'
+    half_repeat_count=$((repeat_count / 3))
+
+    all_ids=()
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+    printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "新用户信息 (左边是除ShadowSock之外的UUID)"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}+"; done; echo -e "${reset_color}"
+
+    if [ ${#new_tags[@]} -eq 0 ]; then
+        echo "No new tags found. Exiting."
+        exit 0
     fi
 
-    echo -e "\n================================\n"
+    for i in "${!new_tags[@]}"; do
+        current_tag=${new_tags[$i]}
+        [[ "$current_tag" == "api" ]] && continue
+        next_tag=${new_tags[$((i+1))]}
 
-    for ((i=0; i<"${#unique_domains_new[@]}"; i++)); do
-        echo "尝试通过Nginx申请证书的域名: ${unique_domains_new[i]}"
+        if [ -z "$next_tag" ]; then
+            continue
+        fi
+
+        ids=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ { /\"id\"/p }" "$config_file" | awk -F'"' '{print $4}' | awk '!a[$0]++'))
+
+        for id in "${ids[@]}"; do
+            if [[ ! " ${all_ids[@]} " =~ " $id " ]]; then
+                all_ids+=("$id")
+            fi
+        done
     done
 
-    echo -e "\n================================\n"
+    unique_ids=($(echo "${all_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
 
-    for ((i=0; i<"${#unique_domains_new[@]}"; i++)); do
-        sudo ~/.acme.sh/acme.sh --issue -d ${unique_domains_new[i]} --keylength ec-256 -w /var/www/letsencrypt > /dev/null 2>&1
-        sudo ~/.acme.sh/acme.sh --installcert -d ${unique_domains_new[i]}  --fullchainpath /etc/tls/${unique_domains[i]}.crt  --keypath /etc/tls/${unique_domains[i]}.key > /dev/null 2>&1
+    printf "\e[1m%-5s %-50s %s\e[0m\n" "No." "UUID for other" "ShadowSock Password"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
 
-    done
-
-    for ((i=0; i<"${#unique_domains_new[@]}"; i++)); do
-        if [ -e "/root/.acme.sh/${unique_domains_new[i]}_ecc/fullchain.cer" ]; then
-            :
-        else
-            sudo rm -f "/etc/tls/${unique_domains[i]}.key" "/etc/tls/${unique_domains[i]}.crt" > /dev/null 2>&1
+    for ((i = 0; i < ${#unique_ids[@]}; i++)); do
+        base64_encoded_id=$(echo -n "${unique_ids[$i]}" | base64)
+        modified_base64_id=$(echo -n "$base64_encoded_id" | tr -d '/+' | cut -c 1-22)
+        printf "%-5s %-50s %s\n" "$((i+1))." "${unique_ids[$i]}" "$modified_base64_id"
+        if [ $i -lt $(( ${#unique_ids[@]} - 1 )) ]; then
+            for ((j = 0; j < repeat_count; j++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}"
         fi
     done
-    bing_self
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
 
-    ls /etc/tls
-    display_pause_info
+    printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "旧用户信息 (左边是除ShadowSock之外的UUID)"
+    all_ids=()
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}+"; done; echo -e "${reset_color}"
+
+    if [ ${#old_tags[@]} -eq 0 ]; then
+        echo "No old tags found. Exiting."
+        exit 0
+    fi
+
+    for i in "${!old_tags[@]}"; do
+        current_tag=${old_tags[$i]}
+        [[ "$current_tag" == "api" ]] && continue
+        next_tag=${old_tags[$((i+1))]}
+
+        if [ -z "$next_tag" ]; then
+            continue
+        fi
+
+        ids=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ { /\"id\"/p }" "$config_file" | awk -F'"' '{print $4}' | awk '!a[$0]++'))
+
+        for id in "${ids[@]}"; do
+            if [[ ! " ${all_ids[@]} " =~ " $id " ]]; then
+                all_ids+=("$id")
+            fi
+        done
+    done
+
+    unique_ids=($(echo "${all_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+
+    printf "\e[1m%-5s %-50s %s\e[0m\n" "No." "UUID for other" "ShadowSock Password"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
+
+    for ((i = 0; i < ${#unique_ids[@]}; i++)); do
+        base64_encoded_id=$(echo -n "${unique_ids[$i]}" | base64)
+        modified_base64_id=$(echo -n "$base64_encoded_id" | tr -d '/+' | cut -c 1-22)
+        printf "%-5s %-50s %s\n" "$((i+1))." "${unique_ids[$i]}" "$modified_base64_id"
+        if [ $i -lt $(( ${#unique_ids[@]} - 1 )) ]; then
+            for ((j = 0; j < repeat_count; j++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}"
+        fi
+    done
+
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+
 }
+singbox_user_info(){
+    config_file="/usr/local/etc/sing-box/config.json"
 
+    is_valid_uuid() {
+        local uuid=$1
+        [[ $uuid =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ ]]
+    }
 
-install_xRay() {
+    uuid_to_base64() {
+        local uuid=$1
+        local base64_uuid=$(echo -n "$uuid" | base64 | tr -d '/+' | cut -c 1-22)
+        echo "$base64_uuid"
+    }
+
+    names=($(sed -n '/"vless"\|shadowsocks/,/"outbounds"/ { /"name"/p }' "$config_file"))
+    names=($(echo "${names[@]}" | tr -d ' ' | tr -d '"' | sed 's/,flow://g' | sed 's/name:nruan,//g' | tr ',' '\n'))
+    names=($(echo "${names[@]}" | sed 's/uuid://g' | sed 's/password://g'))
+    names=($(echo "${names[@]}" | tr -d '{}'))
+    repeat_count=150 reset_color='\e[0m' dark_gray='\e[90m' light_gray='\e[37m'
+
+    names=($(echo "${names[@]}" | awk '{gsub(/(.{8})(.{4})(.{4})(.{4})(.{12})/, "\\1-\\2-\\3-\\4-\\5")}1'))
+    names=($(for uuid in "${names[@]}"; do is_valid_uuid "$uuid" && echo "$uuid"; done | sort -u))
+
+    base64_names=()
+
+    for tag in "vless" "shadowsocks"; do
+        [[ "$tag" == "vless" ]] && base64_names=("${names[@]}")
+        [[ "$tag" == "shadow"* ]] && base64_names=($(for uuid in "${names[@]}"; do uuid_to_base64 "$uuid"; done))
+
+        for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+
+        capitalized_tag=$(echo "${tag}" | sed 's/.*/\u&/')
+        printf "\e[1;32m%65s%s\e[0m\n" "" "${capitalized_tag}"
+        for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
+
+        column_width=50
+
+        for ((i = 0; i < ${#base64_names[@]}; i += 3)); do
+            for ((j = 0; j < 3 && i + j < ${#base64_names[@]}; j++)); do
+                printf "%02d. %-50s" "$((i + j + 1))" "${base64_names[i + j]}"
+            done
+            echo
+
+            [[ $((i + 3)) -lt ${#base64_names[@]} ]] && { for ((k = 0; k < repeat_count; k++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}"; }
+        done
+    done
+
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+
+}
+status_xray(){
+    sudo systemctl stop xray
+    sudo systemctl start xray
+    status=$(systemctl status xray.service | grep "Active:")
+    if [[ $status == *"active (running)"* ]]; then
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "      xRay 已重启并在正常运行"
+
+    else
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "      xRay 启动失败，请自查！"
+    fi
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+
+}
+status_singbox(){
+    sudo systemctl stop sing-box
+    sudo systemctl start sing-box
+    status=$(systemctl status sing-box.service | grep "Active:")
+    if [[ $status == *"active (running)"* ]]; then
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "    Sing-Box 已重启并在正常运行"
+
+    else
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "    Sing-Box 启动失败，请自查！"
+    fi
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+
+}
+show_singbox_setting() {
+    config_file="/usr/local/etc/sing-box/config.json"
+    tags=() type=() ports=()
+
+    tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' | sed 's/_in//'))
+    type=($(echo "${tags[@]}" | sed 's/_in//g' | tr ' ' '\n'))
+    ports=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"listen_port": \K[^,]+'))
+    repeat_count=125 reset_color='\e[0m' dark_gray='\e[90m' light_gray='\e[37m'
+
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}";
+    printf "%50s""Sing-Box 配置清单\n"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done;echo -e "${reset_color}"
+    printf "\e[1;32m%-3s %-12s %-6s %-20s %-6s %-15s %-28s %-20s\e[0m\n" "No." "Protocol" "Ports" "Domains or sni" "Type" "Path" "Password" "Method"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
+
+    for i in "${!tags[@]}"; do
+        current_tag=${tags[$i]} next_tag=${tags[$((i+1))]} line_cont=${tags[$((i+1))]}
+    [ -z "$next_tag" ] && next_tag="outbounds"
+        content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$config_file")
+        path_t=$(echo "$content" | grep -oP '"path": "\K[^\"]+' | head -n1)
+        type_t=$(echo "$content" | grep -oP '"type": "\K[^\"]+' | sed -n '2p')
+        Domain_t=$(echo "$content" | grep -oP '"server_name": "\K[^\"]+' | head -n1)
+
+    if [ "$current_tag" == "hysteria2" ] || [ "$current_tag" == "shadowsocks" ]; then
+        password_t=$(echo "$content" | grep -oP '"password": "\K[^\"]+' | head -n1)
+        method_t=$(echo "$content" | grep -oP '"method": "\K[^\"]+' | head -n1)
+    else
+        password_t=""
+        method_t=""
+    fi
+    echo "$content" | grep -q '"transport"' && type2+="1" && [ -z "$type_t" ] && type_t=" " || type2+=" " && type_t=" "
+    printf "%-3s %-12s %-6s %-20s %-6s %-15s %-28s %-20s\n" "$((i+1))." "${type[i]}" "${ports[i]}" "$Domain_t" "$type_t" "$path_t" "$password_t" "$method_t"
+    [ -n "$line_cont" ] && for ((i = 0; i < repeat_count; i++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}" || echo
+
+    done
+}
+show_xray_setting() {
+    config_file="/usr/local/etc/xray/config.json"
+
+    tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' ))
+    type=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"protocol": "\K[^"]+'))
+    ports=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"port": \K[^,]+'))
+
+    repeat_count=125 reset_color='\e[0m' dark_gray='\e[90m' light_gray='\e[37m'
+
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}";
+    printf "%50s""xRay 配置清单\n"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done;echo -e "${reset_color}"
+    printf "\e[1;32m%-3s %-22s %-18s  %-10s %-20s %-15s %-28s %-20s\e[0m\n" "No." "Name"  "Protocol" "Ports" "Path" "Method"
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
+
+    for i in "${!tags[@]}"; do
+        current_tag=${tags[$i]} next_tag=${tags[$((i+1))]} line_cont=${tags[$((i+1))]}
+        current_tag="${tags[i]}"
+        next_tag="${tags[i+1]}"
+        if [ -z "$next_tag" ]; then
+            next_tag="outbounds"
+        fi
+        content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$config_file")
+        path_t=$(echo "$content" | grep -oP '"path": "\K[^\"]+' | head -n1)
+        method_t=$(echo "$content" | awk -F'"' '/"method":/{print $4}' | awk '!seen[$0]++')
+        if [ "${type[i]}" != "dokodemo-door" ]; then
+            ports[i]="443"
+        fi
+        if [[ "${tags[i]}" == *gRPC* ]]; then
+            path_t=$(echo "$content" | awk -F'"' '/"serviceName":/{print $4}' | awk '!seen[$0]++')
+        fi
+        printf "%-3s " "$((i+1))."
+        printf "%-22s " "${tags[i]}"
+        printf "%-18s " "${type[i]}"
+        printf "%-10s " "${ports[i]}"
+        printf "%-20s" "$path_t"
+        printf "%-20s\n" "$method_t"
+        [ -n "$line_cont" ] && { for ((i = 0; i < repeat_count; i++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}"; } || for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done;
+    done
+        printf "\n"
+}
+install_xRay_SingBox() {
     rm -rf /etc/nginx/conf.d/*.*
     bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root > /dev/null 2>&1
     # 安装XRay官方版本，使用User=root，这将覆盖现有服务文件中的User
@@ -328,247 +577,9 @@ install_xRay() {
     systemctl status sing-box
     display_pause_info
 }
-
-modify_conf() {
-  rm -rf /usr/local/etc/xray/config.json config.conf
-  wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/config.json > /dev/null 2>&1
-  cp config.json /usr/local/etc/xray/config.json -f
-  json_file="xRay_conf.json"
-  config_file="/usr/local/etc/xray/config.json"
-  tag_values=("VLess-TCP-xTLS" "VLess-TCP" "VMess-TCP" "Trojan-TCP" "Shadowsocks-TCP" "VLess-WS" "VMess-WS" "Trojan-WS" "Shadowsocks-WS" "VLess-gRPC" "VMess-gRPC" "Trojan-gRPC" "Shadowsocks-gRPC" "VLess-OLD" "VMess-OLD" "Trojan-OLD" "Shadowsocks-OLD")
-
-  for tag_value in "${tag_values[@]}"; do
-    array_content=""
-    case "$tag_value" in
-      "VLess-TCP-xTLS") array_content=("${vless_tcp_xtls[@]}") ;;
-      "VLess-TCP") array_content=("${vless_tcp[@]}") ;;
-      "VMess-TCP") array_content=("${vmess_tcp[@]}") ;;
-      "Trojan-TCP") array_content=("${trojan_tcp[@]}") ;;
-      "Shadowsocks-TCP") array_content=("${shadowsocks_tcp[@]}") ;;
-      "VLess-WS") array_content=("${vless_ws[@]}") ;;
-      "VMess-WS") array_content=("${vmess_ws[@]}") ;;
-      "Trojan-WS") array_content=("${trojan_ws[@]}") ;;
-      "Shadowsocks-WS") array_content=("${shadowsocks_ws[@]}") ;;
-      "VLess-gRPC") array_content=("${vless_gRPC[@]}") ;;
-      "VMess-gRPC") array_content=("${vmess_gRPC[@]}") ;;
-      "Trojan-gRPC") array_content=("${trojan_gRPC[@]}") ;;
-      "Shadowsocks-gRPC") array_content=("${shadowsocks_gRPC[@]}") ;;
-      "VLess-OLD") array_content=("${vless_OLD[@]}") ;;
-      "VMess-OLD") array_content=("${vmess_OLD[@]}") ;;
-      "Trojan-OLD") array_content=("${trojan_OLD[@]}") ;;
-      "Shadowsocks-OLD") array_content=("${shadowsocks_OLD[@]}") ;;
-    esac
-
-    {
-      echo -e "        \"clients\": ["; printf '          %s\n' "${array_content[@]}"; echo "         ],"
-    } > "$json_file"
-
-    found=$(sed -n "/\"tag\": \"$tag_value\"/I,/]/p" "$config_file")
-
-    if [ -n "$found" ]; then
-      sed -i "/\"tag\": \"$tag_value\"/I,/]/ { 
-        /\"clients\": \[/ {
-          N
-          r $json_file
-          s/"clients": \[.*\]/"clients": \[/
-          :loop
-          N
-          /\n\s*]/!b loop
-          d
-        }
-      }" "$config_file"
-
-      echo "替换完成：$tag_value"
-    else
-      echo "未找到符合条件的配置：$tag_value。"
-    fi
-  done
-
-  {
-    certname=($(ls -1 /etc/tls | sed 's/\(.*\)\..*/\1/' | sort -u))
-    for ((i=0; i<${#certname[@]}; i++)); do
-      cert="${certname[i]}"
-      if [ $i -eq $((${#certname[@]}-1)) ]; then
-        echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"}"
-      else
-        echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"},"
-      fi
-    done
-  } > "$json_file"
-
-  cert_count=$(grep -o "certificateFile" "$json_file" | wc -l)
-
-  if grep -q '"certificates": \[' "$config_file"; then
-    sed -i "/\"certificates\": \[/ r $json_file" "$config_file"
-  else
-    sed -i "/\"certificates\": {/ r $json_file" "$config_file"
-  fi
-
-  certificate_count=$(grep -c "certificateFile" "$config_file")
-  last_line=$(grep -n "certificateFile" "$config_file" | tail -n 1 | cut -d ':' -f 1)
-  start_line=$((last_line - (certificate_count - cert_count-1)))
-  delete_lines=$((certificate_count - cert_count + 1))
-  sed -i "${start_line},${last_line}d" "$config_file"
-
-  echo -e "\n========xRar内容替换完成，重启xRay========\n"
-  sudo systemctl restart xray 
-  systemctl status xray
-  display_pause_info
-}
-
-show_info() {
-    acme=($(ls -I '*.conf' -I 'acme.sh' -I 'acme.sh.env' -I 'ca' -I 'deploy' -I 'dnsapi' -I 'http.header' -I 'notify' ~/.acme.sh))
-    acme_new=()
-    for item in "${acme[@]}"; do
-        acme_new+=("${item%_ecc}")
-    done
-
-    local_ip=$(curl -s ifconfig.me)
-
-    for acme_d in "${acme_new[@]}"; do
-        result=$(dig +short "$acme_d" | tr -d '[:space:]')
-        if [ "$result" == "$local_ip" ]; then
-            matched_prefix=$(echo "$acme_d" | awk -F'.' '{print $1}')
-            matched_domain=$(echo "$acme_d" | sed "s/$matched_prefix\.//")
-            full_domain=$acme_d
-            break
-        fi
-    done
-
+singbox_domain_set() {
     config_file="/usr/local/etc/sing-box/config.json"
-    sb_sn=($(grep -oP '"server_name": "\K[^"]+' "$config_file"))
-    sbsn_new=($(echo "${sb_sn[@]}" | tr ' ' '\n' | sort -u))
-
-    for sn in "${sbsn_new[@]}"; do
-        matched=false
-        for ((i=0; i<${#full_domain[@]}; i++)); do
-            if [[ "${full_domain[$i]}" == *"$sn"* ]]; then
-                matched=true
-                break
-            fi
-        done
-
-        if [ "$matched" = false ]; then
-            echo -e "================================="
-            echo -e "  \e[91m不正域的域名配置:\e[0m"
-            printf "%s\n" "   ${sbsn_new[@]}"
-            echo -e "================================="
-            sed -i "s/$sn/$full_domain/g" "$config_file"
-            echo -e " \e[92m已完成Sing-Box的Server_Name更新\e[0m"
-            sed -i '/"certificate_path"/d' "$config_file"
-            sed -i "/\"key_path\"/i \\\t\"certificate_path\": \"/etc/tls/$matched_domain.crt\"," "$config_file"
-            sed -i '/"key_path"/d' "$config_file"
-            sed -i "/\"certificate_path\"/a \\\t\"key_path\": \"/etc/tls/$matched_domain.key\"" "$config_file"
-            echo -e " \e[92m已完成Sing-Box证书路径更新\e[0m"
-            curl -s https://get.acme.sh | sh > /dev/null 2>&1
-            mkdir -p /etc/tls/
-            sudo ~/.acme.sh/acme.sh --register-account -m admin@$matched_domain > /dev/null 2>&1
-            sudo ~/.acme.sh/acme.sh --issue -d $full_domain --keylength ec-256 -w /var/www/letsencrypt > /dev/null 2>&1
-            sudo ~/.acme.sh/acme.sh --installcert -d $full_domain  --fullchainpath /etc/tls/$matched_domain.crt  --keypath /etc/tls/$matched_domain.key > /dev/null 2>&1
-            echo -e " \e[92mTLS证书已正确配置\e[0m"
-            echo -e "================================="
-        else
-            echo -e "\n  \e[92mSing-Box证书和域名配置正确，无需操作\n\e[0m"
-        fi
-    done
-
-    tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' | cut -c 1-5))
-    type=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' | sed 's/-in//'))
-    listen_ports=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"listen_port": \K[^,]+'))
-
-    type2=()
-    path_t=()
-    echo -e "=================================================================="
-    printf "%20s""Sing-Box配置清单"
-    echo -e "\n------------------------------------------------------------------"
-    printf "\e[1;32m%-4s %-15s %-10s %-15s %-20s \e[0m\n" "No." "Type" "Ports" "Transport" "path"
-    echo -e "------------------------------------------------------------------"
-
-    for i in "${!tags[@]}"; do
-        current_tag=${tags[$i]}
-        next_tag=${tags[$((i+1))]}
-        if [ -z "$next_tag" ]; then
-            next_tag="outbounds"
-        fi
-
-        content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$config_file")
-        path_t=$(echo "$content" | grep -oP '"path": "\K[^\"]+' | head -n1)
-        type_t=$(echo "$content" | grep -oP '"type": "\K[^\"]+' | sed -n '2p')
-
-        if echo "$content" | grep -q '"transport"'; then
-            type2+="1"
-            if [ -z "$type_t" ]; then
-                type_t=" "
-            fi
-        else
-            type2+=" "
-            type_t=" "
-        fi
-
-        printf "%-4s " "$((i+1))."
-        printf "%-15s " "${type[i]}"
-        printf "%-10s " "${listen_ports[i]}"
-        printf "%-15s " "$type_t"
-        printf "%-20s\n" "$path_t"
-    done
-
-    config_file="/usr/local/etc/xray/config.json"
-
-    tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' ))
-    type=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"protocol": "\K[^"]+'))
-    listen_ports=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"port": \K[^,]+'))
-
-    type2=()
-    path_t=()
-    echo -e "=================================================================="
-
-    printf "%22s""xRay配置清单"
-    echo -e "\n------------------------------------------------------------------"
-    printf "\e[1;32m%-4s %-18s %-17s %-5s %-20s \e[0m\n" "No." "Name" "Type" "Port" "path"
-    echo -e "------------------------------------------------------------------"
-
-    for i in "${!tags[@]}"; do
-        current_tag=${tags[$i]}
-        next_tag=${tags[$((i+1))]}
-
-        if [ -z "$next_tag" ]; then
-            next_tag="outbounds"
-        fi
-
-        content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$config_file")
-
-        path_t=$(echo "$content" | grep -oP '"path": "\K[^\"]+' | head -n1)
-        type_t=$(echo "$content" | grep -oP '"type": "\K[^\"]+' | sed -n '2p')
-
-        if [[ "$current_tag" == *gRPC ]]; then
-            path_g=($(echo "$content" | grep -oP '"serviceName": "\K[^"]+' | sed 's/,//g'))
-            path_t=$path_g
-        fi
-
-        if echo "$content" | grep -q '"transport"'; then
-            type2+="1"
-            [ -z "$type_t" ] && type_t=" "
-        else
-            type2+=" "
-            type_t=" "
-        fi
-
-        [ "${type[i]}" != "dokodemo-door" ] && listen_ports[i]="443"
-
-        printf "%-4s " "$((i+1))."
-        printf "%-18s " "${tags[i]}"
-        printf "%-17s " "${type[i]}"
-        printf "%-5s " "${listen_ports[i]}"
-        printf "%-20s\n" "$path_t"
-    done
-
-    echo -e "================================================================"
-    
-    display_pause_info
-}
-
-domain_set() {
-     echo "请输入你的域名，以空行结束（可以很多行，Excel可直接复制粘贴）"
+    echo "请输入你的域名，以空行结束（可以很多行，Excel可直接复制粘贴）"
     domains=()
     while read -r domain && [ -n "$domain" ]; do
         domains+=("$domain")
@@ -642,15 +653,69 @@ domain_set() {
     
     bing_self
 
-    ls /etc/tls
+    ls /etc/tls  
+    ls /etc/hysteria
 
-    display_pause_info
 }
+xray_domain_set() {
+    config_file="/usr/local/etc/xray/config.json"
+    {
+    certname=($(ls -1 /etc/tls | sed 's/\(.*\)\..*/\1/' | sort -u))
+    for ((i=0; i<${#certname[@]}; i++)); do
+      cert="${certname[i]}"
+      if [ $i -eq $((${#certname[@]}-1)) ]; then
+        echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"}"
+      else
+        echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"},"
+      fi
+    done
+  } > "$json_file"
 
+  cert_count=$(grep -o "certificateFile" "$json_file" | wc -l)
+
+  if grep -q '"certificates": \[' "$config_file"; then
+    sed -i "/\"certificates\": \[/ r $json_file" "$config_file"
+  else
+    sed -i "/\"certificates\": {/ r $json_file" "$config_file"
+  fi
+
+  certificate_count=$(grep -c "certificateFile" "$config_file")
+  last_line=$(grep -n "certificateFile" "$config_file" | tail -n 1 | cut -d ':' -f 1)
+  start_line=$((last_line - (certificate_count - cert_count-1)))
+  delete_lines=$((certificate_count - cert_count + 1))
+  sed -i "${start_line},${last_line}d" "$config_file"
+
+  echo -e "\n========xRar内容替换完成，重启xRay========\n"
+  sudo systemctl restart xray 
+  systemctl status xray
+ 
+}
 bing_self() {
-  cert_path="/etc/tls/hysteria.crt"
-  key_path="/etc/tls/hysteria.key"
+  cert_path="/etc/hysteria/hysteria.crt"
+  key_path="/etc/hysteria/hysteria.key"
   config_file="/usr/local/etc/sing-box/config.json"
+  sudo mkdir -p /etc/hysteria
+  acme=($(ls -I '*.conf' -I 'acme.sh' -I 'acme.sh.env' -I 'ca' -I 'deploy' -I 'dnsapi' -I 'http.header' -I 'notify' ~/.acme.sh))
+  acme_new=()
+  
+  for item in "${acme[@]}"; do
+      acme_new+=("${item%_ecc}")
+  done
+
+  local_ip=$(curl -s ifconfig.me)
+
+  for acme_d in "${acme_new[@]}"; do
+      result=$(dig +short "$acme_d" | tr -d '[:space:]') 
+      if [ "$result" == "$local_ip" ]; then
+          matched_prefix=$(echo "$acme_d" | awk -F'.' '{print $1}')
+          matched_domain=$(echo "$acme_d" | sed "s/$matched_prefix\.//")
+          full_domain=$acme_d
+          break  
+      fi
+  done
+
+  sb_sn=($(grep -oP '"server_name": "\K[^"]+' "$config_file"))
+  sbsn_new=($(echo "${sb_sn[@]}" | tr ' ' '\n' | sort -u))
 
   openssl ecparam -genkey -name prime256v1 -out "$key_path"
   openssl req -new -x509 -days 36500 -key "$key_path" -out "$cert_path" -subj "/CN=www.bing.com"
@@ -667,8 +732,8 @@ bing_self() {
         print "        \"alpn\": [";
         print "          \"h3\"";
         print "        ],";
-        print "        \"certificate_path\": \"/etc/tls/hysteria.crt\",";
-        print "        \"key_path\": \"/etc/tls/hysteria.key\"";
+        print "        \"certificate_path\": \"/etc/hysteria/hysteria.crt\",";
+        print "        \"key_path\": \"/etc/hysteria/hysteria.key\"";
         found=0;
         next;
      }
@@ -676,104 +741,82 @@ bing_self() {
     ' "$config_file" > /usr/local/etc/sing-box/config.json.new
 
   mv /usr/local/etc/sing-box/config.json.new /usr/local/etc/sing-box/config.json
-}
-
-
-xray_info() {
-    config_file="/usr/local/etc/xray/config.json"
-    tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$config_file" | grep -oP '"tag": "\K[^"]+' ))
-
-    for i in "${!tags[@]}"; do
-        current_tag=${tags[$i]}
-        [[ "$current_tag" == "api" ]] && continue
-        next_tag=${tags[$((i+1))]}
-
-        if [ -z "$next_tag" ]; then
-            current_tag=${tags[-1]}
-            next_tag="outbounds"
-            current_tag=${tags[-1]}
-            ids=($(sed -n "/\"$current_tag\"/,/\"outbounds\"/ { /\"id\"/p }" "$config_file"))
-            passwords=($(sed -n "/\"$current_tag\"/,/\"outbounds\"/ { /\"password\"/p }" "$config_file"))
-
-            printf "Tags: %s" "${tags[i]}_"
-            printf "IDs:\n"
-
-            if [ ${#passwords[@]} -gt 0 ]; then
-                printf "%s\n" "${passwords[@]}"
-            else
-                printf "%s\n" "${ids[@]}"
-            fi
-
-            printf "%s\n"
-
-        else 
-            ids=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ { /\"id\"/p }" "$config_file"))
-
-            if [[ "${tags[i]}" =~ "Trojan" || "${tags[i]}" =~ "ShadowSocks" ]]; then
-                passwords=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ { /\"password\"/p }" "$config_file"))
-            else
-                passwords=()
-            fi
-
-            printf "Tags: %s" "${tags[i]}_"
-            printf "IDs:\n"
-
-            if [ ${#passwords[@]} -gt 0 ]; then
-                printf "%s\n" "${passwords[@]}"
-            else
-                printf "%s\n" "${ids[@]}"
-            fi
-
-            printf "%s\n" 
+  
+  for sn in "${sbsn_new[@]}"; do
+    matched=false
+    for ((i=0; i<${#full_domain[@]}; i++)); do
+        if [[ "${full_domain[$i]}" == *"$sn"* ]]; then
+            matched=true
+            break
         fi
     done
+    if [ "$matched" = false ]; then
+        sed -i "s/$sn/$full_domain/g" "$config_file"
+    fi
+  done
 
+  sed -i "s#https://$full_domain#https://www.bing.com#g" "$config_file"
+}
+domain_set(){
+    singbox_domain_set
+    xray_domain_set
     display_pause_info
 }
-
-display_pause_info() {
-    read -n 1 -s -r -p "按任意键返回主菜单..."
+show_user_info(){
+    singbox_user_info
+    xray_user_info
+    display_pause_info
 }
+show_setting_info(){
+    show_singbox_setting
+    show_xray_setting
+    display_pause_info
+}
+install_xRay() {
+    rm -rf /etc/nginx/conf.d/*.*
+    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root > /dev/null 2>&1
+    # 安装XRay官方版本，使用User=root，这将覆盖现有服务文件中的User
+    apt -y update
+    apt -y install curl git build-essential libssl-dev libevent-dev zlib1g-dev gcc-mingw-w64 nginx > /dev/null 2>&1
+    useradd nginx -s /sbin/nologin -M
+    bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh)
+    rm -rf /usr/local/etc/sing-box/config.json config.json
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/singbox_exp.json > /dev/null 2>&1
+    mv singbox_exp.json /usr/local/etc/sing-box/config.json -f
+    rm -rf /etc/nginx/nginx.conf nginx.conf
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/nginx.conf > /dev/null 2>&1
 
-sing_info() {
-    config_file="/usr/local/etc/sing-box/config.json"
-
-    is_valid_uuid() {
-        local uuid=$1
-        [[ $uuid =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ ]]
-    }
-
-    uuid_to_base64() {
-        local uuid=$1
-        local base64_uuid=$(echo -n "$uuid" | base64 | tr -d '/+' | cut -c 1-22)
-        echo "$base64_uuid"
-    }
-
-    names=($(sed -n '/"vless"\|shadowsocks/,/"outbounds"/ { /"name"/p }' "$config_file"))
-    names=($(echo "${names[@]}" | tr -d ' ' | tr -d '"' | sed 's/,flow://g' | sed 's/name:nruan,//g' | tr ',' '\n'))
-    names=($(echo "${names[@]}" | sed 's/uuid://g' | sed 's/password://g'))
-    names=($(echo "${names[@]}" | tr -d '{}'))
-
-    # Reformat UUIDs to standard format
-    names=($(echo "${names[@]}" | awk '{gsub(/(.{8})(.{4})(.{4})(.{4})(.{12})/, "\\1-\\2-\\3-\\4-\\5")}1'))
-
-    # Filter out elements that do not conform to the UUID format and remove duplicates
-    names=($(for uuid in "${names[@]}"; do is_valid_uuid "$uuid" && echo "$uuid"; done | sort -u))
-
-    # Convert UUIDs to base64 format for shadowsocks type
-    for tag in "vless" "shadowsocks"; do
-        if [[ "$tag" == "shadow"* ]]; then
-            names=($(for uuid in "${names[@]}"; do uuid_to_base64 "$uuid"; done))
-        fi
-
-        printf "Tags: %s" "${tag}_"
-        printf "IDs:\n"
-        printf "%s\n" "${names[@]}"
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i "/$domain/d" nginx.conf
     done
 
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i -e "/$server_name yourdomain.com/a\\
+        server_name $domain;" nginx.conf
+    done
+
+    sed -i "/yourdomain.com/d" nginx.conf
+    mv nginx.conf /etc/nginx/nginx.conf
+    rm -rf /etc/nginx/conf.d/default.conf default.conf
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/default.conf > /dev/null 2>&1
+
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i "/$domain/d" default.conf
+    done
+
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i -e "/$server_name yourdomain.com/a\\
+        server_name $domain;" default.conf
+    done
+
+    sed -i "/yourdomain.com/d" default.conf
+    mv default.conf /etc/nginx/conf.d/default.conf
+    sudo systemctl restart nginx xray sing-box
+    systemctl status nginx
+    systemctl status xray
+    systemctl status sing-box
     display_pause_info
 }
-
 while true; do
     clear
     echo -e "\n\e[93m=========xRay/Sing-box批量管理=========\e[0m\n"
@@ -785,8 +828,8 @@ while true; do
     echo -e "   5. 安装Nginx/Sing-box/xRay\n"
     echo -e "   6. 域名检查，重新生成Let's证书\n"
     echo -e "   7. 显示Sing-box/xRay配置\n"
-    echo -e "   8. 显示xRay用户信息\n"
-    echo -e "   9. 显示Sing-box用户信息\n"
+    echo -e "   8. 显示xRay/Sing-box用户信息\n"
+    echo -e "   9. \n"
     echo -e "   0. 退出\n"
     echo -e "\e[37m            www.nruan.com\e[0m"
     echo -e "\e[93m======================================\e[0m\n"
@@ -806,19 +849,16 @@ while true; do
             base64_uuids
             ;;
         5)
-            install_xRay
+            install_xRay_SingBox
             ;;
         6)
             domain_set
             ;;
         7)
-            show_info
+            show_setting_info
             ;;
         8)
-            xray_info
-            ;;
-        9)
-            sing_info
+            show_user_info
             ;;
         0)
             echo "退出菜单。"
