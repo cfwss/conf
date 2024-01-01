@@ -434,10 +434,10 @@ status_xray(){
     sudo systemctl start xray
     status=$(systemctl status xray.service | grep "Active:")
     if [[ $status == *"active (running)"* ]]; then
-        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "      xRay 已重启并在正常运行"
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "        xRay 已重启并在正常运行"
 
     else
-        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "      xRay 启动失败，请自查！"
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "        xRay 启动失败，请自查！"
     fi
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
 
@@ -451,6 +451,19 @@ status_singbox(){
 
     else
         printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "    Sing-Box 启动失败，请自查！"
+    fi
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+
+}
+status_nginx(){
+    sudo systemctl stop nginx
+    sudo systemctl start nginx
+    status=$(systemctl status nginx.service | grep "Active:")
+    if [[ $status == *"active (running)"* ]]; then
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "      Nginx 已重启并在正常运行"
+
+    else
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "      Nginx 启动失败，请自查！"
     fi
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
 
@@ -539,46 +552,19 @@ install_xRay_SingBox() {
     apt -y update
     apt -y install curl git build-essential libssl-dev libevent-dev zlib1g-dev gcc-mingw-w64 nginx > /dev/null 2>&1
     useradd nginx -s /sbin/nologin -M
-    bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh)
+    bash <(curl -fsSL https://sing-box.app/deb-install.sh)  > /dev/null 2>&1
+    mkdir -p /usr/local/etc
+    mkdir -p /usr/local/etc/sing-box/
     rm -rf /usr/local/etc/sing-box/config.json config.json
     wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/singbox_exp.json > /dev/null 2>&1
     mv singbox_exp.json /usr/local/etc/sing-box/config.json -f
-    rm -rf /etc/nginx/nginx.conf nginx.conf
-    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/nginx.conf > /dev/null 2>&1
 
-    for domain in "${unique_domains_nginx[@]}"; do
-        sed -i "/$domain/d" nginx.conf
-    done
-
-    for domain in "${unique_domains_nginx[@]}"; do
-        sed -i -e "/$server_name yourdomain.com/a\\
-        server_name $domain;" nginx.conf
-    done
-
-    sed -i "/yourdomain.com/d" nginx.conf
-    mv nginx.conf /etc/nginx/nginx.conf
-    rm -rf /etc/nginx/conf.d/default.conf default.conf
-    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/default.conf > /dev/null 2>&1
-
-    for domain in "${unique_domains_nginx[@]}"; do
-        sed -i "/$domain/d" default.conf
-    done
-
-    for domain in "${unique_domains_nginx[@]}"; do
-        sed -i -e "/$server_name yourdomain.com/a\\
-        server_name $domain;" default.conf
-    done
-
-    sed -i "/yourdomain.com/d" default.conf
-    mv default.conf /etc/nginx/conf.d/default.conf
-    sudo systemctl restart nginx xray sing-box
     systemctl status nginx
     systemctl status xray
     systemctl status sing-box
     display_pause_info
 }
-singbox_domain_set() {
-    config_file="/usr/local/etc/sing-box/config.json"
+domain_input(){
     echo "请输入你的域名，以空行结束（可以很多行，Excel可直接复制粘贴）"
     domains=()
     while read -r domain && [ -n "$domain" ]; do
@@ -597,9 +583,7 @@ singbox_domain_set() {
     for domain in "${domains[@]}"; do
         processed_domains+=("$(echo "$domain" | sed 's/^[^.]*\.//')")
     done
-
     unique_domains=($(echo "${processed_domains[@]}" | tr ' ' '\n' | sort -u))
-
     for domain in "${domains[@]}"; do
         result=$(dig +short "$domain" | tr -d '[:space:]')
         if [ "$result" == "$local_ip" ]; then
@@ -610,6 +594,9 @@ singbox_domain_set() {
         fi
     done
 
+}
+singbox_domain_set() {
+    config_file="/usr/local/etc/sing-box/config.json"
     unique_domains_new=()
     unique_domains_nginx=()
 
@@ -659,36 +646,59 @@ singbox_domain_set() {
 }
 xray_domain_set() {
     config_file="/usr/local/etc/xray/config.json"
+    json_file="/usr/local/etc/xray/xray_domain.json"
     {
-    certname=($(ls -1 /etc/tls | sed 's/\(.*\)\..*/\1/' | sort -u))
-    for ((i=0; i<${#certname[@]}; i++)); do
-      cert="${certname[i]}"
-      if [ $i -eq $((${#certname[@]}-1)) ]; then
-        echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"}"
-      else
-        echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"},"
-      fi
+        certname=($(ls -1 /etc/tls | sed 's/\(.*\)\..*/\1/' | sort -u))
+        for ((i=0; i<${#certname[@]}; i++)); do
+        cert="${certname[i]}"
+        if [ $i -eq $((${#certname[@]}-1)) ]; then
+            echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"}"
+        else
+            echo -e "            {\"certificateFile\": \"/etc/tls/$cert.crt\", \"keyFile\": \"/etc/tls/$cert.key\", \"ocspStapling\": 3600, \"usage\": \"encipherment\"},"
+        fi
+        done
+    } > "$json_file"
+
+    cert_count=$(grep -o "certificateFile" "$json_file" | wc -l)
+    if grep -q '"certificates": \[' "$config_file"; then
+        sed -i "/\"certificates\": \[/ r $json_file" "$config_file"
+    else
+        sed -i "/\"certificates\": {/ r $json_file" "$config_file"
+    fi
+    certificate_count=$(grep -c "certificateFile" "$config_file")
+    last_line=$(grep -n "certificateFile" "$config_file" | tail -n 1 | cut -d ':' -f 1)
+    start_line=$((last_line - (certificate_count - cert_count-1)))
+    delete_lines=$((certificate_count - cert_count + 1))
+    sed -i "${start_line},${last_line}d" "$config_file"
+    echo -e "\n========xRar内容替换完成，重启xRay========\n"
+    sudo systemctl restart xray 
+    systemctl status xray
+}
+nginx_domain_set(){
+    rm -rf /etc/nginx/nginx.conf nginx.conf
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/nginx.conf > /dev/null 2>&1
+
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i "/$domain/d" nginx.conf
     done
-  } > "$json_file"
-
-  cert_count=$(grep -o "certificateFile" "$json_file" | wc -l)
-
-  if grep -q '"certificates": \[' "$config_file"; then
-    sed -i "/\"certificates\": \[/ r $json_file" "$config_file"
-  else
-    sed -i "/\"certificates\": {/ r $json_file" "$config_file"
-  fi
-
-  certificate_count=$(grep -c "certificateFile" "$config_file")
-  last_line=$(grep -n "certificateFile" "$config_file" | tail -n 1 | cut -d ':' -f 1)
-  start_line=$((last_line - (certificate_count - cert_count-1)))
-  delete_lines=$((certificate_count - cert_count + 1))
-  sed -i "${start_line},${last_line}d" "$config_file"
-
-  echo -e "\n========xRar内容替换完成，重启xRay========\n"
-  sudo systemctl restart xray 
-  systemctl status xray
- 
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i -e "/$server_name yourdomain.com/a\\
+        server_name $domain;" nginx.conf
+    done
+    sed -i "/yourdomain.com/d" nginx.conf
+    mv nginx.conf /etc/nginx/nginx.conf
+    rm -rf /etc/nginx/conf.d/default.conf default.conf
+    wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/default.conf > /dev/null 2>&1
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i "/$domain/d" default.conf
+    done
+    for domain in "${unique_domains_nginx[@]}"; do
+        sed -i -e "/$server_name yourdomain.com/a\\
+        server_name $domain;" default.conf
+    done
+    sed -i "/yourdomain.com/d" default.conf
+    mv default.conf /etc/nginx/conf.d/default.conf
+    sudo systemctl restart nginx xray sing-box
 }
 bing_self() {
   cert_path="/etc/hysteria/hysteria.crt"
@@ -758,7 +768,9 @@ bing_self() {
   sed -i "s#https://$full_domain#https://www.bing.com#g" "$config_file"
 }
 domain_set(){
+    domain_input
     singbox_domain_set
+    nginx_domain_set
     xray_domain_set
     display_pause_info
 }
@@ -770,6 +782,38 @@ show_user_info(){
 show_setting_info(){
     show_singbox_setting
     show_xray_setting
+    display_pause_info
+}
+show_status(){
+    repeat_count=80
+    reset_color='\e[0m'
+    dark_gray='\e[90m'
+    light_gray='\e[37m'
+    half_repeat_count=$((repeat_count / 3))
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
+    printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" " xRay/Sing-box/Nginx运行状态 "
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
+    status=$(systemctl status xray.service | grep "Active:")
+    if [[ $status == *"active (running)"* ]]; then
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "      xRay 正常运行"
+    else
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "      xRay 启动失败，请自查！"
+    fi
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}"
+    status=$(systemctl status sing-box.service | grep "Active:")
+    if [[ $status == *"active (running)"* ]]; then
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "      Sing-box 正常运行"
+    else
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "      Sing-box 启动失败，请自查！"
+    fi
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${dark_gray}."; done; echo -e "${reset_color}"
+    status=$(systemctl status nginx.service | grep "Active:")
+    if [[ $status == *"active (running)"* ]]; then
+        printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "      Nginx 正常运行"
+    else
+        printf "\e[1;91m%${half_repeat_count}s%s\e[0m\n" "" "      Nginx 启动失败，请自查！"
+    fi
+    for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
     display_pause_info
 }
 install_xRay() {
@@ -826,12 +870,12 @@ while true; do
     echo -e "   3. 手动输入新UUID和旧UUID\n"
     echo -e "   4. 将UUID转换为SS认可的BASE64格式\n"
     echo -e "   5. 安装Nginx/Sing-box/xRay\n"
-    echo -e "   6. 域名检查，重新生成Let's证书\n"
+    echo -e "   6. 域名检查/设置/重新生成Let's证书\n"
     echo -e "   7. 显示Sing-box/xRay配置\n"
     echo -e "   8. 显示xRay/Sing-box用户信息\n"
-    echo -e "   9. \n"
+    echo -e "   9. 显示xRay/Sing-box/Nginx运行状态\n"
     echo -e "   0. 退出\n"
-    echo -e "\e[37m            www.nruan.com\e[0m"
+    echo -e "\e[90m            www.nruan.com\e[0m"
     echo -e "\e[93m======================================\e[0m\n"
     read -p "选择操作（0-9）: " choice
 
@@ -859,6 +903,9 @@ while true; do
             ;;
         8)
             show_user_info
+            ;;
+        9)
+            show_status
             ;;
         0)
             echo "退出菜单。"
