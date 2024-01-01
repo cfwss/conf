@@ -34,7 +34,7 @@
       "sniffing": null
     },
     {
-      "tag": "VLess-TCP-xTLS",
+      "tag": "VLess-xTLS",
       "port": 443,
       "protocol": "vless",
       "settings": {
