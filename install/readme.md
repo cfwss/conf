@@ -2,7 +2,10 @@
 	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/menu.sh && chmod +x menu.sh && ./menu.sh 
 
 自用，不一定更新
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/1.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/1.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/2.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/3.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/9.jpg)
 
 
 使用说明：
