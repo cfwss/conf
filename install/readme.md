@@ -5,8 +5,14 @@
 
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/1.jpg)
+
+
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/2.jpg)
+
+
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/3.jpg)
+
+
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/9.jpg)
 
 
