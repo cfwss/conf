@@ -1,3 +1,10 @@
+# 自用一键xRay/Sing-Box/Nginx脚本
+	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/menu.sh && chmod +x menu.sh && ./menu.sh 
+
+自用，不一定更新
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/1.jpg)
+
+
 使用说明：
 
 
