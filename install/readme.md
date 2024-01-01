@@ -16,6 +16,8 @@
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/9.jpg)
 
 
+
+#以下废弃！仅供参考
 使用说明：
 
 
@@ -46,13 +48,13 @@
 
 # =========【第二部分，安装V2RAY，各取所需吧】=========
 
-	wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/cfwss/conf/main/install/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+	不再使用
 
 //选2,1,4（带TJ 或者选12345。如果需要开cloudflare的小云朵，建议使用带cdn的选项，可多选）
 
 //如果要开小云朵，又要开TLS，建议使用两套域名，如eu.org用来开云朵，自备域名用Tls，同时要在nginx中配置好回落。具体见最后。
 
-//【自用，备份，防丢链接，建议用官方的https://github.com/mack-a/v2ray-agent 】
+//【自用，备份，防丢链接，建议用官方的 ####】
 
 
 	  vasma
