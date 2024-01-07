@@ -8,7 +8,7 @@
 自动生成理论不限数量。测试生成200个正常使用。稍微有点慢。GCP 最小配置。
 
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/1.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/12.jpg)
 
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/2.jpg)
