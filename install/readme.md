@@ -7,6 +7,9 @@
 
 自动生成理论不限数量。测试生成200个正常使用。稍微有点慢。GCP 最小配置。
 
+xRay使用了40000端口的WARP配置，选15安装。也可以自行安装，端口为:40000。
+
+sing-box的端口修改和其他METHOD没啥必要。端口有需要可以用workers来解决；某些METHOD不支持某些密码，防止失效，不作修改，如有需要，可自行尝试。
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/01.jpg)
 
