@@ -23,7 +23,7 @@
     }
   },
   "inbounds": [
-  	{
+    {
       "listen": "127.0.0.1",
       "port": 61111,
       "protocol": "dokodemo-door",
@@ -47,19 +47,19 @@
          ],
         "decryption": "none",
         "fallbacks": [
-        	{ "dest": "@trojan-tcp",  "xver": 2 },
-          { "alpn": "h2", "dest": 32000, "xver": 2 },                  //Trojan-TCP
-          { "path": "/nruanltc", "dest": "@vless-tcp", "xver": 2 },            //Vless-TCP
-          { "path": "/nruanmtc", "dest": "@vmess-tcp", "xver": 2 },            //Vmess-TCP
-          { "path": "/nruanstc", "dest": 31110, "xver": 0  },                  //ShadowSocks-TCP
-          { "path": "/nruanlws", "dest": "@vless-ws", "xver": 2 },             //Vless-WS
-          { "path": "/nruanmws", "dest": "@vmess-ws", "xver": 2 },             //Vmess-WS
-          { "path": "/nruantws", "dest": "@trojan-ws", "xver": 2 },            //Trojan-WS
-          { "path": "/nruansws", "dest": 31111 },                              //ShadowSocks-WS
-          { "path": "/nruanws",  "dest": 31112, "xver": 2 },          //Old-Vless-WS
-          { "path": "/nruanvws", "dest": 31113, "xver": 2 },         //Old-Vmess-WS
-          { "path": "/nruantrjws", "dest": 31114, "xver": 2 },         //Old-Trojan-WS
-          { "path": "/nruanssws", "dest": 31115, "xver": 2 }         //Old-ShadowSocks-WS
+          { "dest": "@trojan-tcp",  "xver": 2 },                          //Trojan-TCP
+          { "alpn": "h2", "dest": 32000, "xver": 2 },                     //Nginx
+          { "path": "/nruanltc", "dest": "@vless-tcp", "xver": 2 },       //Vless-TCP
+          { "path": "/nruanmtc", "dest": "@vmess-tcp", "xver": 2 },       //Vmess-TCP
+          { "path": "/nruanstc", "dest": 31110, "xver": 0  },             //ShadowSocks-TCP
+          { "path": "/nruanlws", "dest": "@vless-ws", "xver": 2 },        //Vless-WS
+          { "path": "/nruanmws", "dest": "@vmess-ws", "xver": 2 },        //Vmess-WS
+          { "path": "/nruantws", "dest": "@trojan-ws", "xver": 2 },       //Trojan-WS
+          { "path": "/nruansws", "dest": 31111 },                         //ShadowSocks-WS
+          { "path": "/nruanws",  "dest": 31112, "xver": 2 },              //Old-Vless-WS
+          { "path": "/nruanvws", "dest": 31113, "xver": 2 },              //Old-Vmess-WS
+          { "path": "/nruantrjws", "dest": 31114, "xver": 2 },            //Old-Trojan-WS
+          { "path": "/nruanssws", "dest": 31115, "xver": 2 }              //Old-ShadowSocks-WS
 
         ]
       },
@@ -89,7 +89,7 @@
       }
     },
     {
-    	"tag": "VLess-TCP",
+      "tag": "VLess-TCP",
       "listen": "@vless-tcp",
       "protocol": "vless",
       "settings": {
@@ -124,7 +124,7 @@
       }
     },
     {
-    	"tag": "VMess-TCP",
+      "tag": "VMess-TCP",
       "listen": "@vmess-tcp",
       "protocol": "vmess",
       "settings": {
@@ -159,7 +159,7 @@
       }
     },
     {
-    	"tag": "Trojan-TCP",
+      "tag": "Trojan-TCP",
       "listen": "@trojan-tcp",
       "protocol": "trojan",
       "settings": {
@@ -229,7 +229,7 @@
       }
     },
     {
-    	"tag": "VLess-WS",
+      "tag": "VLess-WS",
       "listen": "@vless-ws",
       "protocol": "vless",
       "settings": {
@@ -259,7 +259,7 @@
       }
     },
     {
-    	"tag": "VMess-WS",
+      "tag": "VMess-WS",
       "listen": "@vmess-ws",
       "protocol": "vmess",
       "settings": {
@@ -289,7 +289,7 @@
       }
     },
     {
-    	"tag": "Trojan-WS",
+      "tag": "Trojan-WS",
       "listen": "@trojan-ws", 
       "protocol": "trojan",
       "settings": {
@@ -412,7 +412,7 @@
       }
     },
     {
-    	"tag": "Trojan-gRPC",
+      "tag": "Trojan-gRPC",
       "port": 32003,
       "listen": "127.0.0.1",
       "protocol": "trojan",
@@ -446,7 +446,7 @@
       }
     },
     {
-    	"tag": "ShadowSocks-gRPC",
+      "tag": "ShadowSocks-gRPC",
       "listen": "127.0.0.1",
       "port": 32004,
       "protocol": "shadowsocks",
@@ -476,7 +476,7 @@
       }
     },
     {
-    	"tag": "Old-VLess-WS",
+      "tag": "Old-VLess-WS",
       "listen": "127.0.0.1",
       "port": 31112,
       "protocol": "vless",
@@ -507,7 +507,7 @@
       }
     },
     {
-    	"tag": "Old-VMess-WS",
+      "tag": "Old-VMess-WS",
       "listen": "127.0.0.1",
       "port": 31113,
       "protocol": "vmess",
