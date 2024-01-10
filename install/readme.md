@@ -16,6 +16,9 @@ xray与nginx配套使用，sing-box独立区分，主要是为了多一道保障
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/01.jpg)
 
 
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/00x.jpg)
+
+
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/02.jpg)
 
 
