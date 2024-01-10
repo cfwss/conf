@@ -66,8 +66,8 @@
       "tls": {
         "enabled": true,
         "server_name": "gcp.sch.tw",
-	"certificate_path": "/etc/tls/gcp.sch.tw.crt",
-	"key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
+        "key_path": "/etc/tls/gcp.sch.tw.key"
       },
       "fallback": {
        "server": "127.0.0.1",
@@ -111,8 +111,8 @@
             "http/1.1",
             "h2"
         ],
-	"certificate_path": "/etc/tls/gcp.sch.tw.crt",
-	"key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
+        "key_path": "/etc/tls/gcp.sch.tw.key"
       },
       "multiplex": {
         "enabled": true,
@@ -179,8 +179,8 @@
              "http/1.1",
              "h2"
         ],
-	"certificate_path": "/etc/tls/gcp.sch.tw.crt",
-	"key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
+        "key_path": "/etc/tls/gcp.sch.tw.key"
       },
       "multiplex": {
         "enabled": true,
@@ -217,8 +217,8 @@
         "alpn": [
           "h3"
         ],
-	"certificate_path": "/etc/tls/gcp.sch.tw.crt",
-	"key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
+        "key_path": "/etc/tls/gcp.sch.tw.key"
       }
     },
     {
@@ -244,8 +244,8 @@
       "tls": {
         "enabled": true,
         "server_name": "gcp.sch.tw",
-	"certificate_path": "/etc/tls/gcp.sch.tw.crt",
-	"key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
+        "key_path": "/etc/tls/gcp.sch.tw.key"
       }
     },
     {
