@@ -649,7 +649,10 @@ install_xRay_SingBox() {
     bash <(curl -fsSL https://sing-box.app/deb-install.sh)> /dev/null 2>&1
     mkdir -p /usr/local/etc
     mkdir -p /etc/sing-box/
-    config_files
+    xray_config_file="/usr/local/etc/xray/config.json"
+    box_config_file="/etc/sing-box/config.json"
+    nginx_config_file="/etc/nginx/nginx.conf"
+    nginx_index_file="/etc/nginx/conf.d/default.conf"
     systemctl status nginx > /dev/null
     systemctl status xray > /dev/null
     systemctl status sing-box > /dev/null
