@@ -169,21 +169,21 @@ base64_uuids() {
     
     display_pause_info
 }
-reset_xray() {
+reset_xray_files() {
     rm -rf "$xray_config_file" config.conf
     
     wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/config.json > /dev/null 2>&1
     
     mv config.json "$xray_config_file" -f
 }
-reset_nginx() {
+reset_nginx_files() {
     rm -rf "$nginx_index_file"
     
     wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/default.conf > /dev/null 2>&1
     
     mv default.conf "$nginx_index_file" -f
 }
-reset_singbox_conf() {
+reset_singbox_files() {
     rm -rf "$box_config_file" "config.json"
     
     wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/singbox_exp.json > /dev/null 2>&1
@@ -652,9 +652,9 @@ install_xRay_SingBox() {
     systemctl status nginx > /dev/null
     systemctl status xray > /dev/null
     systemctl status sing-box > /dev/null
-    reset_xray
-    reset_nginx
-    reset_singbox_conf
+    reset_xray_files
+    reset_nginx_files
+    reset_singbox_files
     display_pause_info
 }
 domain_input(){
@@ -935,7 +935,7 @@ xray_domain_set() {
     sed -i "${start_line},${last_line}d" "$xray_config_file"
     sudo systemctl restart xray
 }
-xray_domain_updata(){
+xray_domain_update(){
     json_file="/usr/local/etc/xray/xray_domain_updata.json"
     certname=($(ls -1 /etc/tls | sed 's/\(.*\)\..*/\1/' | sort -u))
     {
@@ -1037,7 +1037,7 @@ domain_set(){
     nginx_domain_set
     xray_domain_set
     singbox_domain_set
-    xray_domain_updata
+    xray_domain_update
     display_pause_info
 }
 show_user_info(){
@@ -1109,8 +1109,9 @@ reset_xray_singbox(){
         return
     fi
     config_files
-    reset_xray
-    reset_singbox_conf
+    reset_xray_files
+    reset_nginx_files
+    reset_singbox_files
     for ((j = 0; j < $path_count; j++)); do
         echo -n -e "\e[93m=";
     done
@@ -1137,8 +1138,8 @@ reset_xray(){
     fi
     xray_config_files
     nginx_config_files
-    reset_xray
-    reset_nginx
+    reset_xray_files
+    reset_nginx_files
     for ((j = 0; j < $path_count; j++)); do
         echo -n -e "\e[93m=";
     done
@@ -1164,7 +1165,7 @@ reset_nginx(){
         return
     fi
     nginx_config_files
-    reset_nginx
+    reset_nginx_files
     for ((j = 0; j < $path_count; j++)); do
         echo -n -e "\e[93m=";
     done
@@ -1190,7 +1191,7 @@ reset_singbox(){
         return
     fi
     singbox_config_files
-    reset_singbox_conf
+    reset_singbox_files
     for ((j = 0; j < $path_count; j++)); do
         echo -n -e "\e[93m=";
     done
