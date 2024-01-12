@@ -13,6 +13,9 @@ sing-box的端口修改和其他METHOD没啥必要。端口有需要可以用wor
 
 xray与nginx配套使用，sing-box独立区分，主要是为了多一道保障，以防xray挂了后，还能正常使用。不过根据目前测试结果来看，配了ws的，几乎不会挂。挂也只是优选IP/域名。
 
+# 首次使用后，可以输入 nruan 来开启快捷功能
+
+
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a1.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a2.jpg)
