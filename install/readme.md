@@ -103,18 +103,18 @@
 |vps9.abc.edu.eu.org|
 
 **表三：Worker.js**
->addEventListener(
->  "fetch",event => {
->      let url=new URL(event.request.url);
->      url.protocol="https";
->      url.hostname="vp9.abc.eu.org"; //修改为你的域名，并去掉本行注释
->      url.port="3600"; //修改为你要转发的协议，可在SING-BOX配置中查看
->      let request=new Request(url,event.request);
->      event. respondWith(
->          fetch(request)
->      )
->  }
->)
+>addEventListener(<br>
+>  "fetch",event => {<br>
+>      let url=new URL(event.request.url);<br>
+>      url.protocol="https";<br>
+>      url.hostname="vp9.abc.eu.org"; //修改为你的域名，并去掉本行注释<br>
+>      url.port="3600"; //修改为你要转发的协议，可在SING-BOX配置中查看<br>
+>      let request=new Request(url,event.request);<br>
+>      event. respondWith(<br>
+>          fetch(request)<br>
+>      )<br>
+>  }<br>
+>)<br>
 
 ## 用户管理
 - 批量自动生成用户UUID
