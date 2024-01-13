@@ -46,6 +46,11 @@
 - **一键安装xRay、Sing-Box和Nginx**
 - bbr功能在warp中已集中，不单独使用。**输入warp**后根据选项选择
 - 主菜单更新提示。
+## 鸣谢
+- https://github.com/XTLS/Xray-core
+- https://github.com/SagerNet/sing-box
+- https://github.com/fscarmen/warp-sh
+- https://github.com/mack-a/v2ray-agent
 
 ---
 
