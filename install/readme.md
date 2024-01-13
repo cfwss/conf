@@ -5,6 +5,8 @@
 
 支持CF状态下，添加域名TLS证书！不限域名数量。
 
+增加了主菜单更新提醒
+
 自动生成uuid理论不限数量。测试生成500个正常使用。稍微有点慢，大约4分钟。甲骨文非ARM。
 
 xRay使用了40000端口的WARP配置，选15安装。也可以自行安装，端口为:40000。
@@ -16,7 +18,7 @@ xray与nginx配套使用，sing-box独立区分，主要是为了多一道保障
 # 首次使用后，可以输入 nruan 来开启快捷功能
 
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a1.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/az1.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a2.jpg)
 
