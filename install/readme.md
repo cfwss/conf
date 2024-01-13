@@ -40,17 +40,63 @@
 - 将以上多个域名DNS放在 CloudFlare
 - 取得所有VPS的ip地址，ipv4即可。
 - 在CloudFlare中，选择 *abc.edu.eu.org* ，解析10台vps，**不要开启云朵**。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...
-- 将以上解析全部导出，并在导出的文件中**删除不相关的内容**，只保留*vps1 127.0.0.1 / vps2  127.1.1.1 /* ... 一般会有 *vps1.abc.edu.eu.org* 要把 **.abc.edu.eu.org** 全部去除。
-- 将以上导的文件**修改好**后，分别导入 *abc.com / bcd.com* 并勾选开启云朵。此时三个域名的dns A记录应该**都是一致的**，唯一不同的是 *abc.com / bcd.com* 后面 代理状态 有亮着云朵。
+- 将以上解析全部导出，并在导出的文件中**删除不相关的内容**，【见表一】只保留*vps1 127.0.0.1 / vps2  127.1.1.1 /* ... 一般会有 *vps1.abc.edu.eu.org* 要把 **.abc.edu.eu.org** 全部去除。
+- 将以上导的文件**修改好**后【见表一】，分别导入 *abc.com / bcd.com* 并勾选开启云朵。此时三个域名的dns A记录应该**都是一致的**，唯一不同的是 *abc.com / bcd.com* 后面 代理状态 有亮着云朵。
 - 再将 *abc.com / bcd.com* 的 **SSL/TLS 处**，选择 **full 完全（严格）**。
 - 再去点开 CloudFlare 左侧菜单 **Network （网络）**，开启 **WebSocket** 和 **gRPC**。
 - 将所有的域名，放在Excel单元格或记事本中，清单应该有 30 个域名，**中间不要有空行**。
 - 输入 nruan 调用本脚本 ，**首次用顶部的链接**。
-- 等跳出输入域名时，将准备好的30个域名，粘贴进去。
+- 等跳出输入域名时，将准备好的30个域名，粘贴进去【见表二】。
 - 耐心等待结束。
 - 完成后，可以正常使用，但建议**重新生成用户UUID**和**修改相关的服务配置**。
 - 接下来可以愉快地玩耍了。
 - 理论上单个域名也是OK的。
+
+**表一  CloudFlare DNS 解析导入表**
+;; A Records
+|vps0|1|IN|A|127.0.1.1|
+|-----|-----|-----|-----|-----|
+|vps1|1|IN|A|127.0.0.1|
+|vps2|1|IN|A|127.0.0.2|
+|vps3|1|IN|A|127.0.0.3|
+|vps4|1|IN|A|127.0.0.4|
+|vps5|1|IN|A|127.0.0.5|
+|vps6|1|IN|A|127.0.0.6|
+|vps7|1|IN|A|127.0.0.7|
+|vps8|1|IN|A|127.0.0.8|
+|vps9|1|IN|A|127.0.0.9|
+
+**表二  域名清单导入用**
+|vps0.abc.com|
+|vps1.abc.com|
+|vps2.abc.com|
+|vps3.abc.com|
+|vps4.abc.com|
+|vps5.abc.com|
+|vps6.abc.com|
+|vps7.abc.com|
+|vps8.abc.com|
+|vps9.abc.com|
+|vps0.bcd.com|
+|vps1.bcd.com|
+|vps2.bcd.com|
+|vps3.bcd.com|
+|vps4.bcd.com|
+|vps5.bcd.com|
+|vps6.bcd.com|
+|vps7.bcd.com|
+|vps8.bcd.com|
+|vps9.bcd.com|
+|vps0.abc.edu.eu.org|
+|vps1.abc.edu.eu.org|
+|vps2.abc.edu.eu.org|
+|vps3.abc.edu.eu.org|
+|vps4.abc.edu.eu.org|
+|vps5.abc.edu.eu.org|
+|vps6.abc.edu.eu.org|
+|vps7.abc.edu.eu.org|
+|vps8.abc.edu.eu.org|
+|vps9.abc.edu.eu.org|
 
 
 ## 用户管理
@@ -97,15 +143,3 @@
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/06.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/08.jpg)
-
-|vps0|1|IN|A|127.0.1.1|
-|-----|-----|-----|-----|-----|
-|vps1|1|IN|A|127.0.0.1|
-|vps2|1|IN|A|127.0.0.2|
-|vps3|1|IN|A|127.0.0.3|
-|vps4|1|IN|A|127.0.0.4|
-|vps5|1|IN|A|127.0.0.5|
-|vps6|1|IN|A|127.0.0.6|
-|vps7|1|IN|A|127.0.0.7|
-|vps8|1|IN|A|127.0.0.8|
-|vps9|1|IN|A|127.0.0.9|
