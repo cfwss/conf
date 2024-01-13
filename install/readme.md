@@ -18,7 +18,7 @@
     - 生成用户UUID以及生成客户端配置，**脚本中基本都有提示**，但因为xRay中的ss配置，写的比较复杂，所以使用明文。
     - xRay中vless等，带有tcp的协议，生成的链接，可能会**丢失path，手动添加**一下即可使用。
     - 在使用xRay带有tcp协议时，**不能使用**开启了CDN的域名，但不开CDN的域名可以用ws/grpc等协议。
-    - 在Sing-Box中，端口**不开放修改**。如果有需要，可以使用cf的workers来转发一下即可。如转发后，原3600的换成443。
+    - 在Sing-Box中，端口**不开放修改**。如果有需要，可以使用cf的workers来转发一下即可。如转发后，原3600的换成443，域名用新加的别名，不是原来的那个。
     - 在Path/Password/Ports等修改选项，已做相应处理，根据提示来操作即可。（本想着用一套随机生成流，但有点没有必要了，首次安装/重置后，显示默认的才能更容易发现问题）
     - xray与nginx配套使用，sing-box独立区分，主要是为了多一道保障，**以防xray挂了后，还能正常使用**。不过根据目前测试结果来看，配了ws的，几乎不会挂。挂也只是优选IP/域名。
     - xRay使用了**40000端口**的WARP配置，选"为IPv4的VPS安装Warp双栈"安装。也可以自行安装，端口为:40000。
@@ -108,7 +108,7 @@
 >&nbsp;&nbsp;&nbsp;&nbsp;"fetch",event => {<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let url=new URL(event.request.url);<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url.protocol="https";<br>
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url.hostname="vp9.abc.eu.org"; //修改为你的域名，并去掉本行注释<br>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url.hostname="vps9.abc.eu.org"; //修改为你的域名，并去掉本行注释<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url.port="3600"; //修改为你要转发的协议端口，可在SING-BOX配置中查看<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let request=new Request(url,event.request);<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event. respondWith(<br>
