@@ -2,15 +2,16 @@
 	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/menu.sh && chmod +x menu.sh && ./menu.sh 
 
 ## 主要功能
-- 首次使用后，**可以输入 nruan 来开启快捷功能**
-- 前言:
+- 首次使用后<br>
+    **可以输入 nruan 来开启快捷功能**
+- 前言:<br>
     用了很多年mack-a的v2ray-agent，但某些功能有所欠缺，<br>
     所以自行写了这个一键脚本。<br>
     在此，感谢：mack-a<br>
-- 编写目的：
+- 编写目的：<br>
     主要是为有很多小鸡的用户**提供方便**。如作者。<br>
     当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
-- 使用说明：
+- 使用说明：<br>
     - 原v2ray-agent的配置，**几乎没作改动**，尤其是Path后缀，可以完美过渡。
     - 选择"一键安装所有配置"，准备好已解析的域名，在输入域名环节，粘贴即可，几乎无交互操作。
     - 如果出现错误，用主菜单中的**重置所有配置**功能。
