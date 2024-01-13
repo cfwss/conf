@@ -51,6 +51,7 @@
 - https://github.com/SagerNet/sing-box
 - https://github.com/fscarmen/warp-sh
 - https://github.com/mack-a/v2ray-agent
+- https://github.com/XTLS/Xray-examples/tree/main/All-in-One-fallbacks-Nginx
 
 ---
 
