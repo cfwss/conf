@@ -29,6 +29,8 @@
     - 关于Let's证书申请失败，别问我为啥，除了DNS解析问题、软件安装问题，以及申请次数过多等情况。**处理方法：换个子域名，重来**。
     - 支持CF状态下，添加域名TLS证书！**不限域名数量**。适合批量操作，100台VPS，也只需要一套域名列表清单，同时粘贴即可。
     - IPV6 only机未测试，理论是可以生成TLS证书。
+    - 关于不用Reality协议，没啥必要了，自用与分享，目前足矣。何况还有Sing-Box。
+    - 关于Sing-Box端口转发（通过ClourFlare的Workers 路由），转发代码见 操作步骤中的【表三】。
     - 测试期间，用户需救较大的是生成客户端订阅链接。本脚本不会增加，如有兴趣者，可以外挂一个BASH。一般给到朋友、群员使用的是一串UUID外加一个EXCEL表格，只需填入UUID，所有URL自动生成。尝试过使用POWERSHELL制作URL，太繁琐，放弃了。
     - 本脚本的开发环境是**Debian 12**，其他系统环境暂不清楚，也**不考虑制作其他版本**，如有需要，**自行DD系统**。目前在ubuntu测试正常。
     - 关于卸载，暂时没有（可以选择再次安装，查看相应的依懒包及xRay，Sing-Bos，并使用官方的卸载功能进行卸载）。
@@ -100,6 +102,19 @@
 |vps8.abc.edu.eu.org|
 |vps9.abc.edu.eu.org|
 
+**表三：Worker.js**
+>addEventListener(
+>  "fetch",event => {
+>      let url=new URL(event.request.url);
+>      url.protocol="https";
+>      url.hostname="vp9.abc.eu.org"; //修改为你的域名，并去掉本行注释
+>      url.port="3600"; //修改为你要转发的协议，可在SING-BOX配置中查看
+>      let request=new Request(url,event.request);
+>      event. respondWith(
+>          fetch(request)
+>      )
+>  }
+>)
 
 ## 用户管理
 - 批量自动生成用户UUID
