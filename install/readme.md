@@ -43,7 +43,7 @@
 - 将以上解析全部导出，并在导出的文件中**删除不相关的内容**，只保留vps1 127.0.0.1 / vps2  127.1.1.1 / ... 一般会有 vps1.abc.edu.eu.org 要把 .abc.edu.eu.org 全部去除。
 - 将以上导的文件**修改好**后，分别导入 abc.com / bcd.com 并勾选开启云朵。此时三个域名的dns A记录应该**都是一致的**，唯一不同的是 abc.com/bcd.com 后面 代理状态 有亮着云朵。
 - 再将 abc.com/bcd.com 的 **SSL/TLS 处**，选择 **full 完全（严格）**。
-- 再去 cloudflare 左侧菜单 **network(网络)**处，开启 **WebSocket** 和 **gRPC**。
+- 再去 cloudflare 左侧菜单 **Network（网络）**处，开启 **WebSocket** 和 **gRPC**。
 - 将所有的域名，放在Excel单元格或记事本中，清单应该有 30 个域名，**中间不要有空行**。
 - 输入 nruan 调用本脚本 ，**首次用顶部的链接**。
 - 等跳出输入域名时，将准备好的30个域名，粘贴进去。
