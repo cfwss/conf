@@ -97,6 +97,13 @@
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/06.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/08.jpg)
-| 列1 | 列2 |
-|-----|-----|
-| 内容1 | 内容2 |
+|vps0|1|IN|A|127.0.1.1
+|vps1|1|IN|A|127.0.0.1
+|vps2|1|IN|A|127.0.0.2
+|vps3|1|IN|A|127.0.0.3
+|vps4|1|IN|A|127.0.0.4
+|vps5|1|IN|A|127.0.0.5
+|vps6|1|IN|A|127.0.0.6
+|vps7|1|IN|A|127.0.0.7
+|vps8|1|IN|A|127.0.0.8
+|vps9|1|IN|A|127.0.0.9
