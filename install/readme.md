@@ -30,7 +30,7 @@
     - 支持CF状态下，添加域名TLS证书！**不限域名数量**。适合批量操作，100台VPS，也只需要一套域名列表清单，同时粘贴即可。
     - IPV6 only机未测试，理论是可以生成TLS证书。
     - 关于不用Reality协议，没啥必要了，自用与分享，目前足矣。何况还有Sing-Box。
-    - 关于Sing-Box端口转发（通过ClourFlare的Workers 路由），转发代码见 操作步骤中的【[表三](#表三：Worker.js)】。
+    - 关于Sing-Box端口转发（通过ClourFlare的Workers 路由），转发代码见 操作步骤 中的【表三】。
     - 测试期间，用户需救较大的是生成客户端订阅链接。本脚本不会增加，如有兴趣者，可以外挂一个BASH。一般给到朋友、群员使用的是一串UUID外加一个EXCEL表格，只需填入UUID，所有URL自动生成。尝试过使用POWERSHELL制作URL，太繁琐，放弃了。
     - 本脚本的开发环境是**Debian 12**，其他系统环境暂不清楚，也**不考虑制作其他版本**，如有需要，**自行DD系统**。目前在ubuntu测试正常。
     - 关于卸载，暂时没有（可以选择再次安装，查看相应的依懒包及xRay，Sing-Bos，并使用官方的卸载功能进行卸载）。
@@ -42,19 +42,19 @@
 - 将以上多个域名DNS放在 CloudFlare
 - 取得所有VPS的ip地址，ipv4即可。
 - 在CloudFlare中，选择 *abc.edu.eu.org* ，解析10台vps，**不要开启云朵**。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...
-- 将以上解析全部导出，并在导出的文件中**删除不相关的内容**，【[见表一](#表一  CloudFlare DNS 解析导入表)】只保留*vps1 127.0.0.1 / vps2  127.1.1.1 /* ... 一般会有 *vps1.abc.edu.eu.org* 要把 **.abc.edu.eu.org** 全部去除。
+- 将以上解析全部导出，并在导出的文件中**删除不相关的内容**，【见表一】只保留*vps1 127.0.0.1 / vps2  127.1.1.1 /* ... 一般会有 *vps1.abc.edu.eu.org* 要把 **.abc.edu.eu.org** 全部去除。
 - 将以上导的文件**修改好**后【见表一】，分别导入 *abc.com / bcd.com* 并勾选开启云朵。此时三个域名的dns A记录应该**都是一致的**，唯一不同的是 *abc.com / bcd.com* 后面 代理状态 有亮着云朵。
 - 再将 *abc.com / bcd.com* 的 **SSL/TLS 处**，选择 **full 完全（严格）**。
 - 再去点开 CloudFlare 左侧菜单 **Network （网络）**，开启 **WebSocket** 和 **gRPC**。
 - 将所有的域名，放在Excel单元格或记事本中，清单应该有 30 个域名，**中间不要有空行**。
 - 输入 nruan 调用本脚本 ，**首次用顶部的链接**。
-- 等跳出输入域名时，将准备好的30个域名，粘贴进去【[见表二](#表二  域名清单（导入用）)】,按回车，某些情况可能要按两次回车。
+- 等跳出输入域名时，将准备好的30个域名，粘贴进去【见表二】,按回车，某些情况可能要按两次回车。
 - 耐心等待结束。
 - 完成后，可以正常使用，但建议**重新生成用户UUID**和**修改相关的服务配置**。
 - 接下来可以愉快地玩耍了。
 - 理论上单个域名也是OK的。
 
-## 表一  CloudFlare DNS 解析导入表
+**表一  CloudFlare DNS 解析导入表**
 
 |;; A Records| || | |
 |-----|-----|-----|-----|-----|
@@ -69,7 +69,7 @@
 |vps8|1|IN|A|127.0.0.8|
 |vps9|1|IN|A|127.0.0.9|
 
-## 表二  域名清单（导入用）
+**表二  域名清单（导入用）**
 |-----|
 |vps0.abc.com|
 |vps1.abc.com|
@@ -102,7 +102,7 @@
 |vps8.abc.edu.eu.org|
 |vps9.abc.edu.eu.org|
 
-## 表三：Worker.js**
+**表三：Worker.js**
 >addEventListener(<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;"fetch",event => {<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let url=new URL(event.request.url);<br>
