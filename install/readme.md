@@ -68,6 +68,7 @@
 
 **表二  域名清单导入用**
 |vps0.abc.com|
+|-----|
 |vps1.abc.com|
 |vps2.abc.com|
 |vps3.abc.com|
