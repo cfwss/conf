@@ -97,3 +97,6 @@
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/06.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/08.jpg)
+| 列1 | 列2 |
+|-----|-----|
+| 内容1 | 内容2 |
