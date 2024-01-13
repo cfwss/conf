@@ -54,8 +54,8 @@
 
 **表一  CloudFlare DNS 解析导入表**
 ;; A Records
-|vps0|1|IN|A|127.0.1.1|
 |-----|-----|-----|-----|-----|
+|vps0|1|IN|A|127.0.1.1|
 |vps1|1|IN|A|127.0.0.1|
 |vps2|1|IN|A|127.0.0.2|
 |vps3|1|IN|A|127.0.0.3|
@@ -67,8 +67,8 @@
 |vps9|1|IN|A|127.0.0.9|
 
 **表二  域名清单导入用**
-|vps0.abc.com|
 |-----|
+|vps0.abc.com|
 |vps1.abc.com|
 |vps2.abc.com|
 |vps3.abc.com|
