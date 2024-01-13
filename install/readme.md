@@ -46,7 +46,7 @@
 - 一键安装xRay、Sing-Box和Nginx
 
 
-
+---
 
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/az1.jpg)
@@ -78,6 +78,5 @@
 
 
 
-# **输入11，准备好已解析的域名，几乎无交互操作。配置文件这些全部自动抓取。正常情况，全新安装没有问题，可能会首次比较慢，或者可能卡在域名配置处，提供的域名清单不正确。
-**
+
 
