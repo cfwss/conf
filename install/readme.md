@@ -1,5 +1,5 @@
 ## 自用一键xRay/Sing-Box/Nginx脚本
-	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/menu.sh && chmod +x menu.sh && ./menu.sh 
+	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh 
 
 ## 主要功能
 - 首次使用后:<br>
