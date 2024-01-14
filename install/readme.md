@@ -12,6 +12,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 - 使用说明：<br>
+    - 2024/01/14 已增加订阅功能。目前v2ray正常，不过hy2的缺少混淆，v2ray不识别。SS明文，自行解码查看详配。
     - 原v2ray-agent的配置，**几乎没作改动**，尤其是Path后缀（如*ws/vws/trjws/grpc/trojangrpc），可以完美过渡。
     - 选择"**一键安装所有配置**"，准备好已解析的域名，在输入域名环节，粘贴即可，几乎无交互操作。
     - 如果出现错误，用主菜单中的**重置所有配置**功能。
@@ -144,7 +145,7 @@
 
 ---
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/az1.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/ax1.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a2.jpg)
 
