@@ -58,6 +58,9 @@
 - 
 - **注意：这里有一个逻辑问题，如果有两个不同的域名都没开启CDN，会以第一优先匹配原则，使用NGINX申请证书时也会查找第一匹配的前缀。如：vap0.abc.com / vps0.abc.com 谁在清单前谁优先。如果提供的域名列表都是vps？开头的且只存在vps？的A记录，那么，其他域名无法申请到相应的TLS证书，因为优先选择了vap0，其他域名并没有vap0子域名的解析。**
 
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="flex: 1; margin-right: 10px;">
+  
 **表一：CloudFlare DNS 解析导入表**
 
 |;; A Records| || | |
@@ -73,7 +76,11 @@
 |vps8|1|IN|A|127.0.0.8|
 |vps9|1|IN|A|127.0.0.9|
 
+  </div>
+  <div style="flex: 1; margin-left: 10px;">
+
 **表二：域名清单（导入用）**
+
 |              |                 |                     |
 |--------------|-----------------|---------------------|
 | vps0.abc.com | vps0.bcd.com    | vps0.abc.edu.eu.org |
@@ -86,6 +93,10 @@
 | vps7.abc.com | vps7.bcd.com    | vps7.abc.edu.eu.org |
 | vps8.abc.com | vps8.bcd.com    | vps8.abc.edu.eu.org |
 | vps9.abc.com | vps9.bcd.com    | vps9.abc.edu.eu.org |
+
+  </div>
+</div>
+
 
 
 
