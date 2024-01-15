@@ -74,18 +74,19 @@
 |vps9|1|IN|A|127.0.0.9|
 
 **表二：域名清单（导入用）**
-| || | |
-|-----|-----|-----|
-|vps0.abc.com|vps0.bcd.com|vps0.abc.edu.eu.org|
-|vps1.abc.com|vps1.bcd.com|vps1.abc.edu.eu.org|
-|vps2.abc.com|vps2.bcd.com|vps2.abc.edu.eu.org|
-|vps3.abc.com|vps3.bcd.com|vps3.abc.edu.eu.org|
-|vps4.abc.com|vps4.bcd.com|vps4.abc.edu.eu.org|
-|vps5.abc.com|vps5.bcd.com|vps5.abc.edu.eu.org|
-|vps6.abc.com|vps6.bcd.com|vps6.abc.edu.eu.org|
-|vps7.abc.com|vps7.bcd.com|vps7.abc.edu.eu.org|
-|vps8.abc.com|vps8.bcd.com|vps8.abc.edu.eu.org|
-|vps9.abc.com|vps9.bcd.com|vps9.abc.edu.eu.org|
+|              |                 |                     |
+|--------------|-----------------|---------------------|
+| vps0.abc.com | vps0.bcd.com    | vps0.abc.edu.eu.org |
+| vps1.abc.com | vps1.bcd.com    | vps1.abc.edu.eu.org |
+| vps2.abc.com | vps2.bcd.com    | vps2.abc.edu.eu.org |
+| vps3.abc.com | vps3.bcd.com    | vps3.abc.edu.eu.org |
+| vps4.abc.com | vps4.bcd.com    | vps4.abc.edu.eu.org |
+| vps5.abc.com | vps5.bcd.com    | vps5.abc.edu.eu.org |
+| vps6.abc.com | vps6.bcd.com    | vps6.abc.edu.eu.org |
+| vps7.abc.com | vps7.bcd.com    | vps7.abc.edu.eu.org |
+| vps8.abc.com | vps8.bcd.com    | vps8.abc.edu.eu.org |
+| vps9.abc.com | vps9.bcd.com    | vps9.abc.edu.eu.org |
+
 
 
 **表三：Worker.js**
