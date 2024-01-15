@@ -74,7 +74,7 @@
 |vps9|1|IN|A|127.0.0.9|
 
 **表二：域名清单（导入用）**
-
+| || | |
 |-----|-----|-----|
 |vps0.abc.com|vps0.bcd.com|vps0.abc.edu.eu.org|
 |vps1.abc.com|vps1.bcd.com|vps1.abc.edu.eu.org|
