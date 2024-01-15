@@ -62,7 +62,7 @@
 <div style="display: flex; flex-wrap: wrap;">
   <div style="flex: 1; margin-right: 10px;">
   
-**表一：CloudFlare DNS 解析导入表**
+**表一：CloudFlare DNS 解析导入表【这是在cf后台使用的，脚本中不需要，但要先做好解析，脚本中只需要表二】**
 
 |;; A Records| || | |
 |-----|-----|-----|-----|-----|
@@ -80,7 +80,7 @@
   </div>
   <div style="flex: 1; margin-left: 10px;">
 
-**表二：域名清单（导入用）**
+**表二：域名清单（脚本中使用，可以一列，也可以多列）**
 
 |              |                 |                     |
 |--------------|-----------------|---------------------|
