@@ -1,5 +1,4 @@
 ## 无敌一键 xRay/Sing-Box/Nginx 批量管理脚本
-
 	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh 
 
 ## 主要功能
@@ -13,6 +12,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 - 使用说明：<br>
+    - 2014/01/16 修复bug，优化自动配置逻辑，新增单独的path修改，详见菜单中 tag。
+    - 2024/01/15 优化了很多内容，Nginx/sing-box/xray单独重置尽可能自动恢复。强化了TLS检测，一键订阅SS不支持的全部丢备注里了。
     - 2024/01/15 增加quanx订阅(测试)；增加版本检测；增加重置所有配置后，自动设置TLS证书和域名；其他BUG修复。
     - 2024/01/14 已增加订阅功能。目前v2ray正常，不过hy2的缺少混淆，v2ray不识别。SS明文，自行解码查看详配。
     - 原v2ray-agent的配置，**几乎没作改动**，尤其是Path后缀（如*ws/vws/trjws/grpc/trojangrpc），可以完美过渡。
@@ -59,7 +60,10 @@
 - 
 - **注意：这里有一个逻辑问题，如果有两个不同的域名都没开启CDN，会以第一优先匹配原则，使用NGINX申请证书时也会查找第一匹配的前缀。如：vap0.abc.com / vps0.abc.com 谁在清单前谁优先。如果提供的域名列表都是vps？开头的且只存在vps？的A记录，那么，其他域名无法申请到相应的TLS证书，因为优先选择了vap0，其他域名并没有vap0子域名的解析。**
 
-**表一：CloudFlare DNS 解析导入表**
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="flex: 1; margin-right: 10px;">
+  
+**表一：CloudFlare DNS 解析导入表【这是在cf后台使用的，脚本中不需要，但要先做好解析，脚本中只需要表二】**
 
 |;; A Records| || | |
 |-----|-----|-----|-----|-----|
@@ -74,7 +78,11 @@
 |vps8|1|IN|A|127.0.0.8|
 |vps9|1|IN|A|127.0.0.9|
 
-**表二：域名清单（导入用）**
+  </div>
+  <div style="flex: 1; margin-left: 10px;">
+
+**表二：域名清单（脚本中使用，可以一列，也可以多列）**
+
 |              |                 |                     |
 |--------------|-----------------|---------------------|
 | vps0.abc.com | vps0.bcd.com    | vps0.abc.edu.eu.org |
@@ -87,6 +95,12 @@
 | vps7.abc.com | vps7.bcd.com    | vps7.abc.edu.eu.org |
 | vps8.abc.com | vps8.bcd.com    | vps8.abc.edu.eu.org |
 | vps9.abc.com | vps9.bcd.com    | vps9.abc.edu.eu.org |
+
+  </div>
+</div>
+
+
+
 
 **表三：Worker.js**
 >addEventListener(<br>
@@ -128,6 +142,8 @@
 ---
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/az1.jpg)
+
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/tls.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a2.jpg)
 
