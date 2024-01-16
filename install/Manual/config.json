@@ -60,7 +60,6 @@
           { "path": "/nruanvws", "dest": 31113, "xver": 2 },              //Old-Vmess-WS
           { "path": "/nruantrjws", "dest": 31114, "xver": 2 },            //Old-Trojan-WS
           { "path": "/nruanssws", "dest": 31115, "xver": 2 }              //Old-ShadowSocks-WS
-
         ]
       },
       "streamSettings": {
