@@ -146,6 +146,8 @@
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/tls.jpg)
 
+![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/ports.jpg)
+
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a2.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a3.jpg)
