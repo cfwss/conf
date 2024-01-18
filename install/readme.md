@@ -6,7 +6,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;**可以输入 nruan 来开启快捷功能**
 - 前言:<br>
     &nbsp;&nbsp;&nbsp;&nbsp;用了多年mack-a的v2ray-agent，但因近期的功能不能满足本人需求，<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;所以自行写了这个一键脚本。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;于是自行写了这个一键脚本。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;在此，感谢：mack-a<br>
 - 编写目的：<br>
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
