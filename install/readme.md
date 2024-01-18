@@ -1,6 +1,11 @@
 ## 无敌一键 xRay/Sing-Box/Nginx 批量管理脚本
 	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh 
 
+
+
+此文不再更新，见主页：
+	https://github.com/cfwss/conf
+
 ## 主要功能
 - 首次使用后:<br>
     &nbsp;&nbsp;&nbsp;&nbsp;**可以输入 nruan 来开启快捷功能**
@@ -11,7 +16,7 @@
 - 编写目的：<br>
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
-- 使用说明：<br>
+- 使用说明&log：：<br>
     - 2024/01/18 修复Sing-Box重置后自动恢复证书错误。现为：检测域名是否CDN，优先非CDN，若无，则使用CDN，此时只有带ws功能的协议可用。关闭CDN不影响TLS证书，无需重新申请。
     - 2024/01/18 增加Sing-Box重置前自动备份，过程中5秒提示。证书申请失败时，导出日志。
     - 2024/01/17 简化暂停过程，5秒自动，按键可暂停，可跳过等待。xRay的用户信息和配置，重置前自动备份，过程中5秒提示恢复/取消，默认自动恢复。
