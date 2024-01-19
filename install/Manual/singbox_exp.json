@@ -65,9 +65,9 @@
       ],
       "tls": {
         "enabled": true,
-        "server_name": "gcp.sch.tw",
-        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
-        "key_path": "/etc/tls/gcp.sch.tw.key"
+        "server_name": "exp.domain.net",
+        "certificate_path": "/etc/tls/exp.domain.net.crt",
+        "key_path": "/etc/tls/exp.domain.net.key"
       },
       "fallback": {
        "server": "127.0.0.1",
@@ -106,13 +106,13 @@
       ],
       "tls": {
         "enabled": true,
-        "server_name": "gcp.sch.tw",
+        "server_name": "exp.domain.net",
         "alpn": [
             "http/1.1",
             "h2"
         ],
-        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
-        "key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/exp.domain.net.crt",
+        "key_path": "/etc/tls/exp.domain.net.key"
       },
       "multiplex": {
         "enabled": true,
@@ -174,13 +174,13 @@
       ],
       "tls": {
         "enabled": true,
-        "server_name": "gcp.sch.tw",
+        "server_name": "exp.domain.net",
         "alpn": [
              "http/1.1",
              "h2"
         ],
-        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
-        "key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/exp.domain.net.crt",
+        "key_path": "/etc/tls/exp.domain.net.key"
       },
       "multiplex": {
         "enabled": true,
@@ -213,12 +213,12 @@
       "heartbeat": "10s",
       "tls": {
         "enabled": true,
-        "server_name": "gcp.sch.tw",
+        "server_name": "exp.domain.net",
         "alpn": [
           "h3"
         ],
-        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
-        "key_path": "/etc/tls/gcp.sch.tw.key"
+        "certificate_path": "/etc/tls/exp.domain.net.crt",
+        "key_path": "/etc/tls/exp.domain.net.key"
       }
     },
     {
@@ -243,9 +243,9 @@
       ],
       "tls": {
         "enabled": true,
-        "server_name": "gcp.sch.tw",
-        "certificate_path": "/etc/tls/gcp.sch.tw.crt",
-        "key_path": "/etc/tls/gcp.sch.tw.key"
+        "server_name": "exp.domain.net",
+        "certificate_path": "/etc/tls/exp.domain.net.crt",
+        "key_path": "/etc/tls/exp.domain.net.key"
       }
     },
     {
