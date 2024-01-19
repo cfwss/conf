@@ -1,6 +1,9 @@
 ## 无敌一键 xRay/Sing-Box/Nginx 批量管理脚本
 	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh 
 
+### 带参数安装，将bbb.com换成解析好的域名
+  curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh -d bbb.com
+
 ## 主要功能
 - 首次使用后:<br>
     &nbsp;&nbsp;&nbsp;&nbsp;**可以输入 nruan 来开启快捷功能**
