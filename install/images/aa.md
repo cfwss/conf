@@ -66,7 +66,7 @@
   <li>VPS准备，至少两台：<i>vps0 / vps1 / vps2 /vps3 /vps4 / vps5 /vps6 /vps7 / vps8 / vps9</i></li>
   <li>将以上多个域名DNS放在 CloudFlare</li>
   <li>取得所有VPS的ip地址，ipv4即可。</li>
-  <li>在CloudFlare中，选择 <i>abc.edu.eu.org</i> ，解析10台vps，<b>不要开启云朵</b>。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...</li>
+  <li>在CloudFlare中，选择 <i>abc.edu.eu.org</i> ，解析10台vps，<b>不要开启云朵</b>。如 <i>vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / </i>...</li>
   <li>将以上解析全部导出，并在导出的文件中<b>删除不相关的内容</b>，【见表一】只保留<i>vps1 127.0.0.1 / vps2  127.1.1.1 /</i> ... 一般会有 <i>vps1.abc.edu.eu.org</i> 要把 <b>.abc.edu.eu.org</b> 全部去除。</li>
   <li>将以上导的文件<b>修改好</b>后【见表一】，分别导入 <i>abc.com / bcd.com</i> 并勾选开启云朵。此时三个域名的dns A记录应该<b>都是一致的</b>，唯一不同的是 <i>abc.com / bcd.com</i> 后面 代理状态 有亮着云朵。</li>
   <li>再将 <i>abc.com / bcd.com</i> 的 <b>SSL/TLS 处</b>，选择 <b>full 完全（严格）</b>。</li>
@@ -77,9 +77,9 @@
   <li>耐心等待结束。</li>
   <li>完成后，可以正常使用，但建议<b>重新生成用户UUID</b>和<b>修改相关的服务配置</b>。</li>
   <li>接下来可以愉快地玩耍了。</li>
-  <li>理论上单个域名也是OK的。</li>
-  <li></li>
-  <li><b>注意：这里有一个逻辑问题，如果有两个不同的域名都没开启CDN，会以第一优先匹配原则，使用NGINX申请证书时也会查找第一匹配的前缀。如：vap0.abc.com / vps0.abc.com 谁在清单前谁优先。如果提供的域名列表都是vps？开头的且只存在vps？的A记录，那么，其他域名无法申请到相应的TLS证书，因为优先选择了vap0，其他域名并没有vap0子域名的解析。</b></li> <br> <br>
+  <li>理论上单个域名也是OK的。</li><br>
+
+  <li><b>注意：这里有一个逻辑问题，如果有两个不同的域名都没开启CDN，会以第一优先匹配原则，使用NGINX申请证书时也会查找第一匹配的前缀。如：<i>vap0.abc.com / vps0.abc.com </i>谁在清单前谁优先。如果提供的域名列表都是vps？开头的且只存在vps？的A记录，那么，其他域名无法申请到相应的TLS证书，因为优先选择了vap0，其他域名并没有vap0子域名的解析。</b></li> <br> <br>
 
    
 
