@@ -16,7 +16,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 
 <details>
-  <summary>点击查看【使用说明】</summary>
+  <summary>点击查看**【使用说明】**</summary>
     <h2>使用说明&log：</h2>
     <ul>
     <li>2024/01/19 其他说明：单cdn能申请到证书，主要是为了传参数方便。如果是批量，建议还是需要至少一个非CDN的域名，否则无法定位，无法使用多台机子混合批量申请功能。</li>
@@ -60,8 +60,8 @@
 
 
 <details>
-  <summary>点击查看【操作步骤】</summary>
-  ## 操作步骤【以CloudFlare为例】</li>
+  <summary>点击查看**【操作步骤】**</summary>
+  <h2>操作步骤【以CloudFlare为例】</h2>
   <li>域名准备，至少两个：*abc.edu.eu.org / abc.com / bcd.com*</li>
   <li>VPS准备，至少两台：*vps0 / vps1 / vps2 /vps3 /vps4 / vps5 /vps6 /vps7 / vps8 / vps9*</li>
   <li>将以上多个域名DNS放在 CloudFlare</li>
