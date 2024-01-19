@@ -16,7 +16,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 
 <details>
-  <summary>点击查看使用说明/收缩</summary>
+  <summary>点击查看【使用说明】</summary>
   - 使用说明&log：<br>
     - 2024/01/19 其他说明：单cdn能申请到证书，主要是为了传参数方便。如果是批量，建议还是需要至少一个非CDN的域名，否则无法定位，无法使用多台机子混合批量申请功能。<br>
     - 2024/01/19 新增-d 参数进行一键安装，后面 直接跟域名（可以很多个）【./nruan.sh -d exp.domain.com -d exp.domain.net】；优化域名处理，现在单个cdn域名也能成功（传参数或手动）；新增测试功能。<br>
@@ -58,13 +58,13 @@
 
 
 <details>
-  <summary>点击查看操作步骤/收缩</summary>
-  ## 操作步骤【以CloudFlare为例】
+  <summary>点击查看【操作步骤】</summary>
+  ## 操作步骤【以CloudFlare为例】<br>
   - 域名准备，至少两个：*abc.edu.eu.org / abc.com / bcd.com*<br>
   - VPS准备，至少两台：*vps0 / vps1 / vps2 /vps3 /vps4 / vps5 /vps6 /vps7 / vps8 / vps9*<br>
   - 将以上多个域名DNS放在 CloudFlare<br>
   - 取得所有VPS的ip地址，ipv4即可。<br>
-  - 在CloudFlare中，选择 *abc.edu.eu.org* ，解析10台vps，**不要开启云朵**。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...
+  - 在CloudFlare中，选择 *abc.edu.eu.org* ，解析10台vps，**不要开启云朵**。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...<br>
   - 将以上解析全部导出，并在导出的文件中**删除不相关的内容**，【见表一】只保留*vps1 127.0.0.1 / vps2  127.1.1.1 /* ... 一般会有 *vps1.abc.edu.eu.org* 要把 **.abc.edu.eu.org** 全部去除。<br>
   - 将以上导的文件**修改好**后【见表一】，分别导入 *abc.com / bcd.com* 并勾选开启云朵。此时三个域名的dns A记录应该**都是一致的**，唯一不同的是 *abc.com / bcd.com* 后面 代理状态 有亮着云朵。<br>
   - 再将 *abc.com / bcd.com* 的 **SSL/TLS 处**，选择 **full 完全（严格）**。<br>
