@@ -159,26 +159,38 @@
 
 ---
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/az1.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/main_menu.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/tls.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/sub_01.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/ports.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/sub_02.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a2.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/sub_03.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/a3.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/install.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/00x.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/domain.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/02.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/domain2.jpg)
+<details>
+  <summary>点击查看【更多图片】</summary>
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/03.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/reset.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/04.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/new_uuid.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/05.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/all_set.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/06.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/all_uuid.jpg)
 
-![Alt text](https://github.com/cfwss/conf/blob/main/install/Manual/images/08.jpg)
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/sb_user_d.jpg)
+
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/xray_user.jpg)
+
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/sb_ports.jpg)
+
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/auto.jpg)
+
+</details>
+
+
