@@ -15,6 +15,17 @@
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供便捷操作**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 
+## 非CDN域名一键安装视频（单域名，带参数）
+
+[![YouTube 视频](https://img.youtube.com/vi/16iWFUQHwS4/0.jpg)](https://www.youtube.com/watch?v=16iWFUQHwS4)
+
+点击上面的图片查看视频。
+
+## CDN域名一键安装视频（单域名，带参数）
+[![YouTube 视频](https://img.youtube.com/vi/4-q6ibldewg/0.jpg)](https://www.youtube.com/watch?v=4-q6ibldewg)
+
+点击上面的图片查看视频。
+
 <details>
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
