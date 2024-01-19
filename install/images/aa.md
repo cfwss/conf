@@ -12,7 +12,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;于是自行写了这个一键脚本。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;在此，感谢：mack-a<br>
 - 编写目的：<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供便捷操作**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 
 <details>
@@ -61,15 +61,15 @@
 
 <details>
   <summary>点击查看<b>【操作步骤】</b></summary>
-  <h2>操作步骤【以CloudFlare为例】</h2>
-  <li>域名准备，至少两个：*abc.edu.eu.org / abc.com / bcd.com*</li>
-  <li>VPS准备，至少两台：*vps0 / vps1 / vps2 /vps3 /vps4 / vps5 /vps6 /vps7 / vps8 / vps9*</li>
+  <h2>操作步骤【以CloudFlare为例】</h2><b>表一和表三的内容是用于cloudflare中的，表二的内容是用于脚本中的</b>
+  <li>域名准备，至少两个：<i>abc.edu.eu.org / abc.com / bcd.com</i></li>
+  <li>VPS准备，至少两台：<i>vps0 / vps1 / vps2 /vps3 /vps4 / vps5 /vps6 /vps7 / vps8 / vps9</i></li>
   <li>将以上多个域名DNS放在 CloudFlare</li>
   <li>取得所有VPS的ip地址，ipv4即可。</li>
-  <li>在CloudFlare中，选择 *abc.edu.eu.org* ，解析10台vps，<b>不要开启云朵</b>。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...</li>
-  <li>将以上解析全部导出，并在导出的文件中<b>删除不相关的内容</b>，【见表一】只保留*vps1 127.0.0.1 / vps2  127.1.1.1 /* ... 一般会有 *vps1.abc.edu.eu.org* 要把 <b>.abc.edu.eu.org</b> 全部去除。</li>
-  <li>将以上导的文件<b>修改好</b>后【见表一】，分别导入 *abc.com / bcd.com* 并勾选开启云朵。此时三个域名的dns A记录应该<b>都是一致的</b>，唯一不同的是 *abc.com / bcd.com* 后面 代理状态 有亮着云朵。</li>
-  <li>再将 *abc.com / bcd.com* 的 <b>SSL/TLS 处</b>，选择 <b>full 完全（严格）</b>。</li>
+  <li>在CloudFlare中，选择 <i>abc.edu.eu.org</i> ，解析10台vps，<b>不要开启云朵</b>。如 vps1  127.0.0.1 / vps2  127.1.1.1 / vps3  124.0.3.1 / ...</li>
+  <li>将以上解析全部导出，并在导出的文件中<b>删除不相关的内容</b>，【见表一】只保留<i>vps1 127.0.0.1 / vps2  127.1.1.1 /</i> ... 一般会有 <i>vps1.abc.edu.eu.org</i> 要把 <b>.abc.edu.eu.org</b> 全部去除。</li>
+  <li>将以上导的文件<b>修改好</b>后【见表一】，分别导入 <i>abc.com / bcd.com</i> 并勾选开启云朵。此时三个域名的dns A记录应该<b>都是一致的</b>，唯一不同的是 <i>abc.com / bcd.com</i> 后面 代理状态 有亮着云朵。</li>
+  <li>再将 <i>abc.com / bcd.com</i> 的 <b>SSL/TLS 处</b>，选择 <b>full 完全（严格）</b>。</li>
   <li>再去点开 CloudFlare 左侧菜单 <b>Network （网络）</b>，开启 <b>WebSocket</b> 和 <b>gRPC</b>。</li>
   <li>将所有的域名，放在Excel单元格或记事本中，清单应该有 30 个域名，<b>中间不要有空行</b>。</li>
   <li>输入 nruan 调用本脚本 ，<b>首次用顶部的链接</b>。</li>
@@ -153,7 +153,7 @@
 - **一键安装xRay、Sing-Box和Nginx**
 - bbr功能在warp中已集成，不单独使用。**输入warp**后根据选项选择
 - 主菜单更新提示
-
+---
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/images/main_menu.jpg)
 
@@ -164,7 +164,7 @@
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/images/sub_03.jpg)
 
 <details>
-  <summary>点击查看【更多图片】</summary>
+  <summary>点击查看<b>【更多图片】</b></summary>
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/images/install.jpg)
 
