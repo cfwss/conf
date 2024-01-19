@@ -153,7 +153,7 @@
 - **一键安装xRay、Sing-Box和Nginx**
 - bbr功能在warp中已集成，不单独使用。**输入warp**后根据选项选择
 - 主菜单更新提示
-
+---
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/images/main_menu.jpg)
 
