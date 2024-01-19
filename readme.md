@@ -12,7 +12,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;于是自行写了这个一键脚本。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;在此，感谢：mack-a<br>
 - 编写目的：<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供便捷操作**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 
 <details>
