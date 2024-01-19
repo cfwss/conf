@@ -14,7 +14,7 @@
 - 编写目的：<br>
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供方便**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
-<span style="color:red">这是红色的文本</span>
+[![Color Text](https://placehold.it/200x50/FF5733/000000?text=Color+Text)](https://placehold.it/200x50/FF5733/000000?text=Color+Text)
 
 <details>
   <summary>点击查看<b>【使用说明】</b></summary>
