@@ -2,7 +2,7 @@
 	curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh 
 
 ### 带参数安装，将bbb.com换成解析好的域名
-  curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh -d bbb.com
+	  curl -O https://raw.githubusercontent.com/cfwss/conf/main/install/nruan.sh && chmod +x nruan.sh && ./nruan.sh -d bbb.com
 
 ## 主要功能
 - 首次使用后:<br>
