@@ -15,21 +15,11 @@
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供便捷操作**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 
-### 非CDN域名一键安装视频（单域名，带参数）
-
-[![YouTube 视频](https://img.youtube.com/vi/16iWFUQHwS4/0.jpg)](https://www.youtube.com/watch?v=16iWFUQHwS4)
-
-点击上面的图片查看视频。
-
-### CDN域名一键安装视频（单域名，带参数）
-[![YouTube 视频](https://img.youtube.com/vi/4-q6ibldewg/0.jpg)](https://www.youtube.com/watch?v=4-q6ibldewg)
-
-点击上面的图片查看视频。
-
 <details>
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
     <ul>
+    <li>2024/01/20 完善配置管理菜单中某些修改的判断逻辑，超3次自动结束并5秒回主菜单；优化显示信息。</li>
     <li>2024/01/19 其他说明：单cdn能申请到证书，主要是为了传参数方便。如果是批量，建议还是需要至少一个非CDN的域名，否则无法定位，无法使用多台机子混合批量申请功能。</li>
     <li>2024/01/19 新增-d 参数进行一键安装，后面 直接跟域名（可以很多个）【./nruan.sh -d exp.domain.com -d exp.domain.net】；优化域名处理，现在单个cdn域名也能成功（传参数或手动）；新增测试功能。</li>
     <li>2024/01/18 修复Sing-Box重置后自动恢复证书错误。现为：检测域名是否CDN，优先非CDN，若无，则使用CDN，此时只有带ws功能的协议可用。关闭CDN不影响TLS证书，无需重新申请。</li>
@@ -147,7 +137,16 @@
 <br>
 
 </details>
+### 非CDN域名一键安装视频（单域名，带参数）
 
+[![YouTube 视频](https://img.youtube.com/vi/16iWFUQHwS4/0.jpg)](https://www.youtube.com/watch?v=16iWFUQHwS4)
+
+点击上面的图片查看视频。
+
+### CDN域名一键安装视频（单域名，带参数）
+[![YouTube 视频](https://img.youtube.com/vi/4-q6ibldewg/0.jpg)](https://www.youtube.com/watch?v=4-q6ibldewg)
+
+点击上面的图片查看视频。
 ## 用户管理
 - 批量自动生成用户UUID
 - 批量手动输入用户UUID
