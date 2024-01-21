@@ -19,6 +19,7 @@
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
     <ul>
+    <li>2024/01/21 增加了“按标签”订阅生成。晚上把xray新老的合一起了，自动判断。</li>
     <li>2024/01/21 增加了“序列域名”订阅生成。如有：vps1,vps2,vp3前缀的域名中有数字1,2,3，手动输入开始数字、数量即可。【例：vas01,vas02,vas03......vas10,输入开始数字是01，数量10。】</li>
     <li>2024/01/20 修复Nginx重置时path不完全跟随xray的问题。</li>
     <li>2024/01/20 完善配置管理菜单中某些修改的判断逻辑，超3次自动结束并5秒回主菜单；优化交互显示信息。</li>
@@ -139,6 +140,45 @@
 <br>
 
 </details>
+
+<details>
+  <summary>点击查看<b>【订阅格式】</b></summary>
+    <h2>订阅格式</h2>
+    <ul>
+  <li> <b>老的配置</b> </li>
+  <li> https://你的子域名/xray/UUID前8位/old-vless-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/old-vmess-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/old-trojan-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/old-shadowsocks-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/old-vless-grpc/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/old-trojan-grpc/完整UUID </li><br>
+
+  <li> <b>新的配置</b> </li>
+  <li> https://你的子域名/xray/UUID前8位/vless-xtls/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/vless-tcp/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/vmess-tcp/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/trojan-tcp/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/shadowsocks-tcp/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/vless-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/vmess-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/trojan-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/shadowsocks-ws/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/vless-grpc/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/vmess-grpc/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/trojan-grpc/完整UUID </li>
+  <li> https://你的子域名/xray/UUID前8位/shadowsocks-grpc/完整UUID </li><br>
+
+  <li> <b>SING-BOX</b> </li>
+  <li> https://你的子域名/btag/UUID前8位/trojan/完整UUID </li>
+  <li> https://你的子域名/btag/UUID前8位/vmess/完整UUID </li>
+  <li> https://你的子域名/btag/UUID前8位/shadowsocks/完整UUID </li>
+  <li> https://你的子域名/btag/UUID前8位/vless/完整UUID </li>
+  <li> https://你的子域名/btag/UUID前8位/tuic/完整UUID </li>
+  <li> https://你的子域名/btag/UUID前8位/naive/完整UUID </li>
+  <li> https://你的子域名/btag/UUID前8位/hysteria2/完整UUID </li>
+    </ul>
+</details>
+
 ### 非CDN域名一键安装视频（单域名，带参数）
 
 [![YouTube 视频](https://img.youtube.com/vi/16iWFUQHwS4/0.jpg)](https://www.youtube.com/watch?v=16iWFUQHwS4)
