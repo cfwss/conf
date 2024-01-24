@@ -17,7 +17,7 @@
 - 包含协议：<br>
     &nbsp;&nbsp;&nbsp;&nbsp;**xRay**<br>
     &nbsp;&nbsp;&nbsp;&nbsp;vless-xtls/vless-tcp/vless-ws/vless-grpc/vmess-tcp/vmess-ws/vmess-grpc/shadowsocks-tcp/shadowsocks-ws/shadowsocks-grpc/trojan-tcp/trojan-ws/trojan-grpc<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;**Sinb-Box**<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;**Sing-Box**<br>
     &nbsp;&nbsp;&nbsp;&nbsp;vless-ws/vmess-ws/trojan-ws/shadowsocks-tcp/tuic-tcp/naive-tcp/hysteria2-tcp<br>
     
 <details>
