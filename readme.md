@@ -16,7 +16,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
 - 包含协议：<br>
     &nbsp;&nbsp;&nbsp;&nbsp;**xRay**<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;vless-xtls/vless-tcp/vless-ws/vless-grpc/vmess-tcp/vmess-ws/vmess-grpc/shadowsocks-tcp/shadowsocks-ws/shadowsocks-grpc/trojan-tcp/trojan-ws/trojan-grpc<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;vless-tcp-xtls/vless-tcp/vless-ws/vless-grpc/vmess-tcp/vmess-ws/vmess-grpc/shadowsocks-tcp/shadowsocks-ws/shadowsocks-grpc/trojan-tcp/trojan-ws/trojan-grpc<br>
     &nbsp;&nbsp;&nbsp;&nbsp;**Sing-Box**<br>
     &nbsp;&nbsp;&nbsp;&nbsp;vless-ws/vmess-ws/trojan-ws/shadowsocks-tcp/tuic-tcp/naive-tcp/hysteria2-tcp<br>
     
