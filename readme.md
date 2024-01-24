@@ -14,7 +14,12 @@
 - 编写目的：<br>
     &nbsp;&nbsp;&nbsp;&nbsp;主要是为有很多小鸡的用户**提供便捷操作**。如作者。<br>
     &nbsp;&nbsp;&nbsp;&nbsp;当有很多台vps或者很多个域名时，本脚本的优点可以体现。<br>
-
+- 包含协议：<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;**xRay**<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;vless-xtls/vless-tcp/vless-ws/vless-grpc/vmess-tcp/vmess-ws/vmess-grpc/shadowsocks-tcp/shadowsocks-ws/shadowsocks-grpc/trojan-tcp/trojan-ws/trojan-grpc<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;**Sinb-Box**<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;vless-ws/vmess-ws/trojan-ws/shadowsocks-tcp/tuic-tcp/naive-tcp/hysteria2-tcp<br>
+    
 <details>
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
@@ -62,8 +67,6 @@
     <li>其他未尽说明，后继不补充。</li>
     </ul>
 </details>
-
-
 
 <details>
   <summary>点击查看<b>【操作步骤】</b></summary>
