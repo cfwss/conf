@@ -592,6 +592,7 @@
         "network": "ws",
         "security": "none",
         "wsSettings": {
+          "acceptProxyProtocol": true,
           "path": "/nruanssws"
         }
       },
