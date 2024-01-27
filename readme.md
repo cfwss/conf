@@ -308,7 +308,7 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> <b>*注：目前只有vmess-ws/old可用
 
 
-<li> <b>xRay配置[全套 For NekoRay]</b> </li>
+<li> <b>xRay配置[全套 For surfboard]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/完整UUID </li>
     </ul>
 </details>
