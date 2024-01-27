@@ -19,11 +19,29 @@
     &nbsp;&nbsp;&nbsp;&nbsp;vless-tcp-xtls/vless-tcp/vless-ws/vless-grpc/vmess-tcp/vmess-ws/vmess-grpc/shadowsocks-tcp/shadowsocks-ws/shadowsocks-grpc/trojan-tcp/trojan-ws/trojan-grpc<br>
     &nbsp;&nbsp;&nbsp;&nbsp;**Sing-Box**<br>
     &nbsp;&nbsp;&nbsp;&nbsp;vless-ws/vmess-ws/trojan-ws/shadowsocks-tcp/tuic-tcp/naive-tcp/hysteria2-tcp<br>
+
+<details>
+  <summary>点击查看<b>【订阅玩法】</b></summary>
+    <h2>喜欢每台机子都生成订阅的另当别论。</h2>
+    <ul>
+    <li>首先，多台VPS是基本要求。如，有30台，10台命名为：<i>vps0 / vps1 / vps2 .../ vps9</i>,另10台为<i>vpx0 / vpx1 / vpx2 .../ vpx9</i>,再有<i>vpw0 / vpw1 / vpw2 .../ vpw9</i>,</li>
+    <li>确保每台机子都有CDN和TLS两套解析</li>
+    <li>再将其中一台添加一个比v更靠前且不带数字的子域名，TLS和CDN同时，如 aaa</li>
+    <li>接着在所有的机子上安装相同的配置和UUID</li>
+    <li>只用aaa这一台机子，生成订阅。脚本会检测是不是数字，非数字需手输。这时，手动粘贴以上带数字的30个域名。</li>
+    <li>结束后，用户使用正确的UUID用aaa地址得到30台机子的所有配置。</li>
+    <li>好处并没有，还要手动，挺麻烦的，不如数字域名全自动</li>
+    <li>喜欢每台机子都生成订阅的另当别论。</li> 
+    </ul>
+</details>
+
     
 <details>
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
     <ul>
+    <li>2024/01/27 原xRAY参数配置存在bug，使用2-->17重置，再10修改 Dokodemo-Door端口</li>
+    <li>2024/01/27 订阅标签增加归属地，如VPS1_VMESS_WS_HK;增加NekoRay，这货Shadowsock参数全部能正确读取。增加surfboard，放了三个类型，只有一个能用，看后续软件支持与否吧。</li>
     <li>2024/01/25 优化自动生成订阅逻辑，修复相关bug。新增CFW订阅</li>
     <li>2024/01/24 自动生成功能为xray与sing-box分离，默认按标签和合集，生成中增加日志文件，详见生成后的屏显信息。<b>例：有10台VPS，并以VPS0,VPS1,VPS2...VPS9命名，选择要生成的配置后，啥也不用做。</b></li>
     <li>2024/01/24 增加了“自动生成”功能：多域名且前缀有数字的情况下，自动读取信息，默认以N个0开始，自动生成10台机子的配置，5秒内可手动干预，如果前缀中没有数字，则手输至少两个域名；将“按标签”生成放入到“其他配置”中。</li>
