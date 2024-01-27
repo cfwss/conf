@@ -305,7 +305,7 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-trojan-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-shadowsocks-ws/完整UUID </li>
-<li> <b>*注：目前只有vmess-ws/old可用
+<li> <b>注：目前只有vmess-ws/old可用
 
 
 <li> <b>xRay配置[全套 For surfboard]</b> </li>
