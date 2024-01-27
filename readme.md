@@ -170,37 +170,146 @@
   <summary>点击查看<b>【订阅格式】</b></summary>
     <h2>订阅格式</h2>
     <ul>
-  <li> <b>老的配置</b> </li>
-  <li> https://你的子域名/xray/UUID前8位/old-vless-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/old-vmess-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/old-trojan-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/old-shadowsocks-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/old-vless-grpc/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/old-trojan-grpc/完整UUID </li><br>
 
-  <li> <b>新的配置</b> </li>
-  <li> https://你的子域名/xray/UUID前8位/vless-xtls/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/vless-tcp/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/vmess-tcp/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/trojan-tcp/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/shadowsocks-tcp/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/vless-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/vmess-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/trojan-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/shadowsocks-ws/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/vless-grpc/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/vmess-grpc/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/trojan-grpc/完整UUID </li>
-  <li> https://你的子域名/xray/UUID前8位/shadowsocks-grpc/完整UUID </li><br>
+<li> <b>xRay配置[按协议 For v2RayN]</b> </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-xtls/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vmess-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/trojan-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/shadowsocks-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vmess-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/trojan-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/shadowsocks-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/old-vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/old-vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/old-trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/old-shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/old-vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/old-trojan-grpc/完整UUID </li>
 
-  <li> <b>SING-BOX</b> </li>
-  <li> https://你的子域名/btag/UUID前8位/trojan/完整UUID </li>
-  <li> https://你的子域名/btag/UUID前8位/vmess/完整UUID </li>
-  <li> https://你的子域名/btag/UUID前8位/shadowsocks/完整UUID </li>
-  <li> https://你的子域名/btag/UUID前8位/vless/完整UUID </li>
-  <li> https://你的子域名/btag/UUID前8位/tuic/完整UUID </li>
-  <li> https://你的子域名/btag/UUID前8位/naive/完整UUID </li>
-  <li> https://你的子域名/btag/UUID前8位/hysteria2/完整UUID </li>
+<li> <b>xRay配置[全套 For v2RayN]</b> </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/完整UUID </li>
+
+SING-BOX配置[按协议 For v2RayN]</b> </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/trojan/完整UUID </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/vmess/完整UUID </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/shadowsocks/完整UUID </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/vless/完整UUID </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/tuic/完整UUID </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/naive/完整UUID </li>
+<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/hysteria2/完整UUID </li>
+
+<li> <b>SING-BOX配置[全套 For v2RayN]</b> </li>
+<li> https://任意一个域名/sing-box/UUID前8位/trojan/完整UUID </li>
+
+
+<li> <b>xRay配置[按协议 For Nekobox]</b> </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vless-xtls/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vless-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vmess-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/trojan-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/shadowsocks-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vmess-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/trojan-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/shadowsocks-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/old-vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/old-vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/old-trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/old-shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/old-vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/old-trojan-grpc/完整UUID </li>
+
+<li> <b>xRay配置[全套 For Nekobox]</b> </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/完整UUID </li>
+
+<li> <b>SING-BOX配置[按协议 For Nekobox]</b> </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/trojan/完整UUID </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/vmess/完整UUID </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/shadowsocks/完整UUID </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/vless/完整UUID </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/tuic/完整UUID </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/naive/完整UUID </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/hysteria2/完整UUID </li>
+
+<li> <b>SING-BOX配置[全套 For Nekobox]</b> </li>
+<li> https://任意一个域名/sing-box/neko/UUID前8位/完整UUID </li>
+
+
+<li> <b>xRay配置[全套 For QuantumultX]</b> </li>
+<li> https://任意一个域名/xray/quanx/UUID前8位/完整UUID </li>
+
+<li> <b>SING-BOX[全套 For QuantumultX]</b> </li>
+<li> https://任意一个域名/sing-box/quanx/UUID前8位/完整UUID </li>
+
+<li> <b>SING-BOX配置[按协议 For ShadowRocket]</b> </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/trojan/完整UUID </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/vmess/完整UUID </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/shadowsocks/完整UUID </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/vless/完整UUID </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/tuic/完整UUID </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/naive/完整UUID </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/hysteria2/完整UUID </li>
+
+<li> <b>SING-BOX配置[全套 For ShadowRocket]</b> </li>
+<li> https://任意一个域名/sing-box/rocket/前8位UUID/完整UUID </li>
+
+<li> <b>xRay配置[Clash Fow Win]</b> </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/trojan-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/old-vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/old-vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/old-trojan-grpc/完整UUID </li>
+
+
+<li> <b>xRay配置[按协议 For NekoRay]</b> </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vless-xtls/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vless-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vmess-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/trojan-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/shadowsocks-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vmess-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/trojan-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/shadowsocks-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/old-vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/old-vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/old-trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/old-shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/old-vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/old-trojan-grpc/完整UUID </li>
+
+<li> <b>xRay配置[全套 For NekoRay]</b> </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/完整UUID </li>
+
+<li> <b>xRay配置[按协议 For surfboard]</b> </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/trojan-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/shadowsocks-ws/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/old-vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/old-trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/old-shadowsocks-ws/完整UUID </li>
+<li> <b>*注：目前只有vmess-ws/old可用
+
+
+<li> <b>xRay配置[全套 For NekoRay]</b> </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/完整UUID </li>
     </ul>
 </details>
 
