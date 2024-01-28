@@ -56,10 +56,14 @@
           { "path": "/nruanmws", "dest": "@vmess-ws", "xver": 2 },        //Vmess-WS
           { "path": "/nruantws", "dest": "@trojan-ws", "xver": 2 },       //Trojan-WS
           { "path": "/nruansws", "dest": 31111 },                         //ShadowSocks-WS
+          { "path": "/nruanlwarp", "dest": "@vless-warp", "xver": 2 },    //Vless-Warp
+          { "path": "/nruanmwarp", "dest": "@vmess-warp", "xver": 2 },    //Vmess-Warp
+          { "path": "/nruantwarp", "dest": "@trojan-warp", "xver": 2 },   //Trojan-Warp
           { "path": "/nruanws",  "dest": 31112, "xver": 2 },              //Old-Vless-WS
           { "path": "/nruanvws", "dest": 31113, "xver": 2 },              //Old-Vmess-WS
           { "path": "/nruantrjws", "dest": 31114, "xver": 2 },            //Old-Trojan-WS
           { "path": "/nruanssws", "dest": 31115, "xver": 2 }              //Old-ShadowSocks-WS
+
         ]
       },
       "streamSettings": {
@@ -475,6 +479,97 @@
       }
     },
     {
+      "tag": "VLess-Warp",
+      "listen": "@vless-warp",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {"id":"00000000-0000-0000-0000-000000000000","email":"00000000-VLess_WS","level":0},
+          {"id":"11111111-1111-1111-1111-111111111111","email":"11111111-VLess_WS","level":0},
+          {"id":"22222222-2222-2222-2222-222222222222","email":"22222222-VLess_WS","level":0},
+          {"id":"33333333-3333-3333-3333-333333333333","email":"33333333-VLess_WS","level":0},
+          {"id":"44444444-4444-4444-4444-444444444444","email":"44444444-VLess_WS","level":0}
+         ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/nruanlwarp"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+    {
+      "tag": "VMess-Warp",
+      "listen": "@vmess-warp",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {"id":"00000000-0000-0000-0000-000000000000","email":"00000000-VMess_WS","level":0},
+          {"id":"11111111-1111-1111-1111-111111111111","email":"11111111-VMess_WS","level":0},
+          {"id":"22222222-2222-2222-2222-222222222222","email":"22222222-VMess_WS","level":0},
+          {"id":"33333333-3333-3333-3333-333333333333","email":"33333333-VMess_WS","level":0},
+          {"id":"44444444-4444-4444-4444-444444444444","email":"44444444-VMess_WS","level":0}
+         ],
+        "default": { "level": 0, "alterId": 0 }
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/nruanmwarp"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+    {
+      "tag": "Trojan-Warp",
+      "listen": "@trojan-warp", 
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {"password":"00000000-0000-0000-0000-000000000000","email":"00000000-VMess_WS","level":0},
+          {"password":"11111111-1111-1111-1111-111111111111","email":"11111111-VMess_WS","level":0},
+          {"password":"22222222-2222-2222-2222-222222222222","email":"22222222-VMess_WS","level":0},
+          {"password":"33333333-3333-3333-3333-333333333333","email":"33333333-VMess_WS","level":0},
+          {"password":"44444444-4444-4444-4444-444444444444","email":"44444444-VMess_WS","level":0}
+         ],
+         "fallbacks": []
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/nruantwarp" 
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
       "tag": "Old-VLess-WS",
       "listen": "127.0.0.1",
       "port": 31112,
@@ -757,6 +852,11 @@
            "p3terx.com"
          ],
          "outboundTag":"WARP-socks5-v6"
+      },
+      {
+        "type": "field",
+        "inboundTag": ["Vless-Warp","Vmess-Warp","Trojan-Warp"],
+        "outboundTag": "warp"
       },
       {
         "type": "field",
