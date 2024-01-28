@@ -40,6 +40,7 @@
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
     <ul>
+    <li>2024/01/28 Sing-BOx增加<b>rule_set</b>分流（chatGPT及常用流媒体），需要安装warp，见主菜单。重置配置后，手输（粘贴）UUID。</li>
     <li>2024/01/27 关于归属地标签，作用是某些app自动分流，但IP归属地获取API有频率限制，建议一次不要太多的域名，每次输入的尽量都一致，自动除外，脚本也做了静态处理，全套生成只有获取一次。</li>
     <li>2024/01/27 原xRAY参数配置存在bug，使用2-->17重置，再10修改 Dokodemo-Door端口</li>
     <li>2024/01/27 订阅标签增加归属地，如VPS1_VMESS_WS_HK;增加NekoRay，这货Shadowsock参数全部能正确读取。增加surfboard，放了三个类型，只有一个能用，看后续软件支持与否吧。</li>
@@ -305,10 +306,10 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-trojan-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-shadowsocks-ws/完整UUID </li>
-<li> 注：目前只有vmess-ws/old可用
+<li> <b>*注：目前只有vmess-ws/old可用
 
 
-<li> <b>xRay配置[全套 For surfboard]</b> </li>
+<li> <b>xRay配置[全套 For NekoRay]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/完整UUID </li>
     </ul>
 </details>
