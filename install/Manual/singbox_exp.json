@@ -297,8 +297,6 @@
       "listen_port": 4800,
       "sniff": true,
       "sniff_override_destination": true,
-      "up_mbps": 50,
-      "down_mbps": 100,
       "obfs": {
         "type": "salamander",
         "password": "QkBhs/KM+/Q6"
