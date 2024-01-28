@@ -5,34 +5,76 @@
     "timestamp": true
   },
   "route": {
-    "rules": [
+    "rule_set":[
       {
-        "inbound": ["naive_in"],
-        "outbound": "direct"
+        "tag":"geosite-openai",
+        "type":"remote",
+        "format":"binary",
+        "url":"https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-openai.srs"
       },
       {
-        "inbound": ["hysteria2_in"],
-        "outbound": "direct"
+        "tag": "geosite-tiktok",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tiktok.srs"
       },
       {
-        "inbound": ["tuic_in"],
-        "outbound": "direct"
+        "tag": "geosite-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-netflix.srs"
       },
       {
-        "inbound": ["vmess_in"],
-        "outbound": "direct"
+        "tag": "geosite-hbo",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-hbo.srs"
       },
       {
-        "inbound": ["vless_in"],
-        "outbound": "direct"
+        "tag": "geosite-disney",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-disney.srs"
       },
       {
-        "inbound": ["shadowsocks_in"],
-        "outbound": "direct"
+        "tag": "geosite-dazn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-dazn.srs"
       },
       {
-        "inbound": ["trojan_in"],
-        "outbound": "direct"
+        "tag": "geosite-primevideo",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-primevideo.srs"
+      },
+      {
+        "tag": "geosite-youtube",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-youtube.srs"
+      }
+    ],
+    "rules":[
+      {
+        "domain_suffix":[
+          "cloudflare.com",
+          "ip138.com"
+        ],
+        "outbound":"warp_out_IPv4"
+      },
+      {
+        "rule_set":[
+          "geosite-openai",
+          "geosite-tiktok",
+          "geosite-netflix",
+          "geosite-hbo",
+          "geosite-dazn",
+          "geosite-disney",
+          "geosite-youtube",
+          "geosite-primevideo"
+        ],
+        "outbound":"warp_out_IPv6"
       }
     ]
   },
@@ -291,6 +333,24 @@
     {
       "type": "direct",
       "tag": "direct"
+    },
+    {
+      "type": "socks",
+      "tag": "warp_out",
+      "server": "127.0.0.1",
+      "server_port": 40000
+    },
+    {
+      "type": "direct",
+      "tag": "warp_out_IPv4",
+      "detour": "warp_out",
+      "domain_strategy": "ipv4_only"
+    },
+    {
+      "type": "direct",
+      "tag": "warp_out_IPv6",
+      "detour": "warp_out",
+      "domain_strategy": "ipv6_only"
     }
   ]
 }
