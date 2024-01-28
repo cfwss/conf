@@ -324,6 +324,8 @@
         "alpn": [
           "h3"
         ],
+        "min_version":"1.3",
+        "max_version":"1.3",
         "certificate_path": "/etc/hysteria/bing.com.crt",
         "key_path": "/etc/hysteria/bing.com.key"
       }
