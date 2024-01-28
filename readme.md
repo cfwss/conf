@@ -40,7 +40,7 @@
   <summary>点击查看<b>【使用说明】</b></summary>
     <h2>使用说明&log：</h2>
     <ul>
-    <li>2024/01/28 xRay加了vless/vmess/trojan加了一套全局Warp。之前安装的要在主菜单重置，重新填UUID</li>
+    <li>2024/01/28 xRay的vless/vmess/trojan加了一套<b>全局Warp</b>。之前安装的要在主菜单重置，重新填UUID</li>
     <li>2024/01/28 Sing-BOx增加<b>rule_set</b>分流（chatGPT及常用流媒体），需要安装warp，见主菜单。重置配置后，手输（粘贴）UUID。</li>
     <li>2024/01/27 关于归属地标签，作用是某些app自动分流，但IP归属地获取API有频率限制，建议一次不要太多的域名，每次输入的尽量都一致，自动除外，脚本也做了静态处理，全套生成只有获取一次。</li>
     <li>2024/01/27 原xRAY参数配置存在bug，使用2-->17重置，再10修改 Dokodemo-Door端口</li>
@@ -182,6 +182,9 @@
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-ws/完整UUID </li>
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-warp/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/vmess-warp/完整UUID </li>
+<li> https://任意一个域名/xray/v2rayn/UUID前8位/trojan-warp/完整UUID </li>
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/shadowsocks-ws/完整UUID </li>
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/vless-grpc/完整UUID </li>
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/vmess-grpc/完整UUID </li>
@@ -219,6 +222,9 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/vless-ws/完整UUID </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vless-warp/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/vmess-warp/完整UUID </li>
+<li> https://任意一个域名/xray/neko/UUID前8位/trojan-warp/完整UUID </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/shadowsocks-ws/完整UUID </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/vless-grpc/完整UUID </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/vmess-grpc/完整UUID </li>
@@ -269,6 +275,9 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/vless-ws/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/vless-warp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/vmess-warp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/trojan-warp/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/trojan-grpc/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/old-vless-ws/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/old-vmess-ws/完整UUID </li>
@@ -284,6 +293,9 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/vless-ws/完整UUID </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vless-warp/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/vmess-warp/完整UUID </li>
+<li> https://任意一个域名/xray/nekoray/UUID前8位/trojan-warp/完整UUID </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/shadowsocks-ws/完整UUID </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/vless-grpc/完整UUID </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/vmess-grpc/完整UUID </li>
@@ -303,6 +315,8 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/trojan-tcp/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/vmess-warp/完整UUID </li>
+<li> https://任意一个域名/xray/surfboard/UUID前8位/trojan-warp/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/shadowsocks-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-vmess-ws/完整UUID </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/old-trojan-ws/完整UUID </li>
@@ -342,6 +356,7 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 - bbr功能在warp中已集成，不单独使用。**输入warp**后根据选项选择
 - 主菜单更新提示
 ---
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/warp.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/images/main_menu.jpg)
 
@@ -353,6 +368,8 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 
 <details>
   <summary>点击查看<b>【更多图片】</b></summary>
+
+![Alt text](https://github.com/cfwss/conf/blob/main/install/images/warp2.jpg)
 
 ![Alt text](https://github.com/cfwss/conf/blob/main/install/images/install.jpg)
 
