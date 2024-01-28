@@ -57,7 +57,7 @@
           { "path": "/nruantws", "dest": "@trojan-ws", "xver": 2 },       //Trojan-WS
           { "path": "/nruansws", "dest": 31111 },                         //ShadowSocks-WS
           { "path": "/nruanlwarp", "dest": "@vless-warp", "xver": 2 },    //Vless-Warp
-          { "path": "/nruanmwarp", "dest": "@vmess-warp", "xver": 2 },    //Vmess-Warp
+          { "path": "/nruanmwarp", "dest": "@vmess-warp", "xver": 2 },    //VMess-Warp
           { "path": "/nruantwarp", "dest": "@trojan-warp", "xver": 2 },   //Trojan-Warp
           { "path": "/nruanws",  "dest": 31112, "xver": 2 },              //Old-Vless-WS
           { "path": "/nruanvws", "dest": 31113, "xver": 2 },              //Old-Vmess-WS
@@ -855,7 +855,7 @@
       },
       {
         "type": "field",
-        "inboundTag": ["Vless-Warp","Vmess-Warp","Trojan-Warp"],
+        "inboundTag": ["VLess-Warp","VMess-Warp","Trojan-Warp"],
         "outboundTag": "warp"
       },
       {
