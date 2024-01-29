@@ -1,5 +1,5 @@
 
-port: 1080
+port: 7890
 allow-lan: false
 mode: Rule
 log-level: silent
