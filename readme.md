@@ -35,10 +35,9 @@
     </ul>
 </details>
 
-    
 <details>
-  <summary>点击查看<b>【使用说明】</b></summary>
-    <h2>使用说明&log：</h2>
+  <summary>点击查看<b>【更新日志】</b></summary>
+    <h2>更新日志</h2>
     <ul>
     <li>2024/01/29 修复批量手输时，只有一个UUID的错误，quanx增加按协议订阅。/li>
     <li>2024/01/28 xRay的vless/vmess/trojan加了一套<b>全局Warp</b>。之前安装的要在主菜单重置，重新填UUID</li>
@@ -64,6 +63,13 @@
     <li>2024/01/15 优化了很多内容，Nginx/sing-box/xray单独重置尽可能自动恢复。强化了TLS检测，一键订阅SS不支持的全部丢备注里了。</li>
     <li>2024/01/15 增加quanx订阅(测试)；增加版本检测；增加重置所有配置后，自动设置TLS证书和域名；其他BUG修复。</li>
     <li>2024/01/14 已增加订阅功能。目前v2ray正常，不过hy2的缺少混淆，v2ray不识别。SS明文，自行解码查看详配。</li>
+    </ul>
+</details>
+
+<details>
+  <summary>点击查看<b>【使用说明】</b></summary>
+    <h2>使用说明</h2>
+    <ul>
     <li>原v2ray-agent的配置，<b>几乎没作改动</b>，尤其是Path后缀（如*ws/vws/trjws/grpc/trojangrpc），可以完美过渡。</li>
     <li>选择"<b>一键安装所有配置</b>"，准备好已解析的域名，在输入域名环节，粘贴即可，几乎无交互操作。</li>
     <li>如果出现错误，用主菜单中的<b>重置所有配置</b>功能。</li>
