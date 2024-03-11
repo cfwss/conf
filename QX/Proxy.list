@@ -5,7 +5,6 @@ HOST,p16-tiktokcdn-com.akamaized.net,PROXY,no-resolve
 HOST-KEYWORD, -tiktokcdn-com, proxy,no-resolve
 HOST-KEYWORD,PROXY,PROXY
 HOST-SUFFIX,ai.com,PROXY
-HOST-SUFFIX,amemv.com,PROXY,no-resolve
 HOST-SUFFIX,auth0.com,PROXY
 HOST-SUFFIX,byteoversea.com,PROXY,no-resolve
 HOST-SUFFIX,challenges.cloudflare.com,PROXY
@@ -27,7 +26,6 @@ HOST-SUFFIX,oaiusercontent.com,PROXY
 HOST-SUFFIX,poe.com,PROXY
 HOST-SUFFIX,sentry.io,PROXY
 HOST-SUFFIX,sgpstatp.com,PROXY,no-resolve
-HOST-SUFFIX,snssdk.com,PROXY,no-resolve
 HOST-SUFFIX,stripe.com,PROXY
 HOST-SUFFIX,tiktok.com,PROXY,no-resolve
 HOST-SUFFIX,tik-tokapi.com,PROXY,no-resolve
