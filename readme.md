@@ -39,6 +39,7 @@
   <summary>点击查看<b>【更新日志】</b></summary>
     <h2>更新日志</h2>
     <ul>
+    <li>2024/03/27 优化域名输入时检测，去除冗余信息。</li>
     <li>2024/01/29 修复批量手输时，只有一个UUID的错误，quanx增加按协议订阅。</li>
     <li>2024/01/28 xRay的vless/vmess/trojan加了一套<b>全局Warp</b>。之前安装的要在主菜单重置，重新填UUID。</li>
     <li>2024/01/28 Sing-BOx增加<b>rule_set</b>分流（chatGPT及常用流媒体），需要安装warp，见主菜单。重置配置后，手输（粘贴）UUID。</li>
