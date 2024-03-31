@@ -401,7 +401,8 @@ process_xray_new() {
             fi
         done
     done
-    unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    #unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | grep -v '^\s*$' | sort -u | tr '\n' ' '))
     json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
     json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
     json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
@@ -489,7 +490,8 @@ process_xray_old() {
             fi
         done
     done
-    unique_old_ids=($(echo "${old_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    #unique_old_ids=($(echo "${old_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    unique_old_ids=($(echo "${old_ids[@]}" | tr ' ' '\n' | grep -v '^\s*$' | sort -u | tr '\n' ' '))
     json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
     json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
     json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
@@ -575,7 +577,8 @@ process_sing_box() {
         passwords=($(sed -n "/\"$current_tag\"/,/\"$next_tag\"/s/.*\"password\":\"\(.*\)\".*/\1/p" "$box_config_file"))
         all_passwords+=("${passwords[@]}")
     done
-    unique_box_ids=($(echo "${all_passwords[@]}" | tr ' ' '\n' | awk '!a[$0]++'))
+    #unique_box_ids=($(echo "${all_passwords[@]}" | tr ' ' '\n' | awk '!a[$0]++'))
+    unique_box_ids=($(echo "${all_passwords[@]}" | tr ' ' '\n' | grep -v '^\s*$' | awk '!a[$0]++'))
     json_template_trojan='{"name":"nruan","password":"full_uuid"}'
     json_template_vmess='{"name":"nruan","uuid":"full_uuid","alterId":0}'
     json_template_vless='{"name":"nruan","uuid":"full_uuid","flow":""}'
