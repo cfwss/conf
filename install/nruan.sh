@@ -375,8 +375,8 @@ reset_singbox_files() {
     fi
 }
 get_xray_tags() {
-    new_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$xray_config_file" | grep -oP '"tag":\s*"\K[^"]+' | grep -iv "OLD" | grep -iv "api"))
-    old_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$xray_config_file" | grep -oP '"tag":\s*"\K[^"]+' | grep -i "OLD"))
+    new_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$xray_config_file" 2>/dev/null | grep -oP '"tag":\s*"\K[^"]+' | grep -iv "OLD" | grep -iv "api"))
+    old_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$xray_config_file" 2>/dev/null | grep -oP '"tag":\s*"\K[^"]+' | grep -i "OLD"))
 }
 process_xray_new() {
     method_character="chacha20-ietf-poly1305"
@@ -401,8 +401,7 @@ process_xray_new() {
             fi
         done
     done
-    #unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-    unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | grep -v '^\s*$' | sort -u | tr '\n' ' '))
+    unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
     json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
     json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
     json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
@@ -490,8 +489,7 @@ process_xray_old() {
             fi
         done
     done
-    #unique_old_ids=($(echo "${old_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-    unique_old_ids=($(echo "${old_ids[@]}" | tr ' ' '\n' | grep -v '^\s*$' | sort -u | tr '\n' ' '))
+    unique_old_ids=($(echo "${old_ids[@]}" | awk NF | tr ' ' '\n' | sort -u | tr '\n' ' '))
     json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
     json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
     json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
@@ -1708,7 +1706,6 @@ domain_set(){
         cert_names
         nginx_domain_set
         xray_domain_set
-        singbox_domain_set
         xray_domain_update
     fi
     display_pause_info
@@ -2137,11 +2134,11 @@ restore_xray_set(){
             next_tag="outbounds"
         fi
         content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$xray_config_file")
-        type_restore+=($(echo "$content" | grep -oP '"protocol":\s*"\K[^"]+'))
+        type_restore+=($(echo "$content" | grep -oP '"protocol":\s*"\K[^"]+' 2>/dev/null))
         if [[ "${tags_restore[i]}" == *gRPC* || "${tags_restore[i]}" == *xTLS* ]]; then
-            path_tmp=$(echo "$content" | grep -oP '"serviceName":\s*"\K[^\"]+' || echo "")
+            path_tmp=$(echo "$content" | grep -oP '"serviceName":\s*"\K[^\"]+' 2>/dev/null || echo "")
         else
-            path_tmp=$(echo "$content" | grep -oP '"path":\s*"\K[^\"]+' || echo "")
+            path_tmp=$(echo "$content" | grep -oP '"path":\s*"\K[^\"]+' 2>/dev/null || echo "")
             path_tmp="${path_tmp//\//}"
         fi
         path_restore+=("$path_tmp")
@@ -2196,10 +2193,10 @@ restore_singbox_setting(){
         current_tag=${restore_box_tags[$i]} next_tag=${restore_box_tags[$((i+1))]}
         [ -z "$next_tag" ] && next_tag="outbounds"
         content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$box_config_file")
-        path_t=$(echo "$content" | grep -oP '"path":\s*"\K[^\"]+' | head -n1 | sed 's#/#''#')
+        path_t=$(echo "$content" | grep -oP '"path":\s*"\K[^\"]+' 2>/dev/null | head -n1 | sed 's#/#''#')
         if [ "$current_tag" == "hysteria2" ] || [ "$current_tag" == "shadowsocks" ]; then
-            password_t=$(echo "$content" | grep -oP '"password":\s*"\K[^\"]+' | head -n1)
-            method_t=$(echo "$content" | grep -oP '"method":\s*"\K[^\"]+' | head -n1)
+            password_t=$(echo "$content" | grep -oP '"password":\s*"\K[^\"]+' 2>/dev/null | head -n1)
+            method_t=$(echo "$content" | grep -oP '"method":\s*"\K[^\"]+' 2>/dev/null | head -n1)
         else
             password_t=""
             method_t=""
@@ -2211,7 +2208,7 @@ restore_singbox_setting(){
     for i in "${!restore_box_tags[@]}"; do
         current_tag=${restore_box_tags[$i]}
         for j in "${!backup_box_tags[@]}"; do
-            backup_tag=${backup_box_tags[$j]}  # 修正此行
+            backup_tag=${backup_box_tags[$j]}
             if [[ " $backup_tag " == *" $current_tag "* ]]; then
                 sed -i "s#${restore_box_tags[$i]}#${backup_box_tags[$j]}#" "$box_config_file"
                 if [ -n "${restore_box_path[$i]}" ]; then
@@ -2878,14 +2875,14 @@ modify_tls_for_reset(){
 }
 auto_ng_path(){
     nginx_ports=() nginx_paths=() xray_ports=() xray_paths=()
-    nginx_path=$(grep 'corresponds' "$nginx_index_file")
-    nginx_ports=($(grep -oP 'grpc://127\.0\.0\.1:[0-9]+' "$nginx_index_file" | sed 's/grpc:\/\/127\.0\.0\.1://'))
+    nginx_path=$(grep 'corresponds' "$nginx_index_file" 2>/dev/null)
+    nginx_ports=($(grep -oP 'grpc://127\.0\.0\.1:[0-9]+' "$nginx_index_file" 2>/dev/null | sed 's/grpc:\/\/127\.0\.0\.1://'))
     location_block=$(awk '/corresponds/ {f=1} f; /location/ {f=0}' <<< "$nginx_path")
     readarray -t location_array <<< "$location_block"
     for element in "${location_array[@]}"; do
         nginx_paths+=($(echo "$element" | sed 's/{.*$//' | sed 's/.*\///' | tr -d ' '))
     done
-    xray_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$xray_config_file" | grep -oP '"tag":\s*"\K[^"]+' ))
+    xray_tags=($(sed -n '/"inbounds"/,/outbounds/ p' "$xray_config_file" | grep -oP '"tag":\s*"\K[^"]+' 2>/dev/null))
     xray_paths=() xray_ports=()
     for i in "${!xray_tags[@]}"; do
         current_tag="${xray_tags[i]}"
@@ -2895,8 +2892,8 @@ auto_ng_path(){
         fi
         content=$(sed -n "/\"$current_tag\"/,/\"$next_tag\"/ p" "$xray_config_file")
         if [[ "${xray_tags[i]}" == *gRPC* ]]; then
-            xray_paths+=($(echo "$content" | grep -oP '"serviceName":\s*"\K[^\"]+'| tr -d ' '))
-            xray_ports+=($(echo "$content" | grep -oP '"port":\s*\K[^,]+'| tr -d ' '))
+            xray_paths+=($(echo "$content" | grep -oP '"serviceName":\s*"\K[^\"]+'| tr -d ' ' 2>/dev/null))
+            xray_ports+=($(echo "$content" | grep -oP '"port":\s*\K[^,]+'| tr -d ' ' 2>/dev/null))
         fi
     done
     for ((i=0; i<${#nginx_ports[@]}; i++)); do
@@ -6385,7 +6382,6 @@ get_sing_box_tags_subscription() {
             echo "请输入有效的数字序号。"
         fi
         done
-    # 从用户获取生成数量
     read -p "要生成多少台前缀？: " domain_count
     domain_countb=$((start_number + domain_count))
     echo -e "\e[0;32m - 清理Sing-Box非当前UUID新用户的订阅链接...\e[0m"
