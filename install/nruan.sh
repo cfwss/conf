@@ -1057,6 +1057,7 @@ domain_input(){
     if [ "$match_found" = true ]; then
         echo -e "\e[1;32m - 当前匹配域名: $full_domain\e[0m"
         echo -e "\e[1;91m - 清空/etc/tls目录\e[0m"
+        rm -rf /etc/tls
         mkdir -p /etc/tls 
         mkdir -p /var/www
         mkdir -p /var/www/letsencrypt
