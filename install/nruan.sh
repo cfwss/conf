@@ -384,7 +384,7 @@ process_xray_new() {
     get_xray_tags
     new_ids=()
     if [ ${#new_tags[@]} -eq 0 ]; then
-        echo "No new tags found. Exiting."
+        echo " - 未发现新用户的标签。退出。"
         exit 0
     fi
     for i in "${!new_tags[@]}"; do
@@ -402,6 +402,7 @@ process_xray_new() {
         done
     done
     unique_new_ids=($(echo "${new_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    uuid_arrays=($(echo "${new_uuid_array[@]}" | tr ' ' '\n' | sort -u | grep -v '^[[:space:]]*$' 2>/dev/null))
     json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
     json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
     json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
@@ -451,7 +452,7 @@ process_xray_new() {
         fi
     done
     for unique_id in "${unique_new_ids[@]}"; do
-        if [[ " ${new_uuid_array[*]} " == " $unique_id " ]]; then
+        if [[ " ${uuid_arrays[*]} " == " $unique_id " ]]; then
             unique_new_ids=("${unique_new_ids[@]/$unique_id}")
         fi
     done
@@ -472,7 +473,7 @@ process_xray_old() {
     get_xray_tags
     old_ids=()
     if [ ${#old_tags[@]} -eq 0 ]; then
-        echo "No new tags found. Exiting."
+        echo " - 未发现老用户的标签。退出。"
         exit 0
     fi
     for i in "${!old_tags[@]}"; do
@@ -490,6 +491,7 @@ process_xray_old() {
         done
     done
     unique_old_ids=($(echo "${old_ids[@]}" | awk NF | tr ' ' '\n' | sort -u | tr '\n' ' '))
+    uuid_arrays=($(echo "${old_uuid_array[@]}" | tr ' ' '\n' | sort -u | grep -v '^[[:space:]]*$' 2>/dev/null))
     json_template_xtls='{"id":"full_uuid","flow":"flow2","email":"short_uuid-VLESS_xTLS","level":0}'
     json_template_vmess='{"id":"full_uuid","email":"short_uuid-tag_name","level":0}'
     json_template_trojan='{"password":"full_uuid","email":"short_uuid-tag_name","level":0}'
@@ -539,7 +541,7 @@ process_xray_old() {
         fi
     done
     for unique_id in "${unique_old_ids[@]}"; do
-        if [[ " ${old_uuid_array[*]} " == " $unique_id " ]]; then
+        if [[ " ${uuid_arrays[*]} " == " $unique_id " ]]; then
             unique_old_ids=("${unique_old_ids[@]/$unique_id}")
         fi
     done
@@ -562,7 +564,7 @@ process_sing_box() {
     flow=xtls-rprx-vision
     all_passwords=()
     if [ ${#box_tags[@]} -eq 0 ]; then
-        echo "No new tags found. Exiting."
+        echo " - 未发现用户的标签。退出。"
         exit 0
     fi
     for i in "${!box_tags[@]}"; do
@@ -577,6 +579,12 @@ process_sing_box() {
     done
     #unique_box_ids=($(echo "${all_passwords[@]}" | tr ' ' '\n' | awk '!a[$0]++'))
     unique_box_ids=($(echo "${all_passwords[@]}" | tr ' ' '\n' | grep -v '^\s*$' | awk '!a[$0]++'))
+    for unique_boxid in "${box_uuid_array[@]}"; do
+        if [[ " ${unique_old_ids[*]} " == " $unique_boxid " ]]; then
+            box_uuid_array=("${box_uuid_array[@]/$unique_boxid}")
+        fi
+    done
+    box_uuid_array=($(echo "${box_uuid_array[@]}" | tr ' ' '\n' | sort -u | grep -v '^[[:space:]]*$' 2>/dev/null))
     json_template_trojan='{"name":"nruan","password":"full_uuid"}'
     json_template_vmess='{"name":"nruan","uuid":"full_uuid","alterId":0}'
     json_template_vless='{"name":"nruan","uuid":"full_uuid","flow":""}'
@@ -639,6 +647,7 @@ process_sing_box() {
             unique_box_ids=("${unique_box_ids[@]/$unique_id}")
         fi
     done
+    unique_box_ids=($(echo "${unique_box_ids[@]}" | tr ' ' '\n' | sort -u | grep -v '^[[:space:]]*$' 2>/dev/null))
     for ((i = 0; i < ${#unique_box_ids[@]}; i++)); do
         if [[ "${unique_box_ids[i]}" =~ ^[[:space:]]*$ ]]; then
             continue
@@ -661,7 +670,7 @@ xray_user_info() {
     printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "xRay 新用户信息 (左边是除 ShadowSock 之外的 UUID)"
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}+"; done; echo -e "${reset_color}"
     if [ ${#new_tags[@]} -eq 0 ]; then
-        echo "No new tags found. Exiting."
+        echo " - 未发现新用户的标签。退出。"
         exit 0
     fi
     all_ids=()
@@ -695,7 +704,7 @@ xray_user_info() {
     all_ids=()
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}+"; done; echo -e "${reset_color}"
     if [ ${#old_tags[@]} -eq 0 ]; then
-        echo "No old tags found. Exiting."
+        echo " - 未发现老用户的标签。退出。"
         exit 0
     fi
     for i in "${!old_tags[@]}"; do
@@ -3800,7 +3809,7 @@ user_xray_new() {
         for ((i = 0; i < path_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
         new_ids=()
         if [ ${#new_tags[@]} -eq 0 ]; then
-            echo "No new tags found. Exiting."
+            echo " - 未发现新用户的标签。退出。"
             exit 0
         fi
         for i in "${!new_tags[@]}"; do
@@ -3971,7 +3980,7 @@ user_xray_old() {
         for ((i = 0; i < path_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
         new_ids=()
         if [ ${#old_tags[@]} -eq 0 ]; then
-            echo "No new tags found. Exiting."
+            echo " - 未发现老用户的标签。退出。"
             exit 0
         fi
         tag_name=()
@@ -4560,7 +4569,7 @@ get_xray_old_subscription() {
     for ((i = 0; i < path_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
     old_ids=()
     if [ ${#old_tags[@]} -eq 0 ]; then
-        echo "No new tags found. Exiting."
+        echo " - 未发现老用户的标签。退出。"
         exit 0
     fi
     html_dir="/usr/share/nginx/html/$common_prefix"
@@ -5336,7 +5345,7 @@ get_xray_old_domain_subscription() {
     for ((i = 0; i < path_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
     old_ids=()
     if [ ${#old_tags[@]} -eq 0 ]; then
-        echo "No new tags found. Exiting."
+        echo " - 未发现老用户的标签。退出。"
         exit 0
     fi
     html_dir="/usr/share/nginx/html/nruan"
