@@ -667,7 +667,7 @@ xray_user_info() {
         return 1
     fi
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
-    printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "xRay 新用户信息 (左边是除 ShadowSock 之外的 UUID)"
+    printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "xRay 新用户信息 (左边是除 ShadowSocks 之外的 UUID)"
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}+"; done; echo -e "${reset_color}"
     if [ ${#new_tags[@]} -eq 0 ]; then
         echo " - 未发现新用户的标签。退出。"
@@ -689,7 +689,7 @@ xray_user_info() {
         done
     done
     unique_ids=($(echo "${all_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-    printf "\e[1m%-5s %-50s %s\e[0m\n" "No." "UUID for other" "ShadowSock Password"
+    printf "\e[1m%-5s %-50s %s\e[0m\n" "No." "UUID for other" "Password For ShadowSocks"
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
     for ((i = 0; i < ${#unique_ids[@]}; i++)); do
         base64_encoded_id=$(echo -n "${unique_ids[$i]}" | base64)
@@ -700,7 +700,7 @@ xray_user_info() {
         fi
     done
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}="; done; echo -e "${reset_color}"
-    printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "xRay 老用户信息 (左边是除 ShadowSock 之外的 UUID)"
+    printf "\e[1;32m%${half_repeat_count}s%s\e[0m\n" "" "xRay 老用户信息 (左边是除 ShadowSocks 之外的 UUID)"
     all_ids=()
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}+"; done; echo -e "${reset_color}"
     if [ ${#old_tags[@]} -eq 0 ]; then
@@ -722,7 +722,7 @@ xray_user_info() {
         done
     done
     unique_ids=($(echo "${all_ids[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-    printf "\e[1m%-5s %-50s %s\e[0m\n" "No." "UUID for other" "ShadowSock Password"
+    printf "\e[1m%-5s %-50s %s\e[0m\n" "No." "UUID for other" "Password For ShadowSocks"
     for ((i = 0; i < repeat_count; i++)); do echo -n -e "${light_gray}-"; done; echo -e "${reset_color}"
     for ((i = 0; i < ${#unique_ids[@]}; i++)); do
         base64_encoded_id=$(echo -n "${unique_ids[$i]}" | base64)
@@ -757,7 +757,7 @@ singbox_user_info() {
     names=($(for uuid in "${names[@]}"; do is_valid_uuid "$uuid" && echo "$uuid"; done | sort -u))
     base64_names=()
     tag_box="Sing-Box   "
-    uuid_info=("Trojan / Vmess /Vless / Tuic / Naive / Hysteria2   UUID"   "ShadowSock / Tuic BASE64 Password")
+    uuid_info=("Trojan / Vmess /Vless / Tuic / Naive / Hysteria2   UUID"   "ShadowSocks / Tuic BASE64 Password")
     ks=0
     for tag in "vless" "shadowsocks"; do
         [[ "$tag" == "vless" ]] && base64_names=("${names[@]}")
@@ -8893,6 +8893,32 @@ xRay_surfboard_auto(){
     display_pause_info
     fi
 }
+uninstall_all(){
+    clear
+    config_files
+    GREEN='\033[0;32m'
+    NC='\033[0m'
+    packages=("jq" "sing-box" "socat" "net-tools" "uuid-runtime" "dnsutils" "lsof" "build-essential" "libssl-dev" "libevent-dev" "zlib1g-dev" "gcc-mingw-w64" "nginx")
+    for package in "${packages[@]}"; do
+        sudo apt-get purge --auto-remove -y "xray" > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo -e "  ${GREEN}- 卸载成功 $package${NC}"
+        else
+            echo "  * 卸载 $package 失败 "
+        fi
+    done
+    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ remove
+    rm /usr/share/nginx/html/ -rf > /dev/null 2>&1
+    rm -f "$xray_config_file" > /dev/null 2>&1
+    rm -f "$nginx_config_file" > /dev/null 2>&1
+    rm -f "$box_config_file" > /dev/null 2>&1
+    rm -f "$nginx_index_file" > /dev/null 2>&1
+    rm -rf /etc/nginx/conf.d/*.* > /dev/null 2>&1
+    unlink /usr/local/bin/nruan > /dev/null 2>&1
+    rm -f /usr/local/bin/nruan.sh > /dev/null 2>&1
+    rm -rf /usr/local/bin/nruan > /dev/null 2>&1
+    display_pause_info
+}
 auto_all_subscriptions(){
     clear
     path_count=88
@@ -9322,6 +9348,7 @@ main_menu_choice() {
         update_xray
         update_sing_box
         update_menu
+        uninstall_all
         #xray_protocol_details
     )
     if [ "$choice" -ge 1 ] && [ "$choice" -le ${#actions[@]} ]; then
@@ -9368,7 +9395,7 @@ main_menu() {
             "更新/重新安装 xRay        \e[90m当前: v$xray_version / 官方: $xray_latest_version\e[0m"
             "更新/重新安装 Sing-box    \e[90m当前: v$box_version / 官方: $box_latest_version\e[0m"
             "更新并重启当前菜单        \e[90m最后更新: $formatted_date \e[0m"
-            #"\e[0;33m测试功能: 显示xRay的协议块的信息\e[0m"
+            "再见，后会有期（卸载/删除已安装的应用及配置）"
             "退出"
         )
         for ((i = 0; i < ${#menu_items[@]}; i++)); do
