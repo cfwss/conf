@@ -8046,6 +8046,150 @@ xRay_neko_auto(){
         display_pause_info
     fi
 }
+sing_box_clash_auto(){
+    clear
+    path_count=88
+    box_type_dir="box"
+    box_subscription_dir="clash"
+    box_subscription_intro
+    if [ ${#box_domain_array[@]} -gt 0 ]; then
+        input_file="/etc/$box_type_dir/clash_file_temp.yaml"
+        rm -rf "$input_file" clash_file_temp.yaml
+        wget -N https://raw.githubusercontent.com/cfwss/conf/main/install/Manual/clash_file_temp.yaml > /dev/null 2>&1
+        sleep 1
+        mv clash_file_temp.yaml "$input_file" -f
+        clash_box_hysteria2_tcp_template='  - {"name":"tagname", "type":"hysteria2", "server":"example.com", "port":"listen_port","obfs-password":"obfs_pw", "udp":"1",  "obfs":"salamander", "sni":"example.com", "password":"full_uuid"}'
+        clash_box_tuic_tcp_template='  - {"name":"tagname", "type":"tuic", "server":"example.com", "port":"listen_port","uuid":"full_uuid", "password":"base64_uuid",  "congestion-controller":"cubic", "sni":"example.com","udp-relay-mode":"native"}'
+        rm -rf /etc/$box_type_dir/${box_subscription_dir}_box_all_sub.txt
+        rm -rf /etc/$box_type_dir/${box_subscription_dir}_box_tag_sub.txt
+        
+        for box_uuid in "${unique_box_tag_all_uuids[@]}"; do
+            box_short_uuid="${box_uuid:0:8}"
+            box_uuid_base64=$(echo -n "$box_uuid" | base64 | tr -d '/+' | cut -c 1-22)
+            box_uuid_base64+="=="
+            mkdir -p "$box_html_dir/$box_short_uuid"
+            box_clash_all_tag=() box_clash_all_name=()
+            for i in "${!box_all_tags[@]}"; do
+                current_tag="${box_all_tags[i]}"
+                k=$i
+                is_tag=$(echo "${box_all_tags[i]}" | tr -d ' ' | tr '[:upper:]' '[:lower:]')
+                if [[ "$is_tag" == *"tuic"* || "$is_tag" == *"hysteria"*  ]]; then
+                    box_current_tag=${box_all_tags[$i]} box_next_tag=${box_all_tags[$((i+1))]}
+                    [ -z "$box_next_tag" ] && box_next_tag="outbounds"
+                    box_content=$(sed -n "/\"$box_current_tag\"/,/\"$box_next_tag\"/ p" "$box_config_file")
+                    box_tag_domain=$(echo "$box_content" | grep -oP '"server_name":\s*"\K[^\"]+' | head -n1)
+                    box_tag_uuids=($(echo "$box_content" | grep -oP '"uuid":\s*"\K[^\"]+'))
+                    box_tag_password=($(echo "$box_content" | grep -oP '"password":\s*"\K[^\"]+'))
+                    box_user_name=()
+                    if [ "$box_current_tag" == "shadowsocks" ] ; then
+                        box_tag_domain=$box_tag_domainb
+                    fi
+                    box_tag_domainb=$box_tag_domain
+                    if [ "$box_current_tag" == "hysteria2" ] || [ "$box_current_tag" == "shadowsocks" ]; then
+                        box_password_temp=$(echo "$content" | grep -oP '"password":\s*"\K[^\"]+' | head -n1)
+                    else
+                        box_password_temp=""
+                    fi
+                    box_count_id=false
+                    for is_uuid in "${box_tag_uuids[@]}"; do
+                        if [ "$box_uuid" == "$is_uuid" ] ; then
+                            box_count_id=true
+                            break
+                        fi
+                    done
+                    for is_base64 in "${box_tag_password[@]}"; do
+                        if [ "$box_uuid" == "$is_base64" ] || [ "$box_uuid_base64" == "$is_base64" ]; then
+                            box_count_id=true
+                            break
+                        fi
+                    done
+
+                    if [ "$box_count_id" = true ]; then
+                        mkdir -p "$box_html_dir/$box_short_uuid/$is_tag"
+                        box_user_name=() box_user_tags=()
+                        for ((x=0; x<${#box_domain_array[@]}; x++)); do
+                            box_domain=${box_domain_array[x]}
+                            prefix="${box_domain%%.*}"
+                            suffix="${box_domain#*.}"
+                            current_template=""
+                            case ${current_tag,,} in
+                                "tuic")
+                                    current_template=$(echo "$clash_box_tuic_tcp_template" | sed -e "s#full_uuid#$box_uuid#" -e "s#base64_uuid#$box_uuid_base64#g" -e "s#listen_port#${box_tag_ports[k]}#g" -e "s#example.com#$box_domain#g" -e "s#tagname#${prefix^^}_${is_tag^}_TCP#")
+                                    ;;
+                                "hysteria2")
+                                    current_template=$(echo "$clash_box_hysteria2_tcp_template" | sed -e "s#full_uuid#$box_uuid#" -e "s#example.com#$box_domain#g" -e "s#listen_port#${box_tag_ports[k]}#g" -e "s#obfs_pw#$box_tag_password#g" -e "s#tagname#${prefix^^}_${is_tag^}_TCP#")
+                                    ;;
+                                *)
+                                    current_template=""
+                                    ;;
+                            esac
+                            box_user_name+=("$current_template")
+                            box_user_tags+=(${prefix^^}_${current_tag^}_TCP)
+                            box_clash_all_name+=("$current_template")
+                            box_clash_all_tag+=(${prefix^^}_${current_tag^}_TCP)
+                        done
+                            output_file="$box_html_dir/$box_short_uuid/$is_tag/$box_uuid"
+                            mapfile -t lines < "$input_file"
+                            IFS=,
+                            clash_proxy="- { name: PROXY, type: select, proxies: [ Auto Select, Load Balance, ${box_user_tags[*]} ] }"
+                            clash_auto="- { name: Auto Select, type: url-test, proxies: [ ${box_user_tags[*]} ] , url: 'http://www.gstatic.com/generate_204', interval: 86400 }"
+                            clash_balance="- { name: Load Balance, type: fallback, proxies: [ ${box_user_tags[*]} ] , url: 'http://www.gstatic.com/generate_204', interval: 7200 }"
+                            IFS=$' \t\n'
+                            for i in "${!lines[@]}"; do
+                                if [[ ${lines[i]} == "proxies:" ]]; then
+                                    lines=("${lines[@]:0:i+1}" "${box_user_name[@]}" "${lines[@]:i+1}")
+                                break
+                            fi
+                            done
+                            for i in "${!lines[@]}"; do
+                            if [[ ${lines[i]} == "proxy-groups:" ]]; then
+                                lines=("${lines[@]:0:i+1}" "$clash_balance" "${lines[@]:i+1}")
+                                lines=("${lines[@]:0:i+1}" "$clash_auto" "${lines[@]:i+1}")
+                                lines=("${lines[@]:0:i+1}" "$clash_proxy" "${lines[@]:i+1}")
+                                break
+                            fi
+                            done
+                            printf "%s\n" "${lines[@]}" > "$output_file"
+                            echo "https://$selected_cdn/$box_type_dir/$box_subscription_dir/$box_short_uuid/$is_tag/$box_uuid" | tee -a /etc/$box_type_dir/${box_subscription_dir}_box_tags_sub.txt
+                    fi
+                fi
+            done
+            output_file="$box_html_dir/$box_short_uuid/$box_uuid"
+            mapfile -t lines < "$input_file"
+            IFS=,
+            clash_proxy="- { name: PROXY, type: select, proxies: [ Auto Select, Load Balance, ${box_clash_all_tag[*]} ] }"
+            clash_auto="- { name: Auto Select, type: url-test, proxies: [ ${box_clash_all_tag[*]} ] , url: 'http://www.gstatic.com/generate_204', interval: 86400 }"
+            clash_balance="- { name: Load Balance, type: fallback, proxies: [ ${box_clash_all_tag[*]} ] , url: 'http://www.gstatic.com/generate_204', interval: 7200 }"
+            IFS=$' \t\n'
+            for i in "${!lines[@]}"; do
+                if [[ ${lines[i]} == "proxies:" ]]; then
+                    lines=("${lines[@]:0:i+1}" "${box_clash_all_name[@]}" "${lines[@]:i+1}")
+                break
+            fi
+            done
+            for i in "${!lines[@]}"; do
+            if [[ ${lines[i]} == "proxy-groups:" ]]; then
+                lines=("${lines[@]:0:i+1}" "$clash_balance" "${lines[@]:i+1}")
+                lines=("${lines[@]:0:i+1}" "$clash_auto" "${lines[@]:i+1}")
+                lines=("${lines[@]:0:i+1}" "$clash_proxy" "${lines[@]:i+1}")
+                break
+            fi
+            done
+            printf "%s\n" "${lines[@]}" > "$output_file"
+            echo "https://$selected_cdn/$box_type_dir/$box_subscription_dir/$short_uuid/$box_uuid" | tee -a /etc/$box_type_dir/${box_subscription_dir}_box_all_sub.txt
+        done
+        for ((i = 0; i < path_count; i++)); do echo -n -e "-"; done; echo -e "";
+        echo -e " - \e[1;33m订阅目录: \e[0m\e[1;32m$box_html_dir\e[0m"
+        echo -e " - \e[1;33m日志文件: \e[0m\e[1;32m/etc/$box_type_dir/${box_subscription_dir}_box_tags_sub.txt\e[0m"
+        echo -e " - \e[1;33m用户链接: \e[0m\e[1;32mhttps://$selected_cdn/$box_type_dir/$box_subscription_dir/UUID前8位/小写标签名/完整UUID\e[0m"
+        for ((i = 0; i < path_count; i++)); do echo -n -e "-"; done; echo -e "";
+        echo -e " - \e[1;33m日志文件: \e[0m\e[1;32m/etc/$box_type_dir/${box_subscription_dir}_box_all_sub.txt\e[0m"
+        echo -e " - \e[1;33m用户链接: \e[0m\e[1;32mhttps://$selected_cdn/$box_type_dir/$box_subscription_dir/UUID前8位/完整UUID\e[0m"
+        for ((i = 0; i < path_count; i++)); do echo -n -e "-"; done; echo -e "";
+        rm -f "$input_file"
+        display_pause_info
+    fi
+}
 xRay_clash_auto(){
     clear
     path_count=88
@@ -8933,6 +9077,7 @@ auto_all_subscriptions(){
     sing_box_neko_auto
     sing_box_quanx_auto
     sing_box_shadowrocket_auto
+    sing_box_clash_auto
     xRay_surfboard_auto
 }
 client_other_export_choice() {
@@ -9033,6 +9178,7 @@ client_export_choice() {
         sing_box_neko_auto
         sing_box_quanx_auto
         sing_box_shadowrocket_auto
+        sing_box_clash_auto
         auto_all_subscriptions
         clear_all_subscriptions
         client_other_export
@@ -9072,6 +9218,7 @@ client_export() {
             "\e[1;32m自动生成\e[0m所有Sing-Box用户\e[1;93m序列域名\e[0mNekoBox订阅"
             "\e[1;32m自动生成\e[0m所有Sing-Box用户\e[1;93m序列域名\e[0mQuantumultX订阅"
             "\e[1;32m自动生成\e[0m所有Sing-Box用户\e[1;93m序列域名\e[0mShadowRocket订阅"
+            "\e[1;32m自动生成\e[0m所有Sing-Box用户\e[1;93m序列域名\e[0mClash订阅[仅tuic/H2]"
             "\e[1;32m自动清空订阅\e[0m\e[1;91m后执行 4~13项\e[0m\e[1;33m[序列域名默认\e[0m\e[1;32m 10 \e[0m\e[1;33m个]\e[0m"
             "\e[1;91m清空所有用户的订阅\e[0m"
             "\e[1;33m其他订阅生成配置\e[0m\e[0;33m\e[0m"
