@@ -8896,7 +8896,6 @@ xRay_surfboard_auto(){
 }
 uninstall_all(){
     clear
-    config_files
     GREEN='\033[0;32m'
     NC='\033[0m'
     packages=("jq" "sing-box" "socat" "net-tools" "uuid-runtime" "dnsutils" "lsof" "build-essential" "libssl-dev" "libevent-dev" "zlib1g-dev" "gcc-mingw-w64" "nginx")
@@ -8909,12 +8908,6 @@ uninstall_all(){
         fi
     done
     bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ remove
-    rm /usr/share/nginx/html/ -rf > /dev/null 2>&1
-    rm -f "$xray_config_file" > /dev/null 2>&1
-    rm -f "$nginx_config_file" > /dev/null 2>&1
-    rm -f "$box_config_file" > /dev/null 2>&1
-    rm -f "$nginx_index_file" > /dev/null 2>&1
-    rm -rf /etc/nginx/conf.d/*.* > /dev/null 2>&1
     unlink /usr/local/bin/nruan > /dev/null 2>&1
     rm -f /usr/local/bin/nruan.sh > /dev/null 2>&1
     rm -rf /usr/local/bin/nruan > /dev/null 2>&1
@@ -9349,7 +9342,6 @@ main_menu_choice() {
         update_xray
         update_sing_box
         update_menu
-        uninstall_all
         #xray_protocol_details
     )
     if [ "$choice" -ge 1 ] && [ "$choice" -le ${#actions[@]} ]; then
@@ -9396,7 +9388,6 @@ main_menu() {
             "更新/重新安装 xRay        \e[90m当前: v$xray_version / 官方: $xray_latest_version\e[0m"
             "更新/重新安装 Sing-box    \e[90m当前: v$box_version / 官方: $box_latest_version\e[0m"
             "更新并重启当前菜单        \e[90m最后更新: $formatted_date \e[0m"
-            "再见，后会有期（卸载/删除已安装的应用及配置）"
             "退出"
         )
         for ((i = 0; i < ${#menu_items[@]}; i++)); do
