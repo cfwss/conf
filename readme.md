@@ -339,6 +339,15 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 
 <li> <b>xRay配置[全套 For NekoRay]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/完整UUID </li>
+
+<li> <b>SING-BOX配置[按协议 For Clash Verge ]</b> </li>
+<li> https://任意一个域名/sing-box/clash/UUID前8位/trojan/完整UUID</li>
+<li> https://任意一个域名/sing-box/clash/UUID前8位/vmess/完整UUID</li>
+<li> https://任意一个域名/sing-box/clash/UUID前8位/shadowsocks/完整UUID</li>
+<li> https://任意一个域名/sing-box/clash/UUID前8位/vless/完整UUID</li>
+<li> https://任意一个域名/sing-box/clash/UUID前8位/tuic/完整UUID</li>
+<li> https://任意一个域名/sing-box/clash/UUID前8位/hysteria2/完整UUID</li>
+
     </ul>
 </details>
 
