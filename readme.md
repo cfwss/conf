@@ -214,16 +214,16 @@
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/完整UUID </li>
 
 SING-BOX配置[按协议 For v2RayN]</b> </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/trojan/完整UUID </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/vmess/完整UUID </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/shadowsocks/完整UUID </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/vless/完整UUID </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/tuic/完整UUID </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/naive/完整UUID </li>
-<li> https://任意一个域名/sing-box/v2rayn/UUID前8位/hysteria2/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/trojan/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/vmess/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/shadowsocks/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/vless/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/tuic/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/naive/完整UUID </li>
+<li> https://任意一个域名/box/v2rayn/UUID前8位/hysteria2/完整UUID </li>
 
 <li> <b>SING-BOX配置[全套 For v2RayN]</b> </li>
-<li> https://任意一个域名/sing-box/UUID前8位/trojan/完整UUID </li>
+<li> https://任意一个域名/box/UUID前8位/trojan/完整UUID </li>
 
 
 <li> <b>xRay配置[按协议 For Nekobox]</b> </li>
@@ -254,13 +254,13 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/neko/UUID前8位/完整UUID </li>
 
 <li> <b>SING-BOX配置[按协议 For Nekobox]</b> </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/trojan/完整UUID </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/vmess/完整UUID </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/shadowsocks/完整UUID </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/vless/完整UUID </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/tuic/完整UUID </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/naive/完整UUID </li>
-<li> https://任意一个域名/sing-box/neko/UUID前8位/hysteria2/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/trojan/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/vmess/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/shadowsocks/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/vless/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/tuic/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/naive/完整UUID </li>
+<li> https://任意一个域名/box/neko/UUID前8位/hysteria2/完整UUID </li>
 
 <li> <b>SING-BOX配置[全套 For Nekobox]</b> </li>
 <li> https://任意一个域名/sing-box/neko/UUID前8位/完整UUID </li>
@@ -273,13 +273,13 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/sing-box/quanx/UUID前8位/完整UUID </li>
 
 <li> <b>SING-BOX配置[按协议 For ShadowRocket]</b> </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/trojan/完整UUID </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/vmess/完整UUID </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/shadowsocks/完整UUID </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/vless/完整UUID </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/tuic/完整UUID </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/naive/完整UUID </li>
-<li> https://任意一个域名/sing-box/rocket/前8位UUID/hysteria2/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/trojan/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/vmess/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/shadowsocks/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/vless/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/tuic/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/naive/完整UUID </li>
+<li> https://任意一个域名/box/rocket/前8位UUID/hysteria2/完整UUID </li>
 
 <li> <b>SING-BOX配置[全套 For ShadowRocket]</b> </li>
 <li> https://任意一个域名/sing-box/rocket/前8位UUID/完整UUID </li>
@@ -341,13 +341,14 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/surfboard/UUID前8位/完整UUID </li>
 
 <li> <b>SING-BOX配置[按协议 For Clash Verge ]</b> </li>
-<li> https://任意一个域名/sing-box/clash/UUID前8位/trojan/完整UUID</li>
-<li> https://任意一个域名/sing-box/clash/UUID前8位/vmess/完整UUID</li>
-<li> https://任意一个域名/sing-box/clash/UUID前8位/shadowsocks/完整UUID</li>
-<li> https://任意一个域名/sing-box/clash/UUID前8位/vless/完整UUID</li>
-<li> https://任意一个域名/sing-box/clash/UUID前8位/tuic/完整UUID</li>
-<li> https://任意一个域名/sing-box/clash/UUID前8位/hysteria2/完整UUID</li>
-
+<li> https://任意一个域名/box/clash/UUID前8位/trojan/完整UUID</li>
+<li> https://任意一个域名/box/clash/UUID前8位/vmess/完整UUID</li>
+<li> https://任意一个域名/box/clash/UUID前8位/shadowsocks/完整UUID</li>
+<li> https://任意一个域名/box/clash/UUID前8位/vless/完整UUID</li>
+<li> https://任意一个域名/box/clash/UUID前8位/tuic/完整UUID</li>
+<li> https://任意一个域名/box/clash/UUID前8位/hysteria2/完整UUID</li>
+<li> <b>SING-BOX配置[全套 For Clash Verge ]</b> </li>
+<li> https://任意一个域名/box/UUID前8位/完整UUID </li>
     </ul>
 </details>
 
