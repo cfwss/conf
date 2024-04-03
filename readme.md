@@ -39,6 +39,7 @@
   <summary>点击查看<b>【更新日志】</b></summary>
     <h2>更新日志</h2>
     <ul>
+    <li>2024/04/02 新增xRay配置 For Clash Verge订阅，除ss外所有协议配置。</li>
     <li>2024/04/02 新增Sing-box For Clash Verge订阅，现在可以愉快滴玩tuic和h2啦！</li>
     <li>2024/04/02 当存在多个证书，生成订阅时，手动清空tls目录再添加相应的域名（或保留要生成的域名），生成后，再通过菜单5，把域名加回去。</li>
     <li>2024/04/02 优化域名处理。可以使用三级、四级及更多层的子域名。如vps0.domain.com / vps0.tls.domain.com / vps0.cdn.domain.com </li>
