@@ -213,7 +213,7 @@
 <li> <b>xRay配置[全套 For v2RayN]</b> </li>
 <li> https://任意一个域名/xray/v2rayn/UUID前8位/完整UUID </li>
 
-SING-BOX配置[按协议 For v2RayN]</b> </li>
+<li> <b>SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> https://任意一个域名/sing-box/v2rayn/UUID前8位/trojan/完整UUID </li>
 <li> https://任意一个域名/sing-box/v2rayn/UUID前8位/vmess/完整UUID </li>
 <li> https://任意一个域名/sing-box/v2rayn/UUID前8位/shadowsocks/完整UUID </li>
