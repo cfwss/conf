@@ -218,3 +218,6 @@ payload:
   - PROCESS-NAME,nekobox_core.exe,DIRECT
   - PROCESS-NAME,nekoray_core,DIRECT
   - PROCESS-NAME,nekoray_core.exe,DIRECT
+  - PROCESS-NAME,msedgewebview2.exe,DIRECT
+  - PROCESS-NAME,Clash Verge.exe,DIRECT
+  - PROCESS-NAME,Clash Nyanpasu.exe,DIRECT
