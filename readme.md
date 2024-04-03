@@ -284,18 +284,28 @@ SING-BOX配置[按协议 For v2RayN]</b> </li>
 <li> <b>SING-BOX配置[全套 For ShadowRocket]</b> </li>
 <li> https://任意一个域名/sing-box/rocket/前8位UUID/完整UUID </li>
 
-<li> <b>xRay配置[Clash Fow Win]</b> </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/vless-ws/完整UUID </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/vmess-ws/完整UUID </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/trojan-ws/完整UUID </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/vless-warp/完整UUID </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/vmess-warp/完整UUID </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/trojan-warp/完整UUID </li>
-<li> https://任意一个域名/xray/clash/UUID前8位/trojan-grpc/完整UUID </li>
+<li> <b>xRay配置[按协议Fow  Clash Vergen]</b> </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vless-xtls/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vless-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vmess-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/trojan-tcp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vless-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vless-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vmess-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/trojan-grpc/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vless-warp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/vmess-warp/完整UUID </li>
+<li> https://任意一个域名/xray/clash/前8位UUID/trojan-warp/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/old-vless-ws/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/old-vmess-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/old-trojan-ws/完整UUID </li>
+<li> https://任意一个域名/xray/clash/UUID前8位/old-vless-grpc/完整UUID </li>
 <li> https://任意一个域名/xray/clash/UUID前8位/old-trojan-grpc/完整UUID </li>
 
+<li> <b>xRay配置[全套Fow  Clash Verge]</b> </li>
+https://任意一个域名/xray/clash/前8位UUID/完整UUID
 
 <li> <b>xRay配置[按协议 For NekoRay]</b> </li>
 <li> https://任意一个域名/xray/nekoray/UUID前8位/vless-xtls/完整UUID </li>
