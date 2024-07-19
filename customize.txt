@@ -1,4 +1,5 @@
 payload:
+  - 'wan.baidu.com'
   - PROCESS-NAME,clash,DIRECT
   - PROCESS-NAME,clash.meta-windows-amd64.exe,DIRECT
   - PROCESS-NAME,clash.meta-windows-amd64-compatible.exe,DIRECT
