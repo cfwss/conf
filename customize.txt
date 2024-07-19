@@ -1,4 +1,5 @@
 payload:
+  - DOMAIN,yezixigame.com,DIRECT
   - DOMAIN,wan.baidu.com,DIRECT
   - PROCESS-NAME,clash,DIRECT
   - PROCESS-NAME,clash.meta-windows-amd64.exe,DIRECT
