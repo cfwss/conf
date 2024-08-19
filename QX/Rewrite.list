@@ -2,8 +2,7 @@
 # > General
 
 ^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/bookshelf\/refresh url reject-200
-^https:\/\/magev6\.if\.qidian\.com url script-request-header https://raw.githubusercontent.com/Yu9191/Rewrite/main/qidiantk.js
-^https:\/\/magev6\.if\.qidian\.com\/argus\/api\/v3\/user\/getaccountpage url script-response-body https://raw.githubusercontent.com/Yu9191/Rewrite/main/qidianbd.js
+^https:\/\/magev6\.if\.qidian\.com url script-request-header 
 ^http[s]?:\/\/magev6\.if\.qidian\.com\/argus\/api\/v1\/adv\/getadvlistbatch\?positions url reject-200
 ^https:\/\/i\.weread\.qq\.com\/pay\/memberCardSummary url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/txwxds.js
 (?<=_region=)CN(?=&) url 307 US
