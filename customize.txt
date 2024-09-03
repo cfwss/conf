@@ -1,4 +1,5 @@
 payload:
+  - DOMAIN,top2fun.com,DIRECT
   - DOMAIN,yezixigame.com,DIRECT
   - DOMAIN,wan.baidu.com,DIRECT
   - PROCESS-NAME,clash,DIRECT
