@@ -223,5 +223,6 @@ payload:
   - PROCESS-NAME,nekoray_core.exe,DIRECT
   - PROCESS-NAME,msedgewebview2.exe,DIRECT
   - PROCESS-NAME,Clash Verge.exe,DIRECT
-  - PROCESS-NAME,Clash Nyanpasu.exe,DIRECT
-  - PROCESS-NAME,Clash brave.exe,DIRECT
+  - PROCESS-NAME,Nyanpasu.exe,DIRECT
+  - PROCESS-NAME,brave.exe,DIRECT
+  - PROCESS-NAME,USBRecoveryCreator.exe,PROXY
