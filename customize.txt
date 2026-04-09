@@ -225,4 +225,3 @@ payload:
   - PROCESS-NAME,Clash Verge.exe,DIRECT
   - PROCESS-NAME,Nyanpasu.exe,DIRECT
   - PROCESS-NAME,brave.exe,DIRECT
-  - PROCESS-NAME,USBRecoveryCreator.exe,PROXY
